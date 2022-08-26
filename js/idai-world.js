@@ -38,7 +38,7 @@ function loadDropdown() {
 			idaiWorldNavDropdown.id = 'idai-world-dropdown';
 
 			const idaipublicationsLogo = document.createElement('img');
-			idaiWorldNavDropdown.id = 'idai-publications-logo';
+			idaipublicationsLogo.id = 'idai-publications-logo';
 			idaipublicationsLogo.src =
 				relativePath + '/plugins/themes/publications-theme/images/iDAI.publications_schatten.png';
 			idaiWorldNavDropdown.appendChild(idaipublicationsLogo);
