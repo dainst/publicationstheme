@@ -1,0 +1,50 @@
+@idai-gradient: linear-gradient(to right, rgba(106, 164, 184, 0.95) 0%, rgba(71, 123, 199, 0.95) 100%);
+
+.idai-world-header,
+.idai-world-header .pkp_site_nav_menu {
+	background-image: @idai-gradient;
+}
+
+#idai-world-dropdown {
+	left: 0px;
+	position: absolute;
+}
+
+// Hide idai-world-dropdown in user navigation on mobile devices
+#navigationUser #idai-world-dropdown {
+
+	@media not (min-width: @screen-desktop) {
+		display: none;
+	}
+}
+
+#idai-world-dropdown img {
+	height: 25px;
+	position: absolute;
+	padding-left: 10px;
+}
+
+#idai-world-dropdown a {
+	width: 60px
+}
+// Prevent caret icon from being added to dropdown <a> element by bootstrap4 css
+#idai-world-dropdown a:after {
+	content: none;
+}
+
+#header-dai-griffon {
+	height: 25px;
+
+	@media (min-width: @screen-desktop) {
+		position: absolute;
+		bottom: 0px;
+	}
+
+	@media not (min-width: @screen-desktop) {
+		position: absolute;
+		right: 0px;
+		top: 3px;
+	}
+}
+
+;

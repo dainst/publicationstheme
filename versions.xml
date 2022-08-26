@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE version SYSTEM "../../../lib/pkp/dtd/pluginVersion.dtd">
+<version>
+    <!-- The application value should match the directory name of the theme -->
+    <application>publications-theme</application>
+    <type>plugins.themes</type>
+    <release>0.1.0.0</release>
+    <date>2022-08-19</date>
+    <lazy-load>1</lazy-load>
+    <class>PublicationsThemePlugin</class>
+</version>
