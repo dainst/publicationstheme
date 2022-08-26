@@ -37,6 +37,12 @@ function loadDropdown() {
 			idaiWorldNavDropdown.innerHTML = text;
 			idaiWorldNavDropdown.id = 'idai-world-dropdown';
 
+			const idaipublicationsLogo = document.createElement('img');
+			idaiWorldNavDropdown.id = 'idai-publications-logo';
+			idaipublicationsLogo.src =
+				relativePath + '/plugins/themes/publications-theme/images/iDAI.publications_schatten.png';
+			idaiWorldNavDropdown.appendChild(idaipublicationsLogo);
+
 			const griffinImage = document.createElement('img');
 			griffinImage.id = 'header-dai-griffon';
 			griffinImage.src =
