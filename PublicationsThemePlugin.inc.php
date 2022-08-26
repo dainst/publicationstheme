@@ -1,6 +1,6 @@
 <?php
 import('lib.pkp.classes.plugins.ThemePlugin');
-class PublicationsTheme extends ThemePlugin {
+class PublicationsThemePlugin extends ThemePlugin {
 
     /**
      * Load the custom styles for our theme
