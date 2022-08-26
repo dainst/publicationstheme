@@ -28,7 +28,7 @@ function attachHeaderClass() {
 }
 
 function loadDropdown() {
-	fetch(relativePath + '/plugins/themes/dai/js/idai-world.html')
+	fetch(relativePath + '/plugins/themes/publications-theme/js/idai-world.html')
 		.then(response => response.text())
 		.then(text => {
 			const navigationUserElement = document.getElementById('navigationUser');
@@ -40,7 +40,7 @@ function loadDropdown() {
 			const griffinImage = document.createElement('img');
 			griffinImage.id = 'header-dai-griffon';
 			griffinImage.src =
-				relativePath + '/plugins/themes/dai/images/logo_griffin.png';
+				relativePath + '/plugins/themes/publications-theme/images/logo_griffin.png';
 
 			navigationUserElement.appendChild(
 				document.createElement('li').appendChild(griffinImage)
@@ -48,7 +48,7 @@ function loadDropdown() {
 			navigationUserElement.appendChild(idaiWorldNavDropdown);
 
 			document.getElementById('idai-world-logo').src =
-				relativePath + '/plugins/themes/dai/images/logo_idai.png';
+				relativePath + '/plugins/themes/publications-theme/images/logo_idai.png';
 		});
 }
 
