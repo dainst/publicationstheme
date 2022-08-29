@@ -47,7 +47,7 @@ function loadDropdown() {
 			);
 			navigationUserElement.appendChild(idaiWorldNavDropdown);
 
-			document.getElementById('idai-publications-logo').src =
+			document.getElementById('idai.publications-logo').src =
 				relativePath + '/plugins/themes/publications-theme/images/idai-publications-logo.png';
 		});
 }
