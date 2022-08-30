@@ -491,6 +491,25 @@
 				</div>
 			{/if}
 
+			{* ZenonId *}
+			{foreach from=$pubIdPlugins item=pubIdPlugin}
+				{if $pubIdPlugin->getPubIdType() != 'other::zenon'}
+					{continue}
+				{/if}
+				{assign var=pubId value=$monograph->getStoredPubId($pubIdPlugin->getPubIdType())}
+				{if $pubId}
+					{assign var="zenonUrl" value=$pubIdPlugin->getResolvingURL($currentPress->getId(), $pubId)|escape}
+					<div class="item doi">
+						<span class="label">iDAI.bibliography</span>
+						<span class="value">
+							<a href="{$zenonUrl}">
+								{$zenonUrl}
+							</a>
+						</span>
+					</div>
+				{/if}
+			{/foreach}
+
 			{* Copyright statement *}
 			{if $publication->getData('copyrightYear') && $publication->getLocalizedData('copyrightHolder')}
 				<div class="item copyright">
