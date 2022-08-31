@@ -58,6 +58,7 @@ function loadDropdown() {
             langGlobeImage.src =
                 relativePath + '/plugins/themes/publications-theme/images/language-icon.png';
 
+            languageDropDown.appendChild(langGlobeImage);
             navigationUserElement.appendChild(languageDropDown);
 
             document.getElementById('header-lang-globe').src =
