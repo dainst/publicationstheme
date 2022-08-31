@@ -43,14 +43,17 @@ function loadDropdown() {
             const languageDropDown = document.createElement('li');
             languageDropDown.id = 'language-dropdown';
             languageDropDown.class = 'dropdown-menu';
+
+            const setLocaleURL = "";
+
             languageDropDown.innerHTML =
                 "<ul>" +
-                "    <li><a href=\"/index/user/setLocale/de_DE\" class=\"pkpDropdown__action\">Deutsch</a></li>" +
-                "    <li><a href=\"/index/user/setLocale/en_US\" class=\"pkpDropdown__action\">English</a></li>" +
-                "    <li><a href=\"/index/user/setLocale/es_ES\" class=\"pkpDropdown__action\">Español (España)</a></li>" +
-                "    <li><a href=\"/index/user/setLocale/fr_FR\" class=\"pkpDropdown__action\">Français (France)</a></li>" +
-                "    <li><a href=\"/index/user/setLocale/it_IT\" class=\"pkpDropdown__action\">Italiano</a></li>" +
-                "    <li><a href=\"/index/user/setLocale/pt_PT\" class=\"pkpDropdown__action\">Português (Portugal)</a></li>" +
+                "    <li><a href='https://publications.test.dainst.org/journals/index/user/setLocale/en_US?source=" + window.location.pathname + "'>Deutsch</a></li>" +
+                "    <li><a href='https://publications.test.dainst.org/journals/index//user/setLocale/en_US?source=" + window.location.pathname + "'>English</a></li>" +
+                "    <li><a href='https://publications.test.dainst.org/journals/index//user/setLocale/es_ES?source=" + window.location.pathname + "'>Español (España)</a></li>" +
+                "    <li><a href='https://publications.test.dainst.org/journals/index//user/setLocale/fr_FR?source=" + window.location.pathname + "'>Français (France)</a></li>" +
+                "    <li><a href='https://publications.test.dainst.org/journals/index//user/setLocale/it_IT?source=" + window.location.pathname + "'>Italiano</a></li>" +
+                "    <li><a href='https://publications.test.dainst.org/journals/index//user/setLocale/pt_PT?source=" + window.location.pathname + "'>Português (Portugal)</a></li>" +
                 "</ul>";
 
             const langGlobeImage = document.createElement('img');
