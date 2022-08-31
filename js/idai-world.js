@@ -53,12 +53,15 @@ function loadDropdown() {
                 "    <li><a href=\"/index/user/setLocale/pt_PT\" class=\"pkpDropdown__action\">Português (Portugal)</a></li>" +
                 "</ul>";
 
+            const langGlobeImage = document.createElement('img');
+            langGlobeImage.id = 'header-lang-globe';
+            langGlobeImage.src =
+                relativePath + '/plugins/themes/publications-theme/images/language-icon.png';
+
             navigationUserElement.appendChild(languageDropDown);
 
-            /*
-               langGlobeImage.src =
-             relativePath + '/plugins/themes/publications-theme/images/language-icon.png';
-            */
+            document.getElementById('header-lang-globe').src =
+                relativePath + '/plugins/themes/publications-theme/images/language-icon.png';
 
             document.getElementById('idai.publications-logo').src =
                 relativePath + '/plugins/themes/publications-theme/images/idai.publications-logo.png';
