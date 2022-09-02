@@ -92,6 +92,27 @@
 	<div class="row">
 		<div class="main_entry">
 
+			{* DOI (requires plugin) *}
+			{foreach from=$pubIdPlugins item=pubIdPlugin}
+				{if $pubIdPlugin->getPubIdType() != 'doi'}
+					{continue}
+				{/if}
+				{assign var=pubId value=$monograph->getStoredPubId($pubIdPlugin->getPubIdType())}
+				{if $pubId}
+					{assign var="doiUrl" value=$pubIdPlugin->getResolvingURL($currentPress->getId(), $pubId)|escape}
+					<div class="item doi">
+						<span class="label">
+							{translate key="plugins.pubIds.doi.readerDisplayName"}
+						</span>
+						<span class="value">
+							<a href="{$doiUrl}">
+								{$doiUrl}
+							</a>
+						</span>
+					</div>
+				{/if}
+			{/foreach}
+
 			{* Author list *}
 			<div class="item authors">
 				<h2 class="pkp_screen_reader">
@@ -155,27 +176,6 @@
 					{/foreach}
 				{/if}
 			</div>
-
-			{* DOI (requires plugin) *}
-			{foreach from=$pubIdPlugins item=pubIdPlugin}
-				{if $pubIdPlugin->getPubIdType() != 'doi'}
-					{continue}
-				{/if}
-				{assign var=pubId value=$monograph->getStoredPubId($pubIdPlugin->getPubIdType())}
-				{if $pubId}
-					{assign var="doiUrl" value=$pubIdPlugin->getResolvingURL($currentPress->getId(), $pubId)|escape}
-					<div class="item doi">
-						<span class="label">
-							{translate key="plugins.pubIds.doi.readerDisplayName"}
-						</span>
-						<span class="value">
-							<a href="{$doiUrl}">
-								{$doiUrl}
-							</a>
-						</span>
-					</div>
-				{/if}
-			{/foreach}
 
 			{* Keywords *}
 			{if !empty($publication->getLocalizedData('keywords'))}

@@ -27,7 +27,7 @@ function attachHeaderClass() {
     }
 }
 
-function loadDropdown() {
+function enrichHeader() {
     fetch(relativePath + '/plugins/themes/publications-theme/js/idai-world.html')
         .then(response => response.text())
         .then(text => {
@@ -38,22 +38,26 @@ function loadDropdown() {
             idaiWorldNavDropdown.class = 'dropdown-menu';
             idaiWorldNavDropdown.innerHTML = text;
 
-            navigationUserElement.appendChild(idaiWorldNavDropdown);
-
             const languageDropDown = document.createElement('li');
             languageDropDown.id = 'language-dropdown';
             languageDropDown.class = 'dropdown-menu';
 
-            const setLocaleURL = "";
+            const iDAIpublicationsLogo = document.createElement('img');
+            iDAIpublicationsLogo.id = 'idai-publications-logo';
+            iDAIpublicationsLogo.src =
+                relativePath + '/plugins/themes/publications-theme/images/idai-publications-logo.png';
+
+            const basicUrl = "https://publications.test.dainst.org/journals";
+            // not supported yet: https://publications.test.dainst.org/books
 
             languageDropDown.innerHTML =
                 "<ul>" +
-                "    <li><a href='https://publications.test.dainst.org/journals/index/user/setLocale/en_US?source=" + window.location.pathname + "'>Deutsch</a></li>" +
-                "    <li><a href='https://publications.test.dainst.org/journals/index//user/setLocale/en_US?source=" + window.location.pathname + "'>English</a></li>" +
-                "    <li><a href='https://publications.test.dainst.org/journals/index//user/setLocale/es_ES?source=" + window.location.pathname + "'>Español (España)</a></li>" +
-                "    <li><a href='https://publications.test.dainst.org/journals/index//user/setLocale/fr_FR?source=" + window.location.pathname + "'>Français (France)</a></li>" +
-                "    <li><a href='https://publications.test.dainst.org/journals/index//user/setLocale/it_IT?source=" + window.location.pathname + "'>Italiano</a></li>" +
-                "    <li><a href='https://publications.test.dainst.org/journals/index//user/setLocale/pt_PT?source=" + window.location.pathname + "'>Português (Portugal)</a></li>" +
+                "    <li><a href='" + basicUrl + "/index/user/setLocale/en_US?source=" + window.location.pathname + "'>Deutsch</a></li>" +
+                "    <li><a href='" + basicUrl + "/index//user/setLocale/en_US?source=" + window.location.pathname + "'>English</a></li>" +
+                "    <li><a href='" + basicUrl + "/index//user/setLocale/es_ES?source=" + window.location.pathname + "'>Español (España)</a></li>" +
+                "    <li><a href='" + basicUrl + "/index//user/setLocale/fr_FR?source=" + window.location.pathname + "'>Français (France)</a></li>" +
+                "    <li><a href='" + basicUrl + "/index//user/setLocale/it_IT?source=" + window.location.pathname + "'>Italiano</a></li>" +
+                "    <li><a href='" + basicUrl + "/index//user/setLocale/pt_PT?source=" + window.location.pathname + "'>Português (Portugal)</a></li>" +
                 "</ul>";
 
             const langGlobeImage = document.createElement('img');
@@ -61,19 +65,21 @@ function loadDropdown() {
             langGlobeImage.src =
                 relativePath + '/plugins/themes/publications-theme/images/language-icon.png';
 
+            idaiWorldNavDropdown.appendChild(iDAIpublicationsLogo);
+            navigationUserElement.appendChild(idaiWorldNavDropdown);
             languageDropDown.appendChild(langGlobeImage);
             navigationUserElement.appendChild(languageDropDown);
 
             document.getElementById('header-lang-globe').src =
                 relativePath + '/plugins/themes/publications-theme/images/language-icon.png';
 
-            document.getElementById('idai.publications-logo').src =
-                relativePath + '/plugins/themes/publications-theme/images/idai.publications-logo.png';
+            document.getElementById('idai-publications-logo').src =
+                relativePath + '/plugins/themes/publications-theme/images/idai-publications-logo.png';
         });
 }
 
 attachHeaderClass();
-loadDropdown();
+enrichHeader();
 
 
 
