@@ -503,7 +503,7 @@
 						<span class="label">iDAI.bibliography</span>
 						<span class="value">
 							<a href="{$zenonUrl}">
-								{$zenonUrl}
+								{$pubId}
 							</a>
 						</span>
 					</div>
