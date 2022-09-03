@@ -500,12 +500,12 @@
 				{if $pubId}
 					{assign var="zenonUrl" value=$pubIdPlugin->getResolvingURL($currentPress->getId(), $pubId)|escape}
 					<div class="item doi">
-						<span class="label">iDAI.bibliography</span>
-						<span class="value">
+						<h2 class="label">iDAI.bibliography</h2>
+						<div class="value">
 							<a href="{$zenonUrl}">
 								{$pubId}
 							</a>
-						</span>
+						</div>
 					</div>
 				{/if}
 			{/foreach}
