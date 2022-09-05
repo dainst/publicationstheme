@@ -85,10 +85,11 @@ function enrichHeader() {
             const pkpSiteNameHeader = document.getElementsByClassName('pkp_site_name');
 
             const DaiLogo = document.createElement('a');
+            DaiLogo.id = "dai-logo"
             DaiLogo.href = "https://www.dainst.org/";
 
             const DaiLogoImage = document.createElement('img');
-            DaiLogoImage.id = 'dai-logo';
+            DaiLogoImage.id = 'dai-logo-img';
             DaiLogoImage.src =
                 relativePath + '/plugins/themes/publications-theme/images/DAI_Institutum.png';
 
