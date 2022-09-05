@@ -90,10 +90,10 @@ function enrichHeader() {
             const DaiLogoImage = document.createElement('img');
             DaiLogoImage.id = 'dai-logo';
             DaiLogoImage.src =
-                relativePath + '/plugins/themes/publications-theme/images/DAI_Institutum.png.png';
+                relativePath + '/plugins/themes/publications-theme/images/DAI_Institutum.png';
 
             DaiLogo.appendChild(DaiLogoImage);
-            pkpSiteNameHeader.appendChild(DaiLogo);
+            pkpSiteNameHeader[0].appendChild(DaiLogo);
         });
 }
 
