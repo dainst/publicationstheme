@@ -82,7 +82,7 @@ function enrichHeader() {
 
             /* add DAI-Logo to pkp_site_name-Header
             * --------------------------------------*/
-            const pkpSiteNameHeader = document.getElementById('pkp_site_name-Header');
+            const pkpSiteNameHeader = document.getElementsByClassName('pkp_site_name');
 
             const DaiLogo = document.createElement('a');
             DaiLogo.href = "https://www.dainst.org/";
