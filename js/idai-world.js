@@ -41,18 +41,24 @@ function enrichHeader() {
             const languageDropDown = document.createElement('li');
             languageDropDown.id = 'language-dropdown';
             languageDropDown.class = 'dropdown-menu';
+            languageDropDown.ariaHasPopup = 'true';
 
             const iDAIpublicationsLogo = document.createElement('img');
             iDAIpublicationsLogo.id = 'idai-publications-logo';
             iDAIpublicationsLogo.src =
                 relativePath + '/plugins/themes/publications-theme/images/idai-publications-logo.png';
 
+            idaiWorldNavDropdown.appendChild(iDAIpublicationsLogo);
+            navigationUserElement.appendChild(idaiWorldNavDropdown);
+
+            /* add LanguageDropdown to dai-header
+           * --------------------------------------*/
             const basicUrl = "https://publications.test.dainst.org/journals";
             // not supported yet: https://publications.test.dainst.org/books
 
             languageDropDown.innerHTML =
                 "<ul>" +
-                "    <li><a href='" + basicUrl + "/index/user/setLocale/en_US?source=" + window.location.pathname + "'>Deutsch</a></li>" +
+                "    <li><a href='" + basicUrl + "/index/user/setLocale/de_DE?source=" + window.location.pathname + "'>Deutsch</a></li>" +
                 "    <li><a href='" + basicUrl + "/index//user/setLocale/en_US?source=" + window.location.pathname + "'>English</a></li>" +
                 "    <li><a href='" + basicUrl + "/index//user/setLocale/es_ES?source=" + window.location.pathname + "'>Español (España)</a></li>" +
                 "    <li><a href='" + basicUrl + "/index//user/setLocale/fr_FR?source=" + window.location.pathname + "'>Français (France)</a></li>" +
@@ -65,8 +71,6 @@ function enrichHeader() {
             langGlobeImage.src =
                 relativePath + '/plugins/themes/publications-theme/images/language-icon.png';
 
-            idaiWorldNavDropdown.appendChild(iDAIpublicationsLogo);
-            navigationUserElement.appendChild(idaiWorldNavDropdown);
             languageDropDown.appendChild(langGlobeImage);
             navigationUserElement.appendChild(languageDropDown);
 
@@ -75,6 +79,21 @@ function enrichHeader() {
 
             document.getElementById('idai-publications-logo').src =
                 relativePath + '/plugins/themes/publications-theme/images/idai-publications-logo.png';
+
+            /* add DAI-Logo to pkp_site_name-Header
+            * --------------------------------------*/
+            const pkpSiteNameHeader = document.getElementById('pkp_site_name-Header');
+
+            const DaiLogo = document.createElement('a');
+            DaiLogo.href = "https://www.dainst.org/";
+
+            const DaiLogoImage = document.createElement('img');
+            DaiLogoImage.id = 'dai-logo';
+            DaiLogoImage.src =
+                relativePath + '/plugins/themes/publications-theme/images/DAI_Institutum.png.png';
+
+            DaiLogo.appendChild(DaiLogoImage);
+            pkpSiteNameHeader.appendChild(DaiLogo);
         });
 }
 
