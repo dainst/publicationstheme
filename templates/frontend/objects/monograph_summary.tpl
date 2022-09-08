@@ -14,7 +14,10 @@
 	<a href="{url page="catalog" op="book" path=$monograph->getBestId()}" class="cover">
 		<img alt="{translate key="catalog.coverImageTitle" monographTitle=$monograph->getLocalizedFullTitle()|strip_tags|escape}" src="{url router=$smarty.const.ROUTE_COMPONENT component="submission.CoverHandler" op="thumbnail" submissionId=$monograph->getId() random=$monograph->getId()|uniqid}" />
 	</a>
-	{if $series->getLocalizedFullTitle()|escape}
+
+	{call_hook name="Templates::Catalog::Book::Main"}
+
+	{if $series}
 	<div class="series">
 		<a href="{url page="catalog" op="series" path=$series->getPath()}">
 			{$series->getLocalizedFullTitle()|escape}
