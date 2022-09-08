@@ -15,7 +15,8 @@
 		<img alt="{translate key="catalog.coverImageTitle" monographTitle=$monograph->getLocalizedFullTitle()|strip_tags|escape}" src="{url router=$smarty.const.ROUTE_COMPONENT component="submission.CoverHandler" op="thumbnail" submissionId=$monograph->getId() random=$monograph->getId()|uniqid}" />
 	</a>
 
-	{call_hook name="Templates::Catalog::Book::Main"}
+	{$seriesDao = DAORegistry::getDAO('SeriesDAO')}
+	{$series = $seriesDao->getById($monograph->getSeriesId())}
 
 	{if $series}
 	<div class="series">
