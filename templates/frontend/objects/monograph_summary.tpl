@@ -15,12 +15,13 @@
 		<img alt="{translate key="catalog.coverImageTitle" monographTitle=$monograph->getLocalizedFullTitle()|strip_tags|escape}" src="{url router=$smarty.const.ROUTE_COMPONENT component="submission.CoverHandler" op="thumbnail" submissionId=$monograph->getId() random=$monograph->getId()|uniqid}" />
 	</a>
 	{if $series}
-	<div class="value">
+	<div class="series">
 		<a href="{url page="catalog" op="series" path=$series->getPath()}">
 			{$series->getLocalizedFullTitle()|escape}
 		</a>
 	</div>
 	{/if}
+	<div>Test Theme: Hier sollte die Reihe stehen.</div>
 	{if $monograph->getSeriesPosition()}
 		<div class="seriesPosition">
 			{$monograph->getSeriesPosition()|escape}
