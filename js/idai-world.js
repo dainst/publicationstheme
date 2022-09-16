@@ -52,18 +52,16 @@ function enrichHeader() {
             navigationUserElement.appendChild(idaiWorldNavDropdown);
 
             /* add LanguageDropdown to dai-header
-           * --------------------------------------*/
-            const basicUrl = "https://publications.test.dainst.org/journals";
-            // not supported yet: https://publications.test.dainst.org/books
+            * --------------------------------------*/
 
             languageDropDown.innerHTML =
                 "<ul>" +
-                "    <li><a href='" + basicUrl + "/index/user/setLocale/de_DE?source=" + window.location.pathname + "'>Deutsch</a></li>" +
-                "    <li><a href='" + basicUrl + "/index//user/setLocale/en_US?source=" + window.location.pathname + "'>English</a></li>" +
-                "    <li><a href='" + basicUrl + "/index//user/setLocale/es_ES?source=" + window.location.pathname + "'>Español (España)</a></li>" +
-                "    <li><a href='" + basicUrl + "/index//user/setLocale/fr_FR?source=" + window.location.pathname + "'>Français (France)</a></li>" +
-                "    <li><a href='" + basicUrl + "/index//user/setLocale/it_IT?source=" + window.location.pathname + "'>Italiano</a></li>" +
-                "    <li><a href='" + basicUrl + "/index//user/setLocale/pt_PT?source=" + window.location.pathname + "'>Português (Portugal)</a></li>" +
+                "    <li><a href='" + relativePath + "/index/user/setLocale/de_DE?source=" + window.location.pathname + "'>Deutsch</a></li>" +
+                "    <li><a href='" + relativePath + "/index/user/setLocale/en_US?source=" + window.location.pathname + "'>English</a></li>" +
+                "    <li><a href='" + relativePath + "/index/user/setLocale/es_ES?source=" + window.location.pathname + "'>Español (España)</a></li>" +
+                "    <li><a href='" + relativePath + "/index/user/setLocale/fr_FR?source=" + window.location.pathname + "'>Français (France)</a></li>" +
+                "    <li><a href='" + relativePath + "/index/user/setLocale/it_IT?source=" + window.location.pathname + "'>Italiano</a></li>" +
+                "    <li><a href='" + relativePath + "/index/user/setLocale/pt_PT?source=" + window.location.pathname + "'>Português (Portugal)</a></li>" +
                 "</ul>";
 
             const langGlobeImage = document.createElement('img');
