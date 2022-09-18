@@ -28,7 +28,7 @@ function attachHeaderClass() {
 }
 
 function enrichHeader() {
-    fetch(relativePath + '/plugins/themes/publications-theme/js/idai-world.html')
+    fetch(relativePath + '/plugins/themes/publications-theme/js/idai-world-header.html')
         .then(response => response.text())
         .then(text => {
             const navigationUserElement = document.getElementById('navigationUser');
@@ -53,15 +53,14 @@ function enrichHeader() {
 
             /* add LanguageDropdown to dai-header
             * --------------------------------------*/
-
             languageDropDown.innerHTML =
                 "<ul>" +
                 "    <li><a href='" + relativePath + "/index/user/setLocale/de_DE?source=" + window.location.pathname + "'>Deutsch</a></li>" +
                 "    <li><a href='" + relativePath + "/index/user/setLocale/en_US?source=" + window.location.pathname + "'>English</a></li>" +
-                "    <li><a href='" + relativePath + "/index/user/setLocale/es_ES?source=" + window.location.pathname + "'>Español (España)</a></li>" +
-                "    <li><a href='" + relativePath + "/index/user/setLocale/fr_FR?source=" + window.location.pathname + "'>Français (France)</a></li>" +
+                "    <li><a href='" + relativePath + "/index/user/setLocale/es_ES?source=" + window.location.pathname + "'>Español</a></li>" +
+                "    <li><a href='" + relativePath + "/index/user/setLocale/fr_FR?source=" + window.location.pathname + "'>Français</a></li>" +
                 "    <li><a href='" + relativePath + "/index/user/setLocale/it_IT?source=" + window.location.pathname + "'>Italiano</a></li>" +
-                "    <li><a href='" + relativePath + "/index/user/setLocale/pt_PT?source=" + window.location.pathname + "'>Português (Portugal)</a></li>" +
+                "    <li><a href='" + relativePath + "/index/user/setLocale/pt_PT?source=" + window.location.pathname + "'>Português</a></li>" +
                 "</ul>";
 
             const langGlobeImage = document.createElement('img');
@@ -89,14 +88,43 @@ function enrichHeader() {
             const DaiLogoImage = document.createElement('img');
             DaiLogoImage.id = 'dai-logo-img';
             DaiLogoImage.src =
-                relativePath + '/plugins/themes/publications-theme/images/DAI_Institutum.png';
+                relativePath + '/plugins/themes/publications-theme/images/dai-logo-weiß.png';
 
             DaiLogo.appendChild(DaiLogoImage);
             pkpSiteNameHeader[0].appendChild(DaiLogo);
         });
 }
 
+function attachFooter() {
+    fetch(relativePath + '/plugins/themes/publications-theme/js/idai-world-footer.html')
+        .then(response => response.text())
+        .then(text => {
+            const pkpStructurePage = document.getElementsByClassName('pkp_structure_page');
+
+            const idaiWorldFooter = document.createElement('footer');
+            idaiWorldFooter.id = 'idai-world-footer';
+            idaiWorldFooter.innerHTML = text;
+
+            pkpStructurePage[0].appendChild(idaiWorldFooter);
+
+        });
+}
+
+/** attach "has_site_logo" class to body by default:
+ * ---------------------------------------------------
+  *  .has_site_logo is defined in default-theme
+  *  attaching it to the body-element simplifies some style issues for pages,
+     which have no text-logo-img (e.g. journal and books index page and certain journals)
+ * ---------------------------------------------------
+**/
+
+function attachSiteLogoClassToBody() {
+    document.getElementById('body').classList.add('has_site_logo');
+}
+
+attachSiteLogoClassToBody();
 attachHeaderClass();
+attachFooter();
 enrichHeader();
 
 
