@@ -119,7 +119,7 @@ function attachFooter() {
 **/
 
 function attachSiteLogoClassToBody() {
-    document.getElementById('body').classList.add('has_site_logo');
+    document.body.classList.add('has_site_logo');
 }
 
 attachSiteLogoClassToBody();
