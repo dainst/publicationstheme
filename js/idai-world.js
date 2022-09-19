@@ -108,7 +108,7 @@ function attachFooter() {
             footerContainer.id = 'footer-container';
 
             const footerAdditionalRow = document.createElement('div');
-            footerAdditionalRow.id = ' footer-additional-row';
+            footerAdditionalRow.id = 'footer-additional-row';
             footerAdditionalRow.innerHTML = text;
 
             const footerLogo = document.createElement('img');
