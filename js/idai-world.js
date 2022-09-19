@@ -125,8 +125,8 @@ function attachFooter() {
                 "   <a href=\"index.php/index/about/privacy\" target=\"_blank\">Legal notice</a>" +
                 "</span>" +
                 "<span>" +
-                "   <a href=\"https://publications.test.dainst.org/journals/index/about/aboutThisPublishingSystem\" target=\"_blank\">" +
-                "   About Open Journal Systems</a>" +
+                "   <a href=\"index/about/aboutThisPublishingSystem\" target=\"_blank\">" +
+                "   About Publishing System</a>" +
                 "<span>" +
                 "<p>";
 
