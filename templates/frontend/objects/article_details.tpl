@@ -99,9 +99,6 @@
 
 	<div class="row">
 		<div class="main_entry">
-
-			Does it work?
-
 			{if $publication->getData('authors')}
 				<section class="item authors">
 					<h2 class="pkp_screen_reader">{translate key="article.authors"}</h2>
@@ -446,6 +443,25 @@
 							{/if}
 						</div>
 					</section>
+				{/if}
+			{/foreach}
+
+			{* ZenonId *}
+			{foreach from=$pubIdPlugins item=pubIdPlugin}
+				{if $pubIdPlugin->getPubIdType() != 'other::zenon'}
+					{continue}
+				{/if}
+				{assign var=pubId value=$monograph->getStoredPubId($pubIdPlugin->getPubIdType())}
+				{if $pubId}
+					{assign var="zenonUrl" value=$pubIdPlugin->getResolvingURL($currentPress->getId(), $pubId)|escape}
+					<div class="item doi">
+						<h2 class="label">iDAI.bibliography</h2>
+						<div class="value">
+							<a href="{$zenonUrl}">
+								{$pubId}
+							</a>
+						</div>
+					</div>
 				{/if}
 			{/foreach}
 
