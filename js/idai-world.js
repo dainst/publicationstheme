@@ -106,10 +106,29 @@ function attachFooter() {
 
             const footerContainer = document.createElement('div');
             footerContainer.id = 'footer-container';
+            footerContainer.innerHTML = "" +
+                "<p>" +
+                "<span class=\"links\">Contact/Support:" +
+                "       <a href=\"mailto:idai.publications@dainst.de\">idai.publications@dainst.de</a>" +
+                "</span>" +
+                "</p>";
 
             const footerAdditionalRow = document.createElement('div');
             footerAdditionalRow.id = 'footer-additional-row';
-            footerAdditionalRow.innerHTML = text;
+            footerAdditionalRow.innerHTML = "" +
+                "<p>" +
+                "<span class=\"slogan\">iDAI.publications is a service of the German Archaeological Institute.</span>" +
+                "<span class=\"links\">" +
+                "   <a href=\"https://www.dainst.org/en/datenschutz\" target=\"_blank\">Data Protection Regulation</a>" +
+                "</span>" +
+                "<span class=\"links\">" +
+                "   <a href=\"index.php/index/about/privacy\" target=\"_blank\">Legal notice</a>" +
+                "</span>" +
+                "<span>" +
+                "   <a href=\"https://publications.test.dainst.org/journals/index/about/aboutThisPublishingSystem\" target=\"_blank\">" +
+                "   About Open Journal Systems</a>" +
+                "<span>" +
+                "<p>";
 
             const footerLogo = document.createElement('img');
             footerLogo.id = 'idai-footer-logo';
