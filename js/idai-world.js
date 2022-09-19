@@ -108,7 +108,7 @@ function attachFooter() {
             footerContainer.id = 'footer-container';
             footerContainer.innerHTML = "" +
                 "<p>" +
-                "<span id=\"contact\">Contact/Support " +
+                "<span id=\"contact\">Contact: " +
                 "       <a href=\"mailto:idai.publications@dainst.de\">idai.publications@dainst.de</a>" +
                 "</span>" +
                 "</p>";
