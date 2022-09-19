@@ -105,6 +105,14 @@ function attachFooter() {
             idaiWorldFooter.id = 'idai-world-footer';
             idaiWorldFooter.innerHTML = text;
 
+            const footerLogo = document.createElement('img');
+            footerLogo.id = 'idai-footer-logo';
+            footerLogo.src =
+                relativePath + '/plugins/themes/publications-theme/images/idai_footer.png';
+
+            const footerContainer = document.getElementById('footer-container');
+            footerContainer.appendChild(footerLogo);
+
             pkpStructurePage[0].appendChild(idaiWorldFooter);
 
         });
