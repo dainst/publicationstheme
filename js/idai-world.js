@@ -103,16 +103,21 @@ function attachFooter() {
 
             const idaiWorldFooter = document.createElement('footer');
             idaiWorldFooter.id = 'idai-world-footer';
-            idaiWorldFooter.innerHTML = text;
 
             const footerContainer = document.createElement('div');
             footerContainer.id = 'footer-container';
+
+            const footerAdditionalRow = document.createElement('footer');
+            footerAdditionalRow.id = ' footer-additional-row';
+            footerAdditionalRow.innerHTML = text;
 
             const footerLogo = document.createElement('img');
             footerLogo.id = 'idai-footer-logo';
             footerLogo.src =
                 relativePath + '/plugins/themes/publications-theme/images/idai_footer.png';
 
+            idaiWorldFooter.appendChild(footerContainer);
+            idaiWorldFooter.appendChild(footerAdditionalRow);
             footerContainer.appendChild(footerLogo);
             pkpStructurePage[0].appendChild(idaiWorldFooter);
 
