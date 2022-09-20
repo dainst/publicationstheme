@@ -108,20 +108,20 @@
 							<span class="name">
 								{$author->getFullName()|escape}
 							</span>
-							{if $author->getLocalizedData('affiliation')}
-								<span class="affiliation">
-									{$author->getLocalizedData('affiliation')|escape}
-									{if $author->getData('rorId')}
-										<a href="{$author->getData('rorId')|escape}">{$rorIdIcon}</a>
-									{/if}
-								</span>
-							{/if}
 							{if $author->getData('orcid')}
 								<span class="orcid">
 									{$orcidIcon}
 									<a href="{$author->getData('orcid')|escape}" target="_blank">
 										{$author->getData('orcid')|escape}
 									</a>
+								</span>
+							{/if}
+							{if $author->getLocalizedData('affiliation')}
+								<span class="affiliation">
+									{$author->getLocalizedData('affiliation')|escape}
+									{if $author->getData('rorId')}
+										<a href="{$author->getData('rorId')|escape}" target="_blank">{$rorIdIcon}</a>
+									{/if}
 								</span>
 							{/if}
 						</li>
