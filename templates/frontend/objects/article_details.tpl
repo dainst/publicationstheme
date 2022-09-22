@@ -143,35 +143,35 @@
 							{capture assign=translatedDOI}{translate key="plugins.pubIds.doi.readerDisplayName"}{/capture}
 							{translate key="semicolon" label=$translatedDOI}
 						</h2>
-						<span class="value">
+						<p class="value">
 							<a href="{$doiUrl}">
 								{$doiUrl}
 							</a>
-						</span>
+						</p>
 					</section>
 				{/if}
 			{/foreach}
-
-			{* Keywords *}
-			{if !empty($publication->getLocalizedData('keywords'))}
-			<section class="item keywords">
-				<h2 class="label">
-					{capture assign=translatedKeywords}{translate key="article.subject"}{/capture}
-					{translate key="semicolon" label=$translatedKeywords}
-				</h2>
-				<span class="value">
-					{foreach name="keywords" from=$publication->getLocalizedData('keywords') item="keyword"}
-						{$keyword|escape}{if !$smarty.foreach.keywords.last}{translate key="common.commaListSeparator"}{/if}
-					{/foreach}
-				</span>
-			</section>
-			{/if}
 
 			{* Abstract *}
 			{if $publication->getLocalizedData('abstract')}
 				<section class="item abstract">
 					<h2 class="label">{translate key="article.abstract"}</h2>
 					{$publication->getLocalizedData('abstract')|strip_unsafe_html}
+				</section>
+			{/if}
+
+			{* Keywords *}
+			{if !empty($publication->getLocalizedData('keywords'))}
+				<section class="item keywords">
+					<h2 class="label">
+						{capture assign=translatedKeywords}{translate key="article.subject"}{/capture}
+						{translate key="semicolon" label=$translatedKeywords}
+					</h2>
+					<p class="value">
+						{foreach name="keywords" from=$publication->getLocalizedData('keywords') item="keyword"}
+							{$keyword|escape}{if !$smarty.foreach.keywords.last}{translate key="common.commaListSeparator"}{/if}
+						{/foreach}
+					</p>
 				</section>
 			{/if}
 
