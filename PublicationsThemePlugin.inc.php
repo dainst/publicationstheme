@@ -11,8 +11,8 @@ class PublicationsThemePlugin extends ThemePlugin {
         // Use the parent theme's unique plugin slug
         $this->setParent('defaultthemeplugin');
         $this->addScript('idaiworld-dropdown', 'js/idai-world.js');
-
         $this->modifyStyle('stylesheet', array('addLess' => array('styles/index.less')));
+        $this->addStyle('font', 'styles/fonts/Cargan.less');
     }
 
    /**
