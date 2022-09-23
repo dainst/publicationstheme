@@ -12,14 +12,6 @@ class PublicationsThemePlugin extends ThemePlugin {
         $this->setParent('defaultthemeplugin');
         $this->addScript('idaiworld-dropdown', 'js/idai-world.js');
         $this->modifyStyle('stylesheet', array('addLess' => array('styles/index.less')));
-
-        $this->addStyle('font', 'styles/fonts/Cargan.less');
-        $additionalLessVariables[] = '@font: Cargan, serif;';
-
-        // Pass additional LESS variables
-        if (!empty($additionalLessVariables)) {
-            $this->modifyStyle('stylesheet', array('addLessVariables' => join("\n", $additionalLessVariables)));
-        }
     }
 
    /**
