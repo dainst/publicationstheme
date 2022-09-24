@@ -14,3 +14,6 @@ msgstr "Publications-Theme"
 
 msgid "plugins.themes.publications-theme.description"
 msgstr "Die OJS bzw. OMP Vorlage für iDAI.publications, basierend auf dem Standard-Theme."
+
+msgstr "submission.howToCite"
+msgstr "Zitationsformate"
