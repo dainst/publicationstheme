@@ -125,7 +125,7 @@ function attachFooter() {
                 "   <a href=\"index.php/index/about/privacy\" target=\"_blank\">Legal notice</a>" +
                 "</span>" +
                 "<span>" +
-                "   <a href=\"index/about/aboutThisPublishingSystem\" target=\"_blank\">" +
+                "   <a href=\"https://pkp.sfu.ca\" target=\"_blank\">" +
                 "   About Publishing System</a>" +
                 "<span>" +
                 "<p>";
