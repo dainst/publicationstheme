@@ -16,8 +16,7 @@
 
 <div class="page page_book">
 	{* include breadcrumbs navigation *}
-	{include file="frontend/components/breadcrumbs.tpl" currentTitleKey="navigation.catalog"}
-	{* try later: currentTitleKey="common.publication" *}
+	{include file="frontend/components/breadcrumbs_catalog.tpl"}
 
 	{* Display book details *}
 	{include file="frontend/objects/monograph_full.tpl" monograph=$publishedMonograph}
