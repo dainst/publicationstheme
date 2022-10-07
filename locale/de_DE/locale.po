@@ -15,5 +15,8 @@ msgstr "Publications-Theme"
 msgid "plugins.themes.publications-theme.description"
 msgstr "Die OJS bzw. OMP Vorlage für iDAI.publications, basierend auf dem Standard-Theme."
 
+msgid "plugins.themes.publications-theme.option.typography.cargan_openSans"
+msgstr "Cargan/Open Sans: Schriften-Kombination von iDAI.world (Portal)."
+
 msgstr "submission.howToCite"
 msgstr "Zitationsformate"

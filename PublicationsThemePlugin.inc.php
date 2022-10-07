@@ -47,7 +47,7 @@ class PublicationsThemePlugin extends ThemePlugin {
                 ],
                 [
                     'value' => 'cargan_openSans',
-                    'label' => __('plugins.themes.default.option.typography.cargan_openSans'),
+                    'label' => __('plugins.themes.publications-theme.option.typography.cargan_openSans'),
                 ],
             ],
             'default' => 'notoSans',
