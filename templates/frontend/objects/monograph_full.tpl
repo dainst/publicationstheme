@@ -501,16 +501,16 @@
 				{if $pubId}
 					{assign var="zenonUrl" value=$pubIdPlugin->getResolvingURL($currentPress->getId(), $pubId)|escape}
 					<div class="item doi">
-						<h2 class="label">iDAI.bibliography</h2>
+					<div class="sub_item">
+						<h2 class="label">Druckausgaben &amp; Rezensionen</h2>
 						<div class="value">
-							<a href="{$zenonUrl}">
-								{$pubId}
-							</a>
+							<a href="{$zenonUrl}">iDAI.bibliography/Zenon</a>
 						</div>
+					</div>
 					</div>
 				{/if}
 			{/foreach}
-
+			
 			{* Copyright statement *}
 			{if $publication->getData('copyrightYear') && $publication->getLocalizedData('copyrightHolder')}
 				<div class="item copyright">
