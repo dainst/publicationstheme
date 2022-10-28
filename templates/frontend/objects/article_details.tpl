@@ -455,13 +455,11 @@
 				{if $pubId}
 					{assign var="zenonUrl" value=$pubIdPlugin->getResolvingURL($currentJournal->getId(), $pubId)|escape}
 					<section class="item pubid">
-						<h2 class="label">iDAI.bibliography</h2>
+						<h2 class="label">Druckausgaben &amp; Rezensionen</h2>
 						<div class="value">
-							<a href="{$zenonUrl}">
-								{$pubId}
-							</a>
+							<a href="{$zenonUrl}">iDAI.bibliography/Zenon</a>
 						</div>
-					</section>
+					</section>		
 				{/if}
 			{/foreach}
 
