@@ -92,27 +92,6 @@
 	<div class="row">
 		<div class="main_entry">
 
-			{* DOI (requires plugin) *}
-			{foreach from=$pubIdPlugins item=pubIdPlugin}
-				{if $pubIdPlugin->getPubIdType() != 'doi'}
-					{continue}
-				{/if}
-				{assign var=pubId value=$monograph->getStoredPubId($pubIdPlugin->getPubIdType())}
-				{if $pubId}
-					{assign var="doiUrl" value=$pubIdPlugin->getResolvingURL($currentPress->getId(), $pubId)|escape}
-					<div class="item doi">
-						<span class="label">
-							{translate key="plugins.pubIds.doi.readerDisplayName"}
-						</span>
-						<span class="value">
-							<a href="{$doiUrl}">
-								{$doiUrl}
-							</a>
-						</span>
-					</div>
-				{/if}
-			{/foreach}
-
 			{* Author list *}
 			<div class="item authors">
 				<h2 class="pkp_screen_reader">
@@ -128,7 +107,7 @@
 				{/if}
 
 				{* Show short author lists on multiple lines *}
-				{if $authors|@count < 5}
+				{if $authors|@count < 50}
 					{foreach from=$authors item=author}
 						<div class="sub_item">
 							<div class="label">
@@ -176,7 +155,38 @@
 					{/foreach}
 				{/if}
 			</div>
+			
+			{* DOI (requires plugin) *}
+			{foreach from=$pubIdPlugins item=pubIdPlugin}
+				{if $pubIdPlugin->getPubIdType() != 'doi'}
+					{continue}
+				{/if}
+				{assign var=pubId value=$monograph->getStoredPubId($pubIdPlugin->getPubIdType())}
+				{if $pubId}
+					{assign var="doiUrl" value=$pubIdPlugin->getResolvingURL($currentPress->getId(), $pubId)|escape}
+					<div class="item doi">
+						<span class="label">
+							{translate key="plugins.pubIds.doi.readerDisplayName"}
+						</span>
+						<span class="value">
+							<a href="{$doiUrl}">
+								{$doiUrl}
+							</a>
+						</span>
+					</div>
+				{/if}
+			{/foreach}
 
+			{* Abstract *}
+			<div class="item abstract">
+				<h2 class="label">
+					{translate key="submission.synopsis"}
+				</h2>
+				<div class="value">
+					{$publication->getLocalizedData('abstract')|strip_unsafe_html}
+				</div>
+			</div>
+			
 			{* Keywords *}
 			{if !empty($publication->getLocalizedData('keywords'))}
 			<div class="item keywords">
@@ -191,16 +201,6 @@
 				</span>
 			</div>
 			{/if}
-
-			{* Abstract *}
-			<div class="item abstract">
-				<h2 class="label">
-					{translate key="submission.synopsis"}
-				</h2>
-				<div class="value">
-					{$publication->getLocalizedData('abstract')|strip_unsafe_html}
-				</div>
-			</div>
 
 			{* Chapters *}
 			{if $chapters|@count}
