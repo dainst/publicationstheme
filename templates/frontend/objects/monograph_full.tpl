@@ -94,10 +94,7 @@
 
 			{* Author list *}
 			<div class="item authors">
-				<h2 class="pkp_screen_reader">
-					{translate key="submission.authors"}
-				</h2>
-
+				
 				{assign var="authors" value=$publication->getData('authors')}
 
 				{* Only show editors for edited volumes *}
@@ -105,7 +102,11 @@
 					{assign var="authors" value=$editors}
 					{assign var="identifyAsEditors" value=true}
 				{/if}
-
+				
+				<h2 class="label">
+					{translate key="submission.authors"}
+				</h2>
+				
 				{* Show short author lists on multiple lines *}
 				{if $authors|@count < 50}
 					{foreach from=$authors item=author}
@@ -165,14 +166,14 @@
 				{if $pubId}
 					{assign var="doiUrl" value=$pubIdPlugin->getResolvingURL($currentPress->getId(), $pubId)|escape}
 					<div class="item doi">
-						<span class="label">
+						<h2 class="label">
 							{translate key="plugins.pubIds.doi.readerDisplayName"}
-						</span>
-						<span class="value">
+						</h2>
+						<p class="value">
 							<a href="{$doiUrl}">
 								{$doiUrl}
 							</a>
-						</span>
+						</p>
 					</div>
 				{/if}
 			{/foreach}
@@ -205,7 +206,7 @@
 			{* Chapters *}
 			{if $chapters|@count}
 				<div class="item chapters">
-					<h2 class="pkp_screen_reader">
+					<h2 class="label">
 						{translate key="submission.chapters"}
 					</h2>
 					<ul>
@@ -560,7 +561,7 @@
 
 							{* Only add the format-specific heading if multiple publication formats exist *}
 							{if count($publicationFormats) > 1}
-								<h2 class="pkp_screen_reader">
+								<h2 class="label">
 									{assign var=publicationFormatName value=$publicationFormat->getLocalizedName()}
 									{translate key="monograph.publicationFormatDetails" format=$publicationFormatName|escape}
 								</h2>
@@ -571,7 +572,7 @@
 									</div>
 								</div>
 							{else}
-								<h2 class="pkp_screen_reader">
+								<h2 class="label">
 									{translate key="monograph.miscellaneousDetails"}
 								</h2>
 							{/if}
