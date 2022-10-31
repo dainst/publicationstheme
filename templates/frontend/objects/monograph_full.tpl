@@ -502,7 +502,7 @@
 					{assign var="zenonUrl" value=$pubIdPlugin->getResolvingURL($currentPress->getId(), $pubId)|escape}
 					<div class="item doi">
 					<div class="sub_item">
-						<h2 class="label">Druckausgaben &amp; Rezensionen</h2>
+						<h2 class="label">{translate key="plugins.pubIds.zenon.displayFrontendLabel"}</h2>
 						<div class="value">
 							<a href="{$zenonUrl}">iDAI.bibliography/Zenon</a>
 						</div>
