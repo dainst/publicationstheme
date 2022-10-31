@@ -99,7 +99,7 @@
 
 				{* Only show editors for edited volumes *}
 				{if $monograph->getWorkType() == $smarty.const.WORK_TYPE_EDITED_VOLUME && $editors|@count}
-					{assign var="authors" value=$editors}
+					{*{assign var="authors" value=$editors} *}
 					{assign var="identifyAsEditors" value=true}
 				{/if}
 				
@@ -113,14 +113,14 @@
 			
 					<ul class="authors">
 						<li>
-							{* Add author names with abbreviation for editors, e.g. (Hrsg.) *}
+							{* add author names with abbreviation for editors, e.g. (Hrsg.) *}
 							{if $identifyAsEditors}
 								<span class="name">{translate key="submission.editorName" editorName=$author->getFullName()|escape}</span
 							{else}
 								<span class="name">{$author->getFullName()|escape}</span>
 							{/if}
 							
-							{* Add orcid*}
+							{* add orcid*}
 							{if $author->getOrcid()}
 								<span class="orcid">
 									<a href="{$author->getOrcid()|escape}" target="_blank">
@@ -129,7 +129,7 @@
 								</span>
 							{/if}
 							
-							{* Add affiliation*}
+							{* add affiliation*}
 							{if $author->getLocalizedAffiliation()}
 								<span class="affiliation">
 									{$author->getLocalizedAffiliation()|escape}
