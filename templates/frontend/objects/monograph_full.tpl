@@ -107,30 +107,14 @@
 					{assign var="identifyAsEditors" value=true}
 				{/if}
 				
-				<h2 class="label">Test: Herausgeber</h2>
+				<h2 class="label">{translate key="user.role.editors"}</h2>
 				
 					{foreach from=$editors item=editor}
 			
 					<ul class="contributors">
 						<li>
 							{* add author names with abbreviation for editors, e.g. (Hrsg.) *}
-							<span class="name">{translate key="submission.editorName" editorName=$editor->getFullName()|escape}</span
-						
-							{* add orcid*}
-							{if $editor->getOrcid()}
-								<span class="orcid">
-									<a href="{$editor->getOrcid()|escape}" target="_blank">
-										{$editor->getOrcid()|escape}
-									</a>
-								</span>
-							{/if}
-							
-							{* add affiliation*}
-							{if $editor->getLocalizedAffiliation()}
-								<span class="affiliation">
-									{$editor->getLocalizedAffiliation()|escape}
-								</span>
-							{/if}
+							<span class="name">{translate key="submission.editorName" editorName=$editor->getFullName()|escape}</span>
 						</li>
 					</ul>
 				{/foreach}
