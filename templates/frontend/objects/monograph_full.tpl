@@ -116,7 +116,7 @@
 				{* Show short author lists on multiple lines *}
 				{if $authors|@count < 50}
 				
-				<h2 class="label">{translate key="default.groups.abbrev.editor"}</h2>
+				<h2 class="label">{translate key="submission.authors"}</h2>
 					
 					{foreach from=$authors item=author}
 					
@@ -124,7 +124,7 @@
 						{if $identifyAsEditors}
 								<ul class="editors">
 									<li>
-										<span class="name">{translate key="default.groups.abbrev.editor" editorName=$author->getFullName()|escape}</span>
+										<span class="name">{translate key="submission.editorName" editorName=$author->getFullName()|escape}</span>
 										{if $author->getOrcid()}
 											<span class="orcid">
 												<a href="{$author->getOrcid()|escape}" target="_blank">
