@@ -99,7 +99,7 @@
 
 				{* Only show editors for edited volumes *}
 				{if $monograph->getWorkType() == $smarty.const.WORK_TYPE_EDITED_VOLUME && $editors|@count}
-					{*{assign var="authors" value=$editors} *}
+					{assign var="editors" value=$editors}
 					{assign var="identifyAsEditors" value=true}
 				{/if}
 				
@@ -107,19 +107,44 @@
 				{* Show short author lists on multiple lines *}
 				{if $authors|@count < 50}
 				
+				<h2 class="label">Test: Herausgeber</h2>
+				
+					{foreach from=$editors item=editor}
+			
+					<ul class="editors">
+						<li>
+							{* add author names with abbreviation for editors, e.g. (Hrsg.) *}
+							<span class="name">{translate key="submission.editorName" editorName=$editor->getFullName()|escape}</span
+						
+							{* add orcid*}
+							{if $editor->getOrcid()}
+								<span class="orcid">
+									<a href="{$editor->getOrcid()|escape}" target="_blank">
+										{$editor->getOrcid()|escape}
+									</a>
+								</span>
+							{/if}
+							
+							{* add affiliation*}
+							{if $editor->getLocalizedAffiliation()}
+								<span class="affiliation">
+									{$editor->getLocalizedAffiliation()|escape}
+								</span>
+							{/if}
+						</li>
+					</ul>
+				{/foreach}
+			
+				
 				<h2 class="label">{translate key="submission.authors"}</h2>
 					
 				{foreach from=$authors item=author}
 			
 					<ul class="authors">
 						<li>
-							{* add author names with abbreviation for editors, e.g. (Hrsg.) *}
-							{if $identifyAsEditors}
-								<span class="name">{translate key="submission.editorName" editorName=$author->getFullName()|escape}</span
-							{else}
-								<span class="name">{$author->getFullName()|escape}</span>
-							{/if}
-							
+							{* add author names *}
+							<span class="name">{$author->getFullName()|escape}</span>
+						
 							{* add orcid*}
 							{if $author->getOrcid()}
 								<span class="orcid">
@@ -138,7 +163,7 @@
 						</li>
 					</ul>
 				{/foreach}
-
+				
 				{* Show long author lists on one line *}
 				{else}
 					{foreach name="authors" from=$authors item=author}
