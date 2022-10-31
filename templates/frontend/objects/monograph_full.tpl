@@ -102,24 +102,27 @@
 				{if $authors|@count < 50}
 				
 				{* Only show editors for edited volumes *}
-				{if $monograph->getWorkType() == $smarty.const.WORK_TYPE_EDITED_VOLUME && $editors|@count}
-					{assign var="editors" value=$editors}
-					{assign var="identifyAsEditors" value=true}
-				{/if}
-				
-				<h2 class="label">{translate key="user.role.editors"}</h2>
-				
-					{foreach from=$editors item=editor}
+					{if $monograph->getWorkType() == $smarty.const.WORK_TYPE_EDITED_VOLUME && $editors|@count}
+						{assign var="editors" value=$editors}
+						{assign var="identifyAsEditors" value=true}
+					{/if}
+					
+					
+					{if $editors|@count}
+						<h2 class="label label_contributors">{translate key="user.role.editors"}</h2>
+						
+							{foreach from=$editors item=editor}
+					
+							<ul class="contributors">
+								<li>
+									{* add author names with abbreviation for editors, e.g. (Hrsg.) *}
+									<span class="name">{translate key="submission.editorName" editorName=$editor->getFullName()|escape}</span>
+								</li>
+							</ul>
+						{/foreach}
+					{/if}
 			
-					<ul class="contributors">
-						<li>
-							{* add author names with abbreviation for editors, e.g. (Hrsg.) *}
-							<span class="name">{translate key="submission.editorName" editorName=$editor->getFullName()|escape}</span>
-						</li>
-					</ul>
-				{/foreach}
-			
-				
+				{* author lists *}
 				<h2 class="label">{translate key="submission.authors"}</h2>
 					
 				{foreach from=$authors item=author}
