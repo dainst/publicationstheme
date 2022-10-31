@@ -475,19 +475,21 @@
 			{* Categories *}
 			{if $categories}
 				<div class="item categories">
-					<h2 class="label">
-						{translate key="catalog.categories"}
-					</h2>
-					<div class="value">
-						<ul>
-							{foreach from=$categories item="category"}
-								<li>
-									<a href="{url op="category" path=$category->getPath()}">
-										{$category->getLocalizedTitle()|strip_unsafe_html}
-									</a>
-								</li>
-							{/foreach}
-						</ul>
+					<div class ="sub_item">
+						<h2 class="label">
+							{translate key="catalog.categories"}
+						</h2>
+						<div class="value">
+							<ul>
+								{foreach from=$categories item="category"}
+									<li>
+										<a href="{url op="category" path=$category->getPath()}">
+											{$category->getLocalizedTitle()|strip_unsafe_html}
+										</a>
+									</li>
+								{/foreach}
+							</ul>
+						</div>
 					</div>
 				</div>
 			{/if}
