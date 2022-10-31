@@ -103,13 +103,17 @@
 					{assign var="identifyAsEditors" value=true}
 				{/if}
 				
-					<div class="label">
-						{if $identifyAsEditors}
-							{translate key="submission.editorName" editorName=$author->getFullName()|escape}
-						{else}
-							{$author->getFullName()|escape}
-						{/if}
-					</div>
+				{*
+				
+				<div class="label">
+					{if $identifyAsEditors}
+						{translate key="submission.editorName" editorName=$author->getFullName()|escape}
+					{else}
+						{$author->getFullName()|escape}
+					{/if}
+				</div>
+					
+				*}
 				
 				
 				{* Show short author lists on multiple lines *}
@@ -117,7 +121,7 @@
 					
 					{foreach from=$authors item=author}
 					
-						// List Editors separately:
+						{* List Editors separately: *}
 						{if $identifyAsEditors}
 							<h2 class="label">{translate key="submission.editors"} Test Editors</h2>
 								<ul class="editors">
@@ -139,7 +143,7 @@
 									</li>
 								</ul>
 						
-						// List Authors:
+						{* List Authors: *}
 						{else}
 							<h2 class="label">{translate key="submission.authors"}</h2>
 							<ul class="authors">
