@@ -103,34 +103,65 @@
 					{assign var="identifyAsEditors" value=true}
 				{/if}
 				
-				<h2 class="label">
-					{translate key="submission.authors"}
-				</h2>
+					<div class="label">
+						{if $identifyAsEditors}
+							{translate key="submission.editorName" editorName=$author->getFullName()|escape}
+						{else}
+							{$author->getFullName()|escape}
+						{/if}
+					</div>
+				
 				
 				{* Show short author lists on multiple lines *}
 				{if $authors|@count < 50}
+					
 					{foreach from=$authors item=author}
-						<div class="sub_item">
-							<div class="label">
-								{if $identifyAsEditors}
-									{translate key="submission.editorName" editorName=$author->getFullName()|escape}
-								{else}
-									{$author->getFullName()|escape}
-								{/if}
-							</div>
-							{if $author->getLocalizedAffiliation()}
-								<div class="value">
-									{$author->getLocalizedAffiliation()|escape}
-								</div>
-							{/if}
-							{if $author->getOrcid()}
-								<span class="orcid">
-									<a href="{$author->getOrcid()|escape}" target="_blank">
-										{$author->getOrcid()|escape}
-									</a>
-								</span>
-							{/if}
-						</div>
+					
+						// List Editors separately:
+						{if $identifyAsEditors}
+							<h2 class="label">{translate key="submission.editors"} Test Editors</h2>
+								<ul class="editors">
+									<li>
+										<span class="name">{translate key="submission.editorName" editorName=$author->getFullName()|escape}</span>
+										{if $author->getOrcid()}
+											<span class="orcid">
+												<a href="{$author->getOrcid()|escape}" target="_blank">
+													{$author->getOrcid()|escape}
+												</a>
+											</span>
+										{/if}
+										
+										{if $author->getLocalizedAffiliation()}
+											<span class="affiliation">
+												{$author->getLocalizedAffiliation()|escape}
+											</span>
+										{/if}
+									</li>
+								</ul>
+						
+						// List Authors:
+						{else}
+							<h2 class="label">{translate key="submission.authors"}</h2>
+							<ul class="authors">
+								<li>
+									<span class="name">{$author->getFullName()|escape}</span>
+									
+									{if $author->getOrcid()}
+										<span class="orcid">
+											<a href="{$author->getOrcid()|escape}" target="_blank">
+												{$author->getOrcid()|escape}
+											</a>
+										</span>
+									{/if}
+									
+									{if $author->getLocalizedAffiliation()}
+										<span class="affiliation">
+											{$author->getLocalizedAffiliation()|escape}
+										</span>
+									{/if}
+								</li>
+							</ul>
+						{/if}
 					{/foreach}
 
 				{* Show long author lists on one line *}
