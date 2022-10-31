@@ -109,7 +109,7 @@
 					
 					
 					{if $editors|@count}
-						<h2 class="label label_contributors">{translate key="user.role.editors"}</h2>
+						<h2 class="label">{translate key="user.role.editors"}</h2>
 						
 							{foreach from=$editors item=editor}
 					
@@ -123,7 +123,7 @@
 					{/if}
 			
 				{* author lists *}
-				<h2 class="label">{translate key="submission.authors"}</h2>
+				<h2 class="label label_contributors">{translate key="submission.authors"}</h2>
 					
 				{foreach from=$authors item=author}
 			
