@@ -123,7 +123,7 @@
 					{/if}
 			
 				{* author lists *}
-				<h2 class="label label_contributors">{translate key="submission.authors"}</h2>
+				<h2 class="label" style="margin-top: 2vh;">{translate key="submission.authors"}</h2>
 					
 				{foreach from=$authors item=author}
 			
