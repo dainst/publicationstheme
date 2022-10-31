@@ -96,22 +96,22 @@
 			<div class="item authors">
 				
 				{assign var="authors" value=$publication->getData('authors')}
-
+				
+				{* Show short author lists on multiple lines *}
+				
+				{if $authors|@count < 50}
+				
 				{* Only show editors for edited volumes *}
 				{if $monograph->getWorkType() == $smarty.const.WORK_TYPE_EDITED_VOLUME && $editors|@count}
 					{assign var="editors" value=$editors}
 					{assign var="identifyAsEditors" value=true}
 				{/if}
 				
-		
-				{* Show short author lists on multiple lines *}
-				{if $authors|@count < 50}
-				
 				<h2 class="label">Test: Herausgeber</h2>
 				
 					{foreach from=$editors item=editor}
 			
-					<ul class="editors">
+					<ul class="contributors">
 						<li>
 							{* add author names with abbreviation for editors, e.g. (Hrsg.) *}
 							<span class="name">{translate key="submission.editorName" editorName=$editor->getFullName()|escape}</span
@@ -140,7 +140,7 @@
 					
 				{foreach from=$authors item=author}
 			
-					<ul class="authors">
+					<ul class="contributors">
 						<li>
 							{* add author names *}
 							<span class="name">{$author->getFullName()|escape}</span>
