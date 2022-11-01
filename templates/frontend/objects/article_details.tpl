@@ -325,58 +325,6 @@
 			</div>
 			{/if}
 
-			{* How to cite *}
-			{if $citation}
-				<div class="item citation">
-					<section class="sub_item citation_display">
-						<h2 class="label">
-							{translate key="submission.howToCite"}
-						</h2>
-						<div class="value">
-							<div id="citationOutput" role="region" aria-live="polite">
-								{$citation}
-							</div>
-							<div class="citation_formats">
-								<button class="cmp_button citation_formats_button" aria-controls="cslCitationFormats" aria-expanded="false" data-csl-dropdown="true">
-									{translate key="submission.howToCite.citationFormats"}
-								</button>
-								<div id="cslCitationFormats" class="citation_formats_list" aria-hidden="true">
-									<ul class="citation_formats_styles">
-										{foreach from=$citationStyles item="citationStyle"}
-											<li>
-												<a
-													aria-controls="citationOutput"
-													href="{url page="citationstylelanguage" op="get" path=$citationStyle.id params=$citationArgs}"
-													data-load-citation
-													data-json-href="{url page="citationstylelanguage" op="get" path=$citationStyle.id params=$citationArgsJson}"
-												>
-													{$citationStyle.title|escape}
-												</a>
-											</li>
-										{/foreach}
-									</ul>
-									{if count($citationDownloads)}
-										<div class="label">
-											{translate key="submission.howToCite.downloadCitation"}
-										</div>
-										<ul class="citation_formats_styles">
-											{foreach from=$citationDownloads item="citationDownload"}
-												<li>
-													<a href="{url page="citationstylelanguage" op="download" path=$citationDownload.id params=$citationArgs}">
-														<span class="fa fa-download"></span>
-														{$citationDownload.title|escape}
-													</a>
-												</li>
-											{/foreach}
-										</ul>
-									{/if}
-								</div>
-							</div>
-						</div>
-					</section>
-				</div>
-			{/if}
-
 			{* Issue article appears in *}
 			{if $issue || $section || $categories}
 				<div class="item issue">
@@ -422,9 +370,9 @@
 				</div>
 			{/if}
 
-			{* PubIds (requires plugins) *}
+			{* Additional PubIds other than doi or zenon-id *}
 			{foreach from=$pubIdPlugins item=pubIdPlugin}
-				{if $pubIdPlugin->getPubIdType() == 'doi'}
+				{if $pubIdPlugin->getPubIdType() == 'doi' OR $pubIdPlugin->getPubIdType() = 'other::zenon'}
 					{continue}
 				{/if}
 				{assign var=pubId value=$article->getStoredPubId($pubIdPlugin->getPubIdType())}
@@ -445,6 +393,7 @@
 					</section>
 				{/if}
 			{/foreach}
+			*}
 
 			{* ZenonId *}
 			{foreach from=$pubIdPlugins item=pubIdPlugin}
@@ -459,7 +408,7 @@
 						<div class="value">
 							<a href="{$zenonUrl}">iDAI.bibliography/Zenon</a>
 						</div>
-					</section>		
+					</section>
 				{/if}
 			{/foreach}
 
@@ -486,6 +435,58 @@
 						{/if}
 					{/if}
 					{$currentContext->getLocalizedData('licenseTerms')}
+				</div>
+			{/if}
+
+			{* How to cite *}
+			{if $citation}
+				<div class="item citation">
+					<section class="sub_item citation_display">
+						<h2 class="label">
+							{translate key="submission.howToCite"}
+						</h2>
+						<div class="value">
+							<div id="citationOutput" role="region" aria-live="polite">
+								{$citation}
+							</div>
+							<div class="citation_formats">
+								<button class="cmp_button citation_formats_button" aria-controls="cslCitationFormats" aria-expanded="false" data-csl-dropdown="true">
+									{translate key="submission.howToCite.citationFormats"}
+								</button>
+								<div id="cslCitationFormats" class="citation_formats_list" aria-hidden="true">
+									<ul class="citation_formats_styles">
+										{foreach from=$citationStyles item="citationStyle"}
+											<li>
+												<a
+														aria-controls="citationOutput"
+														href="{url page="citationstylelanguage" op="get" path=$citationStyle.id params=$citationArgs}"
+														data-load-citation
+														data-json-href="{url page="citationstylelanguage" op="get" path=$citationStyle.id params=$citationArgsJson}"
+												>
+													{$citationStyle.title|escape}
+												</a>
+											</li>
+										{/foreach}
+									</ul>
+									{if count($citationDownloads)}
+										<div class="label">
+											{translate key="submission.howToCite.downloadCitation"}
+										</div>
+										<ul class="citation_formats_styles">
+											{foreach from=$citationDownloads item="citationDownload"}
+												<li>
+													<a href="{url page="citationstylelanguage" op="download" path=$citationDownload.id params=$citationArgs}">
+														<span class="fa fa-download"></span>
+														{$citationDownload.title|escape}
+													</a>
+												</li>
+											{/foreach}
+										</ul>
+									{/if}
+								</div>
+							</div>
+						</div>
+					</section>
 				</div>
 			{/if}
 
