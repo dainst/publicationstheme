@@ -33,7 +33,6 @@
 
 	{* Monograph List *}
 	{else}
-		{include file="frontend/components/searchForm_simple.tpl" monographs=$publishedMonographs featured=$featuredMonographIds}
 		{include file="frontend/components/monographList.tpl" monographs=$publishedMonographs featured=$featuredMonographIds}
 
 		{* Pagination *}
