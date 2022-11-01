@@ -342,6 +342,7 @@
 						</section>
 					{/if}
 
+					{* Not really usefull: articles by default *]
 					{if $section}
 						<section class="sub_item">
 							<h2 class="label">
@@ -351,7 +352,7 @@
 								{$section->getLocalizedTitle()|escape}
 							</div>
 						</section>
-					{/if}
+					{/if} *}
 
 					{if $categories}
 						<section class="sub_item">
@@ -393,7 +394,6 @@
 					</section>
 				{/if}
 			{/foreach}
-			*}
 
 			{* ZenonId *}
 			{foreach from=$pubIdPlugins item=pubIdPlugin}
