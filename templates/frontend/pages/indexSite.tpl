@@ -47,7 +47,7 @@
 							</h3>
 							<ul class="links">
 								<li class="view">
-									<a href="{$url|escape} journal=$journal->getPath() page="about">
+									<a href="{url|escape journal=$journal->getPath() page="about"}">
 										{translate key="site.journalView"}
 									</a>
 								</li>
