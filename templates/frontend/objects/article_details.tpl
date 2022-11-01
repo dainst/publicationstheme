@@ -372,7 +372,7 @@
 
 			{* Additional PubIds other than doi or zenon-id *}
 			{foreach from=$pubIdPlugins item=pubIdPlugin}
-				{if $pubIdPlugin->getPubIdType() == 'doi' || $pubIdPlugin->getPubIdType() = 'other::zenon'}
+				{if $pubIdPlugin->getPubIdType() == 'doi' || $pubIdPlugin->getPubIdType() == 'other::zenon'}
 					{continue}
 				{/if}
 				{assign var=pubId value=$article->getStoredPubId($pubIdPlugin->getPubIdType())}
