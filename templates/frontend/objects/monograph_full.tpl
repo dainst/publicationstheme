@@ -79,8 +79,8 @@
 		<div class="cmp_notification notice">
 			{capture assign="latestVersionUrl"}{url page="catalog" op="book" path=$monograph->getBestId()}{/capture}
 			{translate key="submission.outdatedVersion"
-				datePublished=$publication->getData('datePublished')|date_format:$dateFormatShort
-				urlRecentVersion=$latestVersionUrl|escape
+			datePublished=$publication->getData('datePublished')|date_format:$dateFormatShort
+			urlRecentVersion=$latestVersionUrl|escape
 			}
 		</div>
 	{/if}
@@ -94,44 +94,34 @@
 
 			{* Author list *}
 			<div class="item authors">
+				<h2 class="pkp_screen_reader">
+					{translate key="submission.authors"}
+				</h2>
 
 				{assign var="authors" value=$publication->getData('authors')}
 
-				{* Show short author lists on multiple lines *}
-
-				{if $authors|@count < 50}
-
 				{* Only show editors for edited volumes *}
-					{if $monograph->getWorkType() == $smarty.const.WORK_TYPE_EDITED_VOLUME && $editors|@count}
-						{assign var="editors" value=$editors}
-						{assign var="identifyAsEditors" value=true}
-					{/if}
+				{if $monograph->getWorkType() == $smarty.const.WORK_TYPE_EDITED_VOLUME && $editors|@count}
+					{assign var="authors" value=$editors}
+					{assign var="identifyAsEditors" value=true}
+				{/if}
 
-					{if $editors|@count}
-						<h2 class="label">{translate key="user.role.editors"}</h2>
-
-							{foreach from=$editors item=editor}
-
-							<ul class="contributors">
-								<li>
-									{* add author names with abbreviation for editors, e.g. (Hrsg.) *}
-									<span class="name">{translate key="submission.editorName" editorName=$editor->getFullName()|escape}</span>
-								</li>
-							</ul>
-						{/foreach}
-					{/if}
-
-				{* author lists *}
-				<h2 class="label" style="margin-top: 2vh;">{translate key="submission.authors"}</h2>
-
-				{foreach from=$authors item=author}
-
-					<ul class="contributors">
-						<li>
-							{* add author names *}
-							<span class="name">{$author->getFullName()|escape}</span>
-
-							{* add orcid*}
+				{* Show short author lists on multiple lines *}
+				{if $authors|@count < 5}
+					{foreach from=$authors item=author}
+						<div class="sub_item">
+							<div class="label">
+								{if $identifyAsEditors}
+									{translate key="submission.editorName" editorName=$author->getFullName()|escape}
+								{else}
+									{$author->getFullName()|escape}
+								{/if}
+							</div>
+							{if $author->getLocalizedAffiliation()}
+								<div class="value">
+									{$author->getLocalizedAffiliation()|escape}
+								</div>
+							{/if}
 							{if $author->getOrcid()}
 								<span class="orcid">
 									<a href="{$author->getOrcid()|escape}" target="_blank">
@@ -139,18 +129,10 @@
 									</a>
 								</span>
 							{/if}
+						</div>
+					{/foreach}
 
-							{* add affiliation*}
-							{if $author->getLocalizedAffiliation()}
-								<span class="affiliation">
-									{$author->getLocalizedAffiliation()|escape}
-								</span>
-							{/if}
-						</li>
-					</ul>
-				{/foreach}
-
-				{* Show long author lists on one line *}
+					{* Show long author lists on one line *}
 				{else}
 					{foreach name="authors" from=$authors item=author}
 						{* strip removes excess white-space which creates gaps between separators *}
@@ -183,17 +165,32 @@
 				{if $pubId}
 					{assign var="doiUrl" value=$pubIdPlugin->getResolvingURL($currentPress->getId(), $pubId)|escape}
 					<div class="item doi">
-						<h2 class="label">
+						<span class="label">
 							{translate key="plugins.pubIds.doi.readerDisplayName"}
-						</h2>
-						<p class="value">
+						</span>
+						<span class="value">
 							<a href="{$doiUrl}">
 								{$doiUrl}
 							</a>
-						</p>
+						</span>
 					</div>
 				{/if}
 			{/foreach}
+
+			{* Keywords *}
+			{if !empty($publication->getLocalizedData('keywords'))}
+				<div class="item keywords">
+					<h2 class="label">
+						{capture assign=translatedKeywords}{translate key="common.keywords"}{/capture}
+						{translate key="semicolon" label=$translatedKeywords}
+					</h2>
+					<span class="value">
+					{foreach name="keywords" from=$publication->getLocalizedData('keywords') item=keyword}
+						{$keyword|escape}{if !$smarty.foreach.keywords.last}, {/if}
+					{/foreach}
+				</span>
+				</div>
+			{/if}
 
 			{* Abstract *}
 			<div class="item abstract">
@@ -205,25 +202,10 @@
 				</div>
 			</div>
 
-			{* Keywords *}
-			{if !empty($publication->getLocalizedData('keywords'))}
-			<div class="item keywords">
-				<h2 class="label">
-					{capture assign=translatedKeywords}{translate key="common.keywords"}{/capture}
-					{translate key="semicolon" label=$translatedKeywords}
-				</h2>
-				<span class="value">
-					{foreach name="keywords" from=$publication->getLocalizedData('keywords') item=keyword}
-						{$keyword|escape}{if !$smarty.foreach.keywords.last}, {/if}
-					{/foreach}
-				</span>
-			</div>
-			{/if}
-
 			{* Chapters *}
 			{if $chapters|@count}
 				<div class="item chapters">
-					<h2 class="label">
+					<h2 class="pkp_screen_reader">
 						{translate key="submission.chapters"}
 					</h2>
 					<ul>
@@ -351,8 +333,8 @@
 			<div class="item cover">
 				{assign var="coverImage" value=$publication->getLocalizedData('coverImage')}
 				<img
-					src="{$publication->getLocalizedCoverImageThumbnailUrl($monograph->getData('contextId'))}"
-					alt="{$coverImage.altText|escape|default:''}"
+						src="{$publication->getLocalizedCoverImageThumbnailUrl($monograph->getData('contextId'))}"
+						alt="{$coverImage.altText|escape|default:''}"
 				>
 			</div>
 
@@ -375,7 +357,7 @@
 								</a>
 							</div>
 
-						{* File downloads *}
+							{* File downloads *}
 						{else}
 
 							{* Only display files that haven't been displayed in a chapter *}
@@ -389,7 +371,7 @@
 									{/foreach}
 								</div>
 
-							{* Use an itemized presentation if multiple files exist *}
+								{* Use an itemized presentation if multiple files exist *}
 							{elseif $pubFormatFiles|@count > 1}
 								<div class="pub_format_{$publicationFormatId|escape}">
 									<span class="label">
@@ -431,7 +413,7 @@
 							{* If this is the original version *}
 							{if $firstPublication->getID() === $publication->getId()}
 								<span>{$firstPublication->getData('datePublished')|date_format:$dateFormatLong}</span>
-							{* If this is an updated version *}
+								{* If this is an updated version *}
 							{else}
 								<span>{translate key="submission.updatedOn" datePublished=$firstPublication->getData('datePublished')|date_format:$dateFormatLong dateUpdated=$publication->getData('datePublished')|date_format:$dateFormatLong}</span>
 							{/if}
@@ -492,52 +474,27 @@
 			{* Categories *}
 			{if $categories}
 				<div class="item categories">
-					<div class ="sub_item">
-						<h2 class="label">
-							{translate key="catalog.categories"}
-						</h2>
-						<div class="value">
-							<ul>
-								{foreach from=$categories item="category"}
-									<li>
-										<a href="{url op="category" path=$category->getPath()}">
-											{$category->getLocalizedTitle()|strip_unsafe_html}
-										</a>
-									</li>
-								{/foreach}
-							</ul>
-						</div>
+					<h2 class="label">
+						{translate key="catalog.categories"}
+					</h2>
+					<div class="value">
+						<ul>
+							{foreach from=$categories item="category"}
+								<li>
+									<a href="{url op="category" path=$category->getPath()}">
+										{$category->getLocalizedTitle()|strip_unsafe_html}
+									</a>
+								</li>
+							{/foreach}
+						</ul>
 					</div>
 				</div>
 			{/if}
 
-			{* ZenonId *}
-			{foreach from=$pubIdPlugins item=pubIdPlugin}
-				{if $pubIdPlugin->getPubIdType() != 'other::zenon'}
-					{continue}
-				{/if}
-				{assign var=pubId value=$monograph->getStoredPubId($pubIdPlugin->getPubIdType())}
-				{if $pubId}
-					{assign var="zenonUrl" value=$pubIdPlugin->getResolvingURL($currentPress->getId(), $pubId)|escape}
-					<div class="item doi">
-					<div class="sub_item">
-						<h2 class="label">{translate key="plugins.pubIds.zenon.displayFrontendLabel"}</h2>
-						<div class="value">
-							<a href="{$zenonUrl}">iDAI.bibliography/Zenon</a>
-						</div>
-					</div>
-					</div>
-				{/if}
-			{/foreach}
-
 			{* Copyright statement *}
 			{if $publication->getData('copyrightYear') && $publication->getLocalizedData('copyrightHolder')}
 				<div class="item copyright">
-					<div class="sub_item">
-						<div class="value">
-							{translate|escape key="submission.copyrightStatement" copyrightYear=$publication->getData('copyrightYear') copyrightHolder=$publication->getLocalizedData('copyrightHolder')}
-						</div>
-					<div>
+					{translate|escape key="submission.copyrightStatement" copyrightYear=$publication->getData('copyrightYear') copyrightHolder=$publication->getLocalizedData('copyrightHolder')}
 				</div>
 			{/if}
 
@@ -584,7 +541,7 @@
 
 							{* Only add the format-specific heading if multiple publication formats exist *}
 							{if count($publicationFormats) > 1}
-								<h2 class="label">
+								<h2 class="pkp_screen_reader">
 									{assign var=publicationFormatName value=$publicationFormat->getLocalizedName()}
 									{translate key="monograph.publicationFormatDetails" format=$publicationFormatName|escape}
 								</h2>
@@ -595,7 +552,7 @@
 									</div>
 								</div>
 							{else}
-								<h2 class="label">
+								<h2 class="pkp_screen_reader">
 									{translate key="monograph.miscellaneousDetails"}
 								</h2>
 							{/if}
