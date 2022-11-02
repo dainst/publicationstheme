@@ -94,25 +94,24 @@
 
 			{* Author list *}
 			<div class="item authors">
-				
+
 				{assign var="authors" value=$publication->getData('authors')}
-				
+
 				{* Show short author lists on multiple lines *}
-				
+
 				{if $authors|@count < 50}
-				
+
 				{* Only show editors for edited volumes *}
 					{if $monograph->getWorkType() == $smarty.const.WORK_TYPE_EDITED_VOLUME && $editors|@count}
 						{assign var="editors" value=$editors}
 						{assign var="identifyAsEditors" value=true}
 					{/if}
-					
-					
+
 					{if $editors|@count}
 						<h2 class="label">{translate key="user.role.editors"}</h2>
-						
+
 							{foreach from=$editors item=editor}
-					
+
 							<ul class="contributors">
 								<li>
 									{* add author names with abbreviation for editors, e.g. (Hrsg.) *}
@@ -121,17 +120,17 @@
 							</ul>
 						{/foreach}
 					{/if}
-			
+
 				{* author lists *}
 				<h2 class="label" style="margin-top: 2vh;">{translate key="submission.authors"}</h2>
-					
+
 				{foreach from=$authors item=author}
-			
+
 					<ul class="contributors">
 						<li>
 							{* add author names *}
 							<span class="name">{$author->getFullName()|escape}</span>
-						
+
 							{* add orcid*}
 							{if $author->getOrcid()}
 								<span class="orcid">
@@ -140,7 +139,7 @@
 									</a>
 								</span>
 							{/if}
-							
+
 							{* add affiliation*}
 							{if $author->getLocalizedAffiliation()}
 								<span class="affiliation">
@@ -150,7 +149,7 @@
 						</li>
 					</ul>
 				{/foreach}
-				
+
 				{* Show long author lists on one line *}
 				{else}
 					{foreach name="authors" from=$authors item=author}
@@ -174,7 +173,7 @@
 					{/foreach}
 				{/if}
 			</div>
-			
+
 			{* DOI (requires plugin) *}
 			{foreach from=$pubIdPlugins item=pubIdPlugin}
 				{if $pubIdPlugin->getPubIdType() != 'doi'}
@@ -205,7 +204,7 @@
 					{$publication->getLocalizedData('abstract')|strip_unsafe_html}
 				</div>
 			</div>
-			
+
 			{* Keywords *}
 			{if !empty($publication->getLocalizedData('keywords'))}
 			<div class="item keywords">
@@ -530,7 +529,7 @@
 					</div>
 				{/if}
 			{/foreach}
-			
+
 			{* Copyright statement *}
 			{if $publication->getData('copyrightYear') && $publication->getLocalizedData('copyrightHolder')}
 				<div class="item copyright">
