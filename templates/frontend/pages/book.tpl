@@ -18,7 +18,8 @@
 	{* Display book details *}
 	{include file="frontend/objects/monograph_full.tpl" monograph=$publishedSubmission}
 
-	{call_hook name="Templates::Catalog::Book::Footer::PageFooter"}
 </div><!-- .page -->
+
+{call_hook name="Templates::Catalog::Book::Footer::PageFooter"}
 
 {include file="frontend/components/footer.tpl"}
