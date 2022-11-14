@@ -1,3 +1,8 @@
+/* LESS-Variables
+------------------*/
+@idai-gradient: linear-gradient(to right, rgba(106, 164, 184, 0.95) 0%, rgba(71, 123, 199, 0.95) 95%);
+
+
 /* dai-header
 ---------------*/
 
@@ -8,7 +13,7 @@
 }
 
 #navigationUser {
-	background: linear-gradient(to right, rgb(106 164 184) 0%, rgb(71 123 199 / 0%) 95%);
+	background: @idai-gradient;
 	box-shadow: 2px -1px 10px 0px #2a2a367d;
 	-webkit-box-shadow: 2px -1px 10px 0px #2a2a367d;
 	width: 100%;
@@ -26,10 +31,11 @@ iframe {
 	left: 0;
 	position: absolute;
 
-	// Hide idai-world-dropdown in user navigation on mobile devices
-	@media not all and (min-width: @screen-desktop) {
+	/* Hide idai-world-dropdown in user navigation on mobile devices
+	@media not all and (min-width: 1199px) {
 		display: none;
 	}
+	*/
 }
 
 #idai-world-dropdown a {
