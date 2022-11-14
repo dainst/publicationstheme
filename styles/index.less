@@ -1,43 +1,136 @@
-@idai-gradient: linear-gradient(to right, rgba(106, 164, 184, 0.95) 0%, rgba(71, 123, 199, 0.95) 100%);
+/* dai-header
+---------------*/
 
-.idai-world-header,
-.idai-world-header .pkp_site_nav_menu {
-	background-image: @idai-gradient;
+.pkp_navigation_user_wrapper {
+	padding-left: 0;
+	padding-right: 0;
+	min-width: 99.5vw;
+}
+
+#navigationUser {
+	background: linear-gradient(to right, rgb(106 164 184) 0%, rgb(71 123 199 / 0%) 95%);
+	box-shadow: 2px -1px 10px 0px #2a2a367d;
+	-webkit-box-shadow: 2px -1px 10px 0px #2a2a367d;
+	width: 100%;
+	padding: 0 1vw;
+}
+
+iframe {
+	background-color: white;
+	height: 100vh;
+	width: 200px;
+	border: 1px solid #dfdada;
 }
 
 #idai-world-dropdown {
 	left: 0;
 	position: absolute;
-}
 
-// Hide idai-world-dropdown in user navigation on mobile devices
-#navigationUser #idai-world-dropdown {
-
+	// Hide idai-world-dropdown in user navigation on mobile devices
 	@media not all and (min-width: @screen-desktop) {
 		display: none;
 	}
 }
 
-// Prevent caret icon from being added to dropdown <a> element by bootstrap4 css
+#idai-world-dropdown a {
+	font-size: 23px;
+	padding: 1.5vh 1vw;
+}
+
 #idai-world-dropdown a:after {
-	content: none;
+	content: none;		// Prevent caret icon from being added to dropdown <a> element by bootstrap4 css
 }
 
-#header-dai-griffon {
+#idai-publications-logo {
+	height: 30px;
+	position: absolute;
+	padding-left: 15px;
+	max-width: unset;
+	left: 30px;
+	top: 5px;
+}
+
+#language-dropdown {
+	padding-top: 1vh;
+}
+
+#language-dropdown[aria-haspopup]:after {
+	color: white;
+}
+
+#header-lang-globe {
 	height: 25px;
-
-	/*
-	@media all (min-width: @screen-desktop) {
-		position: absolute;
-		bottom: 0px;
-	}
-
-	@media not all and (min-width: @screen-desktop) {
-		position: absolute;
-		right: 0px;
-		top: 3px;
-	}
-	*/
 }
+
+a#dai-logo {
+	width: 20%;
+	float: right;
+	margin-top: 0.357rem;
+	margin-bottom: 0.357rem;
+	margin-right: 2.5vw;
+}
+
+img#dai-logo-img {
+	max-height: 80px;
+	float: right;
+}
+
+/* dai-footer
+---------------*/
+
+.pkp_structure_footer_wrapper {
+	display:none;	/* hide default footer */
+}
+
+#idai-world-footer {
+	background: #5882c2;
+	padding: 3vh 0;
+}
+
+#footer-container {
+	text-align: center;
+}
+
+#contact {
+	color: white;
+	letter-spacing: 0.1em;
+}
+
+#contact a {
+	color: #ebebeb;
+	text-decoration: none;
+}
+
+#contact a:hover {
+	color: #9be5ff;
+}
+
+#footer-container img {
+	max-width: 50%;
+}
+
+#footer-additional-row {
+	font-size: 0.9em;
+	color: white;
+	text-align: center;
+}
+
+#footer-additional-row p {
+	margin-bottom: 0;
+}
+
+#footer-additional-row span {
+	margin-right: 30px;
+}
+
+#footer-additional-row a {
+	color: white;
+	text-decoration: none;
+}
+
+li.profile {
+	bottom: 1vh;
+}
+
 
 
