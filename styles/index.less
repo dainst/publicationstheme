@@ -1,9 +1,12 @@
-/* Variables
+/* ----------------
+Variables
 ------------------*/
 @idai-gradient: linear-gradient(to right, rgba(106, 164, 184, 0.95) 0%, rgba(71, 123, 199, 0) 95%);
-@header-img-path: "images/idai_publications_header_sw.jpg";
+@header-img-path: ".../images/idai_publications_header_sw.jpg";
+@idaiworldbanner-path: "../images/idaiworld-banner.png";
 
-/* dai-header
+/* -------------
+dai-header
 ---------------*/
 
 .pkp_navigation_user_wrapper {
@@ -80,7 +83,9 @@ img#dai-logo-img {
 	float: right;
 }
 
-/* dai-footer
+
+/* -------------
+dai-footer
 ---------------*/
 
 .pkp_structure_footer_wrapper {
@@ -135,6 +140,116 @@ img#dai-logo-img {
 
 li.profile {
 	bottom: 1vh;
+}
+
+/*----------------------
+generic elements (PKP)
+----------------------*/
+
+html {
+	background: url(@idaiworldbanner-path);
+	background-size: contain;
+	background-repeat: repeat;
+}
+
+body {
+	background: #0f17193d;
+	font-family: "Cargan", serif;
+}
+
+.pkp_structure_head {
+	background: center / cover no-repeat url(@header-img-path);
+	border-top: none;
+	border-bottom: none;
+}
+
+.pkp_head_wrapper  {
+	padding-top: 8vh;
+}
+
+.has_site_logo .pkp_head_wrapper {
+	padding-top: 8vh;
+}
+
+.pkp_site_name .is_img img {
+	max-height: 90px;
+}
+
+.pkp_site_name .is_text {
+	width: 70%;
+	float: left;
+	line-height: 2.857rem;
+	font-size: 2.8rem;
+	text-shadow: 0 0 5px rgb(0 0 0 / 30%);
+	letter-spacing: .03em;
+	text-decoration: none;
+	padding: 2vw;
+}
+
+.pkp_site_name>a {
+	padding-top: 0;
+}
+
+.pkp_site_nav_menu {
+	padding: 0 1vw;
+}
+
+.pkp_site_nav_menu ul ul {
+	padding-top: 1.5vh;
+}
+
+.pkp_structure_main {
+	background: #fffdfd;
+}
+
+.pkp_structure_content {
+	background: #ffffff;
+	padding-top: 0;
+}
+
+.pkp_structure_main h1 {
+	font-size: 1.5rem;
+}
+
+.pkp_structure_main p {
+	font-family: "Open Sans", sans-serif;
+	text-align: justify;
+	hyphens: auto;
+	-webkit-hyphens: auto;
+	margin-top: 0;
+}
+
+.pkp_structure_main p.value {
+	margin-top: 0;
+}
+
+.pkp_structure_sidebar {
+	margin-top: 6vh;
+}
+
+.pkp_structure_sidebar a {
+	font-size: 0.95em;
+}
+
+#navigationPrimary {
+	padding-left: 1vw;
+	font-size: 1.2em;
+}
+
+.pkp_navigation_primary_wrapper {
+	min-height: 6vh;
+}
+
+.pkp_navigation_primary>li>a {
+	color: #ffffff;
+}
+
+.pkp_navigation_search_wrapper a {
+	color: #ffffff;
+}
+
+.pkp_site_nav_menu a {
+	color: #ffffff;
 }
 
 
