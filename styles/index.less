@@ -143,13 +143,12 @@ li.profile {
 }
 
 /*----------------------
-generic elements (PKP)
+=> generic elements (PKP)
 ----------------------*/
 
 html {
-	background: url(@idaiworldbanner-path);
 	background-size: contain;
-	background-repeat: repeat;
+	background: url(@idaiworldbanner-path) repeat;
 }
 
 body {
@@ -251,6 +250,130 @@ body {
 .pkp_site_nav_menu a {
 	color: #ffffff;
 }
+
+/* ---------------------------
+=> Styles for small devices
+-----------------------------*/
+
+@media only screen and (max-width: 1199px) {
+
+	#navigationPrimary {
+		font-size: 1em;
+	}
+
+	.pkp_head_wrapper {
+		padding-top: 0;
+	}
+
+	.has_site_logo .pkp_head_wrapper {
+		padding-top: 0;
+	}
+
+	.pkp_site_name .is_img img {
+		max-height: 30px;
+	}
+
+	.pkp_site_name .is_text {
+		font-size: 1rem;
+		padding: 0;
+	}
+
+	.pkp_site_name>a {
+		padding-top: 0;
+	}
+
+	a#dai-logo {
+		width: 20%;
+		float: right;
+		padding-right: 1vw;
+		margin-top: 0;
+	}
+
+	img#dai-logo-img {
+		display:none;
+	}
+
+	#footer-container img {
+		max-width: 60%;
+	}
+
+	#footer-additional-row span {
+		display:block
+	}
+
+	/* OMP-specific
+	--------------*/
+
+	.obj_monograph_summary>*, .obj_monograph_summary .title {
+		margin-left: 0;
+	}
+
+	.seriesName {
+		padding-top: 1vh;
+	}
+
+	/* OJS-specific
+	----------------*/
+
+	.pkp_page_index .journals img {
+		max-width: 19em;
+	}
+
+	.pkp_page_index .journals .thumb+.body {
+		width: 50%;
+	}
+
+	.pkp_page_index .journals .thumb+.body .description {
+		font-size: 0.9em;
+		padding-right: 1vw;
+	}
+
+}
+
+@media only screen and (max-width: 991px) {
+
+	li.profile {
+		background: linear-gradient(to right, rgb(106 164 184) 100%, rgb(71 123 199 / 0%) 100%);
+	}
+
+	#language-dropdown {
+		background: linear-gradient(to right, rgb(106 164 184) 100%, rgb(71 123 199 / 0%) 100%);
+	}
+
+	#idai-world-dropdown {
+		background: linear-gradient(to right, rgb(106 164 184) 100%, rgb(71 123 199 / 0%) 100%);
+	}
+
+	#header-lang-globe {
+		display: none;
+	}
+
+	/* OJS-specific
+	--------------*/
+
+	.pkp_page_index .journals .thumb+.body {
+		width: 100%;
+	}
+
+	.pkp_page_index .current_issue .read_more {
+		font-size: 1.2rem;
+		margin-top: 1.5rem;
+	}
+}
+
+@media only screen and (max-width: 768px) {
+
+	/* OJS-specific
+	--------------*/
+	.pkp_page_index .journals .thumb+.body {
+		width: 100%;
+		padding-left: 1vw;
+	}
+
+}
+
+
+
 
 
 
