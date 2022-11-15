@@ -142,9 +142,9 @@ li.profile {
 	bottom: 1vh;
 }
 
-/*----------------------
+/*-------------------------
 => generic elements (PKP)
-----------------------*/
+--------------------------*/
 
 html {
 	background-size: contain;
@@ -243,6 +243,14 @@ body {
 	color: #ffffff;
 }
 
+.pkp_navigation_primary>li:first-child a {
+	margin-left: 0;
+}
+
+.pkp_navigation_primary>li:last-child a {
+	margin-right: 0;
+}
+
 .pkp_navigation_search_wrapper a {
 	color: #ffffff;
 }
@@ -251,8 +259,195 @@ body {
 	color: #ffffff;
 }
 
+/* --- buttons ---*/
+
+.cmp_button, .cmp_download_link, .cmp_form .buttons button,
+.page_lost_password .buttons button, .page_search .cmp_search button,
+.obj_monograph_full .files .link a, .obj_monograph_full .files .pub_format_remote a,
+.obj_monograph_full .files .pub_format_single a, .block_make_submission a, .obj_galley_link {
+	display: inline-block;
+	padding: 0 1.0715rem;
+	background: #5d6671;
+	border: none;
+	border-radius: 3px;
+	box-shadow: inset 0 -1em 1em rgba(0, 0, 0, 0.1);
+	-webkit-box-shadow: inset 0 -1em 1em rgba(0, 0, 0, 0.1);
+	font-size: .93rem;
+	line-height: calc(2.143rem - 2px);
+	font-weight: 500;
+	color: #feffff;
+	text-decoration: none;
+	text-shadow:none;
+	margin: 0.1vw;
+}
+
+/*------------------
+= > OMP specific
+-------------------*/
+
+.pkp_structure_main .page .about_section {
+	font-style: normal;
+}
+
+.pkp_page_index .homepage_about {
+	padding-bottom: 0
+}
+
+.page_about, .page_contact, .page_editorial_team, .page_privacy,
+.page_login, .page_register, .page_lost_password, .page_announcement,
+.page_about_publishing_system {
+	min-height: 50vw;
+}
+
+.page_book {
+	padding-top: 8vh;
+}
+
+.cmp_breadcrumbs {
+	padding-top: 5vh;
+}
+
+/* monograph list (catalog) */
+
+.cmp_monographs_list .obj_monograph_summary {
+	position: relative;
+	float: none;
+	width: 100%;
+	padding: 2.143rem 2.143rem 2.143rem 3rem;
+	border-top: 1px solid #ddd;
+	transition: all 2s ease-in-out;
+	-moz-transition: all 2s ease-in-out;
+	-o-transition: all 2s ease-in-out;
+}
+
+.cmp_monographs_list .obj_monograph_summary+.obj_monograph_summary {
+	padding-left: 3rem;
+	border-top: 1px solid #ddd;
+	border-left: none;
+}
+
+.cmp_monographs_list .obj_monograph_summary:hover {
+	transition: all 2s ease-in;
+	-moz-transition: all 2s ease-in;
+	-o-transition: all 2s ease-in;
+	background: rgba(238, 239, 239, 1);
+}
+
+.cmp_monographs_list .obj_monograph_summary:first-child {
+	border-right:none;
+}
+
+.cmp_monographs_list .obj_monograph_summary .cover img {
+	transition: all 1s ease-out;
+	-webkit-transition: all 1s ease-out;
+	-moz-transition: all 1s ease-out;
+	-o-transition: all 1s ease-out;
+	min-width: 200px;
+}
+
+.cmp_monographs_list .obj_monograph_summary:hover img {
+	-moz-transition: all 2s;
+	-o-transition: all 2s;
+	transform: scale(1.03);
+	transform-origin: center;
+	will-change: transform;
+	transition: all 2s ease-in-out;
+	box-shadow: 4px 5px 0px 0px #aca9a9;
+	-webkit-box-shadow: 4px 5px 0px 0px #aca9a9;
+}
+
+.obj_monograph_summary>*, .obj_monograph_summary .title {
+	margin-left: 240px;
+}
+
+.cmp_monographs_list>.title {
+	position:relative;
+	top: 0;
+	left: 0;
+	margin: 0;
+	background: #f7f7f7;
+	padding: 0 0.714rem 0 2vw;
+	font-size: 1.22rem;
+	font-weight: 400;
+	line-height: 2.143rem;
+	color: rgba(0 0, 0, 0.74);
+}
+
+/* monograph single page */
+
+.obj_monograph_full .main_entry .item {
+	padding: 2vh 0;
+}
+
+.obj_monograph_full .main_entry .label {
+	margin: 0 0 0.5rem;
+}
+
+.obj_monograph_full .entry_details {
+	border-left: none;
+}
+
+.obj_monograph_full .entry_details .item {
+	padding: 1.5rem 2.143rem;
+}
+
+.obj_monograph_full .sub_item {
+	margin-bottom: 0.8rem;
+}
+
+.obj_monograph_full .sub_item .value {
+	font-size: 0.9em;
+}
+
+ul.contributors {
+	margin: 0;
+	list-style-type: none;
+	padding: 0;
+}
+
+.contributors li {
+	margin-bottom: 0.5rem;
+}
+
+.contributors .orcid {
+	display: block;
+	font-size: .75rem;
+	line-height: 1.43rem;
+}
+
+.contributors .affiliation {
+	font-size: .93rem;
+	color: rgba(0,0,0,0.54);
+}
+
+.chapters {
+	margin-top: 1vh;
+	border-top: 0.1vh solid gray;
+}
+
+.series {
+	padding-bottom: 0.5vh;
+	padding-top: 0.5vh;
+}
+
+.seriesName {
+	font-weight: 500;
+}
+
+/*-- SERIES list --*/
+
+#SeriesList{
+	list-style-type:none;
+	padding:0;
+}
+
+li.series {
+	list-style-type:none;
+}
+
 /* ---------------------------
-=> Styles for small devices
+=> Styles for SMALL DEVICES
+(OJS and OMP)
 -----------------------------*/
 
 @media only screen and (max-width: 1199px) {
