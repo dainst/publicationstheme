@@ -259,6 +259,16 @@ body {
 	color: #ffffff;
 }
 
+.pkp_page_index .homepage_about {
+	padding-bottom: 0
+}
+
+.page_about, .page_contact, .page_editorial_team, .page_privacy,
+.page_login, .page_register, .page_lost_password, .page_announcement,
+.page_announcements, .page_about_publishing_system {
+	min-height: 50vw;
+}
+
 /* --- buttons ---*/
 .cmp_button, .cmp_download_link, .cmp_form .buttons button,
 .page_lost_password .buttons button, .page_search .cmp_search button,
@@ -286,16 +296,6 @@ body {
 
 .pkp_structure_main .page .about_section {
 	font-style: normal;
-}
-
-.pkp_page_index .homepage_about {
-	padding-bottom: 0
-}
-
-.page_about, .page_contact, .page_editorial_team, .page_privacy,
-.page_login, .page_register, .page_lost_password, .page_announcement,
-.page_about_publishing_system {
-	min-height: 50vw;
 }
 
 .page_book {
@@ -442,6 +442,130 @@ ul.contributors {
 
 li.series {
 	list-style-type:none;
+}
+
+/*------------------
+= > OJS specific
+-------------------*/
+
+.pkp_page_index .journals h3 {
+	font-size: 1.25em;
+}
+
+.pkp_page_index .journals h3 a {
+	color: #484343;
+	letter-spacing: .03em;
+}
+
+.pkp_page_index .journals img {
+	display: block;
+	max-width: 26em;
+	height: auto;
+	max-height: none;
+	-webkit-transition: all 1s ease-out;
+	-moz-transition: all 1s ease-out;
+	-o-transition: all 1s ease-out;
+	transition: all 1s ease-out;
+}
+
+.has_thumb {
+	transition: all 2s ease-in-out;
+	-moz-transition: all 2s ease-in-out;
+	-o-transition: all 2s ease-in-out;
+	background-color: #ffffffff;
+}
+
+.has_thumb:hover {
+	transition: all 2s ease-in;
+	-moz-transition: all 2s ease-in;
+	-o-transition: all 2s ease-in;
+	background: rgba(238, 239, 239, 1);
+	box-shadow: 0px 0px 1px 1px #fffafa;
+}
+
+.has_thumb:hover img {
+	transition: all 2s ease-in-out;
+	-moz-transition: all 2s ease-in-out;
+	-o-transition: all 2s ease-in-out;
+	transform: scale(1.015);
+	transform-origin: center;
+	will-change: transform;
+	box-shadow: none;
+	max-width: 26.5em;
+}
+
+.pkp_page_index .journals .thumb+.body {
+	width: 50%;
+}
+
+.pkp_page_index .journals .thumb+.body .description {
+	font-size: 0.95em;
+	padding-right: 1vw;
+}
+
+.page_index_journal, .page_issue, .page_article,
+.page_issue_archive, .page_submissions {
+	min-height: 50vw;
+}
+
+.cmp_breadcrumbs, .page_index_journal {
+	padding-top: 5vh;
+}
+
+.pkp_page_index .current_issue .read_more {
+	font-size: 1.1rem;
+	margin-bottom: 0;
+}
+
+.obj_issue_toc .sections:not(:first-child) {
+	margin-top: 0;
+}
+
+.pkp_page_index .journals>ul>li {
+	border-top: 1px solid #e6e6e6;
+}
+
+.pkp_page_index .journals>ul>li a {
+	text-decoration: none;
+}
+
+.obj_article_details .row {
+	border-top: 1px solid #fff;
+	border-bottom: 1px solid #fff;
+}
+
+.obj_article_summary>.title {
+	font-size: 1.05rem;
+}
+
+.obj_article_details .main_entry {
+	padding-top: 2vh;
+	border-right: none;
+}
+
+.obj_article_details .entry_details {
+	border-left: 1px solid #dfd9d9;
+}
+
+.obj_article_details .item {
+	padding: 2vh 2.143rem;
+}
+
+.obj_article_details .main_entry .item .label {
+	margin: 0 0 0.5rem;
+}
+
+.obj_article_details .authors li {
+	margin-bottom: 0.8rem;
+}
+.obj_article_details .authors .affiliation {
+	font-size: 0.9em;
+}
+
+.obj_galley_link.restricted {
+	border-color: #f53b3b;
+	color: #f53b3b;
+	background: #131313;
 }
 
 /* ---------------------------
