@@ -108,7 +108,7 @@
 					{/if}
 
 					{if $editors|@count}
-						<h2 class="label">{translate key="user.role.editors"}</h2>
+						<h2 class="label">{translate key="default.groups.name.editor"}</h2>
 
 						{foreach from=$editors item=editor}
 
