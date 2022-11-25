@@ -122,7 +122,7 @@ function attachFooter() {
                 "   <a href=\"https://www.dainst.org/en/datenschutz\" target=\"_blank\">Data Protection Regulation</a>" +
                 "</span>" +
                 "<span class=\"links\">" +
-                "   <a href=\"index.php/index/about/privacy\" target=\"_blank\">Legal notice</a>" +
+                "   <a href=\"https://www.dainst.org/en/impressum\" target=\"_blank\">Legal notice</a>" +
                 "</span>" +
                 "<span>" +
                 "   <a href=\"https://pkp.sfu.ca\" target=\"_blank\">" +
