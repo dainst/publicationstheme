@@ -108,7 +108,7 @@
 					{/if}
 
 					{if $editors|@count}
-						<h2 class="label">{translate key="default.groups.plural.editor"}</h2>
+						<h2 class="label">{translate key="metadata.property.displayName.editor"}</h2>
 
 						{foreach from=$editors item=editor}
 
