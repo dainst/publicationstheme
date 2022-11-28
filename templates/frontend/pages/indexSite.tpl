@@ -48,7 +48,7 @@
 							<ul class="links">
 								<li class="view">
 									<a href="{url|escape journal=$journal->getPath() page="about"}">
-										{translate key="site.journalView"}
+										{translate key="about.aboutContext"}
 									</a>
 								</li>
 								<li class="current">
