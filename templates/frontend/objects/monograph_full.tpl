@@ -535,7 +535,7 @@
 			<div class="item copyright">
 				<div class="sub_item">
 					<div class="value">
-						Copyright (c) {translate|escape key="submission.copyrightYear" copyrightYear=$publication->getData('copyrightYear')} Deutsches Archäologisches Institut.
+						{translate|escape key="submission.copyrightStatement" copyrightYear=$publication->getData('copyrightYear') copyrightHolder=$publication->getLocalizedData('copyrightHolder')}
 					</div>
 				</div>
 			</div>
