@@ -535,7 +535,7 @@
 			<div class="item copyright">
 				<div class="sub_item">
 					<div class="value">
-						{translate|escape key="submission.copyrightStatement" copyrightYear=$publication->getData('copyrightYear') copyrightHolder=$publication->getLocalizedData('copyrightHolder')}
+						{translate|escape key="submission.copyrightStatement" copyrightYear=$publication->getData('copyrightYear')} Deutsches Archäologisches Institut
 					</div>
 				</div>
 			</div>
@@ -557,7 +557,10 @@
 				</div>
 			{/if}
 
-			{* Publication formats *}
+			{* Publication formats
+			M. Riedel, 28.11.2022: Remove publication format specific information intentionally (for Update to 3.3.0).
+			Until now these information are not carefully and systematically entered in OMP.
+
 			{if count($publicationFormats)}
 				{foreach from=$publicationFormats item="publicationFormat"}
 					{if $publicationFormat->getIsApproved()}
@@ -575,14 +578,14 @@
 							{/if}
 						{/foreach}
 
-						{* Skip if we don't have any information to print about this pub format *}
+						{* Skip if we don't have any information to print about this pub format
 						{if !$identificationCodes && !$publicationDates && !$hasPubId && !$publicationFormat->getPhysicalFormat()}
 							{continue}
 						{/if}
 
-						<div class="item publication_format">
+						<div class="item publication_format"> *}
 
-							{* Only add the format-specific heading if multiple publication formats exist *}
+							{* Only add the format-specific heading if multiple publication formats exist
 							{if count($publicationFormats) > 1}
 								<h2 class="label">
 									{assign var=publicationFormatName value=$publicationFormat->getLocalizedName()}
@@ -599,9 +602,10 @@
 									{translate key="monograph.miscellaneousDetails"}
 								</h2>
 							{/if}
+							 *}
 
 
-							{* DOI's and other identification codes *}
+							{* DOI's and other identification codes
 							{if $identificationCodes}
 								{foreach from=$identificationCodes item=identificationCode}
 									<div class="sub_item identification_code">
@@ -614,8 +618,9 @@
 									</div>
 								{/foreach}
 							{/if}
+							*}
 
-							{* Dates of publication *}
+							{* Dates of publication
 							{if $publicationDates}
 								{foreach from=$publicationDates item=publicationDate}
 									<div class="sub_item date">
@@ -623,12 +628,12 @@
 											{$publicationDate->getNameForONIXCode()|escape}
 										</h3>
 										<div class="value">
-											{assign var=dates value=$publicationDate->getReadableDates()}
-											{* note: these dates have dateFormatShort applied to them in getReadableDates() if they need it *}
+											{assign var=dates value=$publicationDate->getReadableDates()} *}
+											{* note: these dates have dateFormatShort applied to them in getReadableDates() if they need it
 											{if $publicationDate->isFreeText() || $dates|@count == 1}
 												{$dates[0]|escape}
-											{else}
-												{* @todo the &mdash; ought to be translateable *}
+											{else} *}
+												{* @todo the &mdash; ought to be translateable
 												{$dates[0]|escape}&mdash;{$dates[1]|escape}
 											{/if}
 											{if $publicationDate->isHijriCalendar()}
@@ -639,9 +644,9 @@
 										</div>
 									</div>
 								{/foreach}
-							{/if}
+							{/if} *}
 
-							{* PubIDs *}
+							{* PubIDs
 							{foreach from=$pubIdPlugins item=pubIdPlugin}
 								{assign var=pubIdType value=$pubIdPlugin->getPubIdType()}
 								{assign var=storedPubId value=$publicationFormat->getStoredPubId($pubIdType)}
@@ -656,8 +661,9 @@
 									</div>
 								{/if}
 							{/foreach}
+							*}
 
-							{* Physical dimensions *}
+							{* Physical dimensions
 							{if $publicationFormat->getPhysicalFormat()}
 								<div class="sub_item dimensions">
 									<h2 class="label">
@@ -668,10 +674,12 @@
 									</div>
 								</div>
 							{/if}
+
+
 						</div>
 					{/if}
 				{/foreach}
-			{/if}
+			{/if} *}
 
 			{call_hook name="Templates::Catalog::Book::Details"}
 
