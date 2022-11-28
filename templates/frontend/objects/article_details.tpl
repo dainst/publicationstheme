@@ -442,9 +442,7 @@
 			{if $citation}
 				<div class="item citation">
 					<section class="sub_item citation_display">
-						<h2 class="label">
-							{translate key="submission.howToCite"}
-						</h2>
+						<h2 class="label">Citation Formats</h2> <!--- Wording easily changed here due to missing DAI-Zitierrichtlinien; language po.files are part pkp/lib -->
 						<div class="value">
 							<div id="citationOutput" role="region" aria-live="polite">
 								{$citation}
