@@ -1,7 +1,7 @@
 /* ----------------
 Variables
 ------------------*/
-@idai-gradient: linear-gradient(to right, rgba(106, 164, 184, 0.95) 0%, rgba(71, 123, 199, 0) 95%);
+@idai-gradient: linear-gradient(to right, rgba(106,164,184,0.95) 0%, rgb(71 123 199 / 66%) 95%);
 @idaiworldbanner-path: "https://publications.test.dainst.org/books/plugins/themes/publications-theme/images/idaiworld-banner.png";
 
 // @header-img-path: "https://publications.test.dainst.org/books/plugins/themes/publications-theme/images/idai_publications_header_sw.jpg";
@@ -11,15 +11,14 @@ dai-header
 ---------------*/
 
 .pkp_navigation_user_wrapper {
+	background: @idai-gradient;
+	width: 100%;
+	position: fixed;
 	padding-left: 0;
 	padding-right: 0;
-	min-width: 99.5vw;
 }
 
 #navigationUser {
-	background: @idai-gradient;
-	box-shadow: 1px -1px 10px 0px #59595b;
-	-webkit-box-shadow: 1px -1px 10px 0px #59595b;
 	width: 100%;
 	padding: 0 1vw;
 }
@@ -34,16 +33,15 @@ iframe {
 #idai-world-dropdown {
 	left: 0;
 	position: absolute;
-
-	/* Hide idai-world-dropdown in user navigation on mobile devices */
-	@media not all and (min-width: 1199px) {
-		display: none;
-	}
 }
 
 #idai-world-dropdown a {
 	font-size: 23px;
 	padding: 1.5vh 1vw;
+}
+
+#idai-world-dropdown a:active {
+	pointer-events: none;
 }
 
 #idai-world-dropdown a:after {
@@ -168,7 +166,7 @@ body {
 }
 
 .has_site_logo .pkp_head_wrapper {
-	padding-top: 8vh;
+	padding-top: 10vh;
 }
 
 .pkp_site_name .is_img img {
@@ -260,6 +258,10 @@ body {
 	color: #ffffff;
 }
 
+.pkp_nav_list ul li {
+	font-size: 0.85em;
+}
+
 .pkp_page_index .homepage_about {
 	padding-bottom: 0
 }
@@ -271,6 +273,7 @@ body {
 }
 
 /* --- buttons ---*/
+
 .cmp_button, .cmp_download_link, .page_lost_password .buttons button, .obj_monograph_full .files .link a,
 .obj_monograph_full .files .pub_format_remote a, .obj_monograph_full .files .pub_format_single a,
 .obj_galley_link {
@@ -290,12 +293,20 @@ body {
 	margin: 0.1vw;
 }
 
-.block_make_submission a {
-	padding: 1rem 1rem;
+.block_make_submission a, .cmp_download_link {
+	padding: 0.75rem 1rem;
 }
 
 .cmp_button {
-	padding: 0.7rem 1rem;
+	padding: 0.75rem 1rem;
+}
+
+.page_search .submit button:after {
+	display:none;
+}
+
+button .submit {
+	padding: 0.75rem 1rem;
 }
 
 .obj_article_details .citation_display .citation_formats_button:focus {
@@ -455,6 +466,7 @@ ul.contributors {
 
 li.series {
 	list-style-type:none;
+	font-size: 1.1em;
 }
 
 /*------------------
@@ -472,7 +484,7 @@ li.series {
 
 .pkp_page_index .journals img {
 	display: block;
-	max-width: 26em;
+	max-width: 26.4em;
 	height: auto;
 	max-height: none;
 	-webkit-transition: all 1s ease-out;
@@ -486,6 +498,7 @@ li.series {
 	-moz-transition: all 2s ease-in-out;
 	-o-transition: all 2s ease-in-out;
 	background-color: #ffffffff;
+	border-radius: 2%;
 }
 
 .has_thumb:hover {
@@ -504,7 +517,6 @@ li.series {
 	transform-origin: center;
 	will-change: transform;
 	box-shadow: none;
-	max-width: 26.4em;
 }
 
 .pkp_page_index .journals .thumb+.body {
@@ -592,12 +604,8 @@ li.series {
 		font-size: 1em;
 	}
 
-	.pkp_head_wrapper {
-		padding-top: 0;
-	}
-
-	.has_site_logo .pkp_head_wrapper {
-		padding-top: 0;
+	.pkp_navigation_user_wrapper {
+		position: absolute;
 	}
 
 	.pkp_site_name .is_img img {
@@ -605,8 +613,8 @@ li.series {
 	}
 
 	.pkp_site_name .is_text {
-		font-size: 1rem;
-		padding: 0;
+		font-size: 2rem;
+		padding: 2vw
 	}
 
 	.pkp_site_name>a {
@@ -632,6 +640,10 @@ li.series {
 		display:block
 	}
 
+	.slogan {
+		padding-bottom: 2vw;
+	}
+
 	/* OMP-specific
 	--------------*/
 
@@ -651,11 +663,10 @@ li.series {
 	----------------*/
 
 	.pkp_page_index .journals img {
-		max-width: 19em;
+		display:none;
 	}
-
 	.pkp_page_index .journals .thumb+.body {
-		width: 50%;
+		width: 100%;
 	}
 
 	.pkp_page_index .journals .thumb+.body .description {
@@ -666,6 +677,19 @@ li.series {
 }
 
 @media only screen and (max-width: 991px) {
+
+	.pkp_head_wrapper {
+		padding-top: 0;
+	}
+
+	.has_site_logo .pkp_head_wrapper {
+		padding-top: 0;
+	}
+
+	.pkp_site_name .is_text {
+		font-size: 1rem;
+		padding: 0;
+	}
 
 	li.profile {
 		background: linear-gradient(to right, rgba(106, 164, 184, 1), rgba(71, 123, 199, 0));
@@ -705,6 +729,13 @@ li.series {
 		padding-left: 1vw;
 	}
 
+}
+
+/* Hide idai-world-dropdown in user navigation on mobile devices */
+@media not all and (min-width: 1199px) {
+	#idai-world-dropdown {
+		display: none;
+	}
 }
 
 
