@@ -604,14 +604,6 @@ li.series {
 		font-size: 1em;
 	}
 
-	.pkp_navigation_user_wrapper {
-		position: absolute;
-	}
-
-	.pkp_site_name .is_img img {
-		max-height: 30px;
-	}
-
 	.pkp_site_name .is_text {
 		font-size: 2rem;
 		padding: 2vw
@@ -682,8 +674,16 @@ li.series {
 		padding-top: 0;
 	}
 
+	.pkp_navigation_user_wrapper {
+		position: absolute;
+	}
+
 	.has_site_logo .pkp_head_wrapper {
 		padding-top: 0;
+	}
+
+	.pkp_site_name .is_img img {
+		max-height: 30px;
 	}
 
 	.pkp_site_name .is_text {
@@ -732,7 +732,7 @@ li.series {
 }
 
 /* Hide idai-world-dropdown in user navigation on mobile devices */
-@media not all and (min-width: 1199px) {
+@media not all and (min-width: 991px) {
 	#idai-world-dropdown {
 		display: none;
 	}
