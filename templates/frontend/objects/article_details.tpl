@@ -100,6 +100,10 @@
 	<div class="row">
 		<div class="main_entry">
 			{if $publication->getData('authors')}
+
+				{* Test Key *}
+				<p class="pkp_screen_reader">{translate key="reader.subscriptionRequiredLoginText"}</p>
+
 				<section class="item authors">
 					<h2 class="pkp_screen_reader">{translate key="article.authors"}</h2>
 					<ul class="authors">
@@ -108,6 +112,16 @@
 							<span class="name">
 								{$author->getFullName()|escape}
 							</span>
+
+							{* add orcid*}
+							{if $author->getOrcid()}
+								<span class="orcid">
+									<a href="{$author->getOrcid()|escape}" target="_blank">
+										{$author->getOrcid()|escape}
+									</a>
+								</span>
+							{/if}
+
 							{if $author->getData('orcid')}
 								<span class="orcid">
 									{$orcidIcon}
@@ -116,6 +130,7 @@
 									</a>
 								</span>
 							{/if}
+
 							{if $author->getLocalizedData('affiliation')}
 								<span class="affiliation">
 									{$author->getLocalizedData('affiliation')|escape}
