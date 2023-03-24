@@ -1,4 +1,4 @@
-These journal specific style sheets were not processed by the publications-theme code.
+These journal specific style sheets are not processed by the publications-theme code.
 They are uploaded separately to OJS for each Journal and are deposited here simply to
 have it all together in one repository.
 
