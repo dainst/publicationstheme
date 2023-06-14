@@ -60,6 +60,7 @@ function enrichHeader() {
                 "    <li><a href='" + relativePath + "/index/user/setLocale/es_ES?source=" + window.location.pathname + "'>Español</a></li>" +
                 "    <li><a href='" + relativePath + "/index/user/setLocale/fr_FR?source=" + window.location.pathname + "'>Français</a></li>" +
                 "    <li><a href='" + relativePath + "/index/user/setLocale/it_IT?source=" + window.location.pathname + "'>Italiano</a></li>" +
+                "    <li><a href='" + relativePath + "/index/user/setLocale/tr_TR?source=" + window.location.pathname + "'>Türkçe</a></li>" +
                 "</ul>";
 
             const langGlobeImage = document.createElement('img');
