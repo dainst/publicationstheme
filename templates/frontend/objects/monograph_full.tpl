@@ -97,7 +97,7 @@
 		{assign var=pubId value=$monograph->getStoredPubId($pubIdPlugin->getPubIdType())}
 		{if $pubId}
 			{assign var="doiUrl" value=$pubIdPlugin->getResolvingURL($currentPress->getId(), $pubId)|escape}
-			<p class="value"><a href="{$doiUrl}">{$doiUrl}</a></p>
+			<p class="doi-value"><a href="{$doiUrl}">{$doiUrl}</a></p>
 		{/if}
 	{/foreach}
 
