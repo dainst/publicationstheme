@@ -97,29 +97,22 @@
 		</h2>
 	{/if}
 
+	{* DOI (requires plugin) *}
+	{foreach from=$pubIdPlugins item=pubIdPlugin}
+		{if $pubIdPlugin->getPubIdType() != 'doi'}
+			{continue}
+		{/if}
+		{assign var=pubId value=$article->getStoredPubId($pubIdPlugin->getPubIdType())}
+		{if $pubId}
+			{assign var="doiUrl" value=$pubIdPlugin->getResolvingURL($currentJournal->getId(), $pubId)|escape}
+			<section class="item doi">
+				<p class="value"><a href="{$doiUrl}">{$doiUrl}</a></p>
+			</section>
+		{/if}
+	{/foreach}
+
 	<div class="row">
 		<div class="main_entry">
-			{* DOI (requires plugin) *}
-			{foreach from=$pubIdPlugins item=pubIdPlugin}
-				{if $pubIdPlugin->getPubIdType() != 'doi'}
-					{continue}
-				{/if}
-				{assign var=pubId value=$article->getStoredPubId($pubIdPlugin->getPubIdType())}
-				{if $pubId}
-					{assign var="doiUrl" value=$pubIdPlugin->getResolvingURL($currentJournal->getId(), $pubId)|escape}
-					<section class="item doi">
-						<h2 class="label">
-							{capture assign=translatedDOI}{translate key="plugins.pubIds.doi.readerDisplayName"}{/capture}
-							{translate key="semicolon" label=$translatedDOI}
-						</h2>
-						<p class="value">
-							<a href="{$doiUrl}">
-								{$doiUrl}
-							</a>
-						</p>
-					</section>
-				{/if}
-			{/foreach}
 
 			{if $publication->getData('authors')}
 
