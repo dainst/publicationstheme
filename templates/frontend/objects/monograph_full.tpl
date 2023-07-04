@@ -92,6 +92,27 @@
 	<div class="row">
 		<div class="main_entry">
 
+			{* DOI (requires plugin) *}
+			{foreach from=$pubIdPlugins item=pubIdPlugin}
+				{if $pubIdPlugin->getPubIdType() != 'doi'}
+					{continue}
+				{/if}
+				{assign var=pubId value=$monograph->getStoredPubId($pubIdPlugin->getPubIdType())}
+				{if $pubId}
+					{assign var="doiUrl" value=$pubIdPlugin->getResolvingURL($currentPress->getId(), $pubId)|escape}
+					<div class="item doi">
+						<h2 class="label">
+							{translate key="plugins.pubIds.doi.readerDisplayName"}
+						</h2>
+						<p class="value">
+							<a href="{$doiUrl}">
+								{$doiUrl}
+							</a>
+						</p>
+					</div>
+				{/if}
+			{/foreach}
+
 			{* Author list *}
 			<div class="item authors">
 
@@ -150,7 +171,7 @@
 						</ul>
 					{/foreach}
 
-					{* Show long author lists on one line *}
+				{* Show long author lists on one line *}
 				{else}
 					{foreach name="authors" from=$authors item=author}
 						{* strip removes excess white-space which creates gaps between separators *}
@@ -173,27 +194,6 @@
 					{/foreach}
 				{/if}
 			</div>
-
-			{* DOI (requires plugin) *}
-			{foreach from=$pubIdPlugins item=pubIdPlugin}
-				{if $pubIdPlugin->getPubIdType() != 'doi'}
-					{continue}
-				{/if}
-				{assign var=pubId value=$monograph->getStoredPubId($pubIdPlugin->getPubIdType())}
-				{if $pubId}
-					{assign var="doiUrl" value=$pubIdPlugin->getResolvingURL($currentPress->getId(), $pubId)|escape}
-					<div class="item doi">
-						<h2 class="label">
-							{translate key="plugins.pubIds.doi.readerDisplayName"}
-						</h2>
-						<p class="value">
-							<a href="{$doiUrl}">
-								{$doiUrl}
-							</a>
-						</p>
-					</div>
-				{/if}
-			{/foreach}
 
 			{* Abstract *}
 			<div class="item abstract">
