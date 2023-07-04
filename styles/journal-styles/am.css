@@ -1,0 +1,32 @@
+h1, h2, h3 {
+	color: #00646C;
+}
+
+.obj_article_summary>.title a {
+    text-decoration: none;
+    color: #00646C;
+}
+
+.obj_article_summary>.title a:hover {
+    text-decoration: none;
+    color: #006798;
+}
+
+.obj_issue_summary .title {
+    text-decoration: none;
+    color: #00646C;
+}
+
+.obj_issue_summary .title:hover{
+    text-decoration: none;
+    color: #006798;
+}
+
+.pkp_navigation_primary .dropdown-menu a:focus,
+.pkp_navigation_primary .dropdown-menu a:hover {
+    border-color: #00646C;
+}
+
+.header_view {
+    background: #00646C;
+}
