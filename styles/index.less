@@ -310,20 +310,14 @@ button .submit {
 	padding: 0.75rem 1rem;
 }
 
-.obj_article_details .citation_display .citation_formats_button:focus {
-	background: none;
-}
-
-.obj_monograph_full .files .pub_format_remote a:after {
-	display:none;
-}
-
-.obj_monograph_full .files .pub_format_remote a {
-	padding: 0.5rem 1rem;
-}
-
-p.doi-value {
-	margin-top: 1vh;
+/* Reference Lists */
+.references p {
+	font-size: 0.9em;
+	line-height: 1.5;
+	margin-bottom: 1.5vh;
+	display: list-item;
+	list-style: square;
+	margin-left: 2vw;
 }
 
 /*------------------
@@ -435,13 +429,16 @@ p.doi-value {
 	font-size: 0.9em;
 }
 
-.obj_monograph_full .references p {
-	font-size: 0.9em;
-	line-height: 1.5;
-	margin-bottom: 1.5vh;
-	display: list-item;
-	list-style: square;
-	margin-left: 2vw;
+.obj_monograph_full .files .pub_format_remote a:after {
+	display:none;
+}
+
+.obj_monograph_full .files .pub_format_remote a {
+	padding: 0.5rem 1rem;
+}
+
+.obj_monograph_full .title {
+	margin-bottom: 2vh;
 }
 
 ul.contributors {
@@ -621,13 +618,8 @@ li.series {
 	background: #131313;
 }
 
-.obj_article_details .references p {
-	font-size: 0.9em;
-	line-height: 1.5;
-	margin-bottom: 1.5vh;
-	display: list-item;
-	list-style: square;
-	margin-left: 2vw;
+.obj_article_details .citation_display .citation_formats_button:focus {
+	background: none;
 }
 
 /* ---------------------------
@@ -764,8 +756,13 @@ li.series {
 	}
 }
 
+/* ---------------------------
+=> Styles for wide screen
+monitors (OJS and OMP)
+-----------------------------*/
 
-
-
+@media only screen and (min-width: 1800px) {
+	html { zoom: 125% }
+}
 
 
