@@ -105,9 +105,7 @@
 		{assign var=pubId value=$article->getStoredPubId($pubIdPlugin->getPubIdType())}
 		{if $pubId}
 			{assign var="doiUrl" value=$pubIdPlugin->getResolvingURL($currentJournal->getId(), $pubId)|escape}
-			<section class="item doi">
-				<p class="value"><a href="{$doiUrl}">{$doiUrl}</a></p>
-			</section>
+			<p class="value"><a href="{$doiUrl}">{$doiUrl}</a></p>
 		{/if}
 	{/foreach}
 

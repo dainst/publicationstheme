@@ -89,29 +89,20 @@
 		{$publication->getLocalizedFullTitle()|escape}
 	</h1>
 
+	{* DOI (requires plugin) *}
+	{foreach from=$pubIdPlugins item=pubIdPlugin}
+		{if $pubIdPlugin->getPubIdType() != 'doi'}
+			{continue}
+		{/if}
+		{assign var=pubId value=$monograph->getStoredPubId($pubIdPlugin->getPubIdType())}
+		{if $pubId}
+			{assign var="doiUrl" value=$pubIdPlugin->getResolvingURL($currentPress->getId(), $pubId)|escape}
+			<p class="value"><a href="{$doiUrl}">{$doiUrl}</a></p>
+		{/if}
+	{/foreach}
+
 	<div class="row">
 		<div class="main_entry">
-
-			{* DOI (requires plugin) *}
-			{foreach from=$pubIdPlugins item=pubIdPlugin}
-				{if $pubIdPlugin->getPubIdType() != 'doi'}
-					{continue}
-				{/if}
-				{assign var=pubId value=$monograph->getStoredPubId($pubIdPlugin->getPubIdType())}
-				{if $pubId}
-					{assign var="doiUrl" value=$pubIdPlugin->getResolvingURL($currentPress->getId(), $pubId)|escape}
-					<div class="item doi">
-						<h2 class="label">
-							{translate key="plugins.pubIds.doi.readerDisplayName"}
-						</h2>
-						<p class="value">
-							<a href="{$doiUrl}">
-								{$doiUrl}
-							</a>
-						</p>
-					</div>
-				{/if}
-			{/foreach}
 
 			{* Author list *}
 			<div class="item authors">
