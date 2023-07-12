@@ -163,7 +163,7 @@
 					</h2>
 					<p class="value">
 						{foreach name="keywords" from=$publication->getLocalizedData('keywords') item="keyword"}
-							{$keyword|escape}{if !$smarty.foreach.keywords.last}{translate key="common.commaListSeparator"}{/if}
+							{$keyword|escape}{if !$smarty.foreach.keywords.last}, {/if}
 						{/foreach}
 					</p>
 				</section>
