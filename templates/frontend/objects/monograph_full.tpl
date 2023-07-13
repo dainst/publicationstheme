@@ -244,7 +244,7 @@
 									{assign var=pubId value=$chapter->getStoredPubId($pubIdPlugin->getPubIdType())}
 									{if $pubId}
 										{assign var="doiUrl" value=$pubIdPlugin->getResolvingURL($currentPress->getId(), $pubId)|escape}
-										<div class="doi">{translate key="plugins.pubIds.doi.readerDisplayName"} <a href="{$doiUrl}">{$doiUrl}</a></div>
+										<div class="doi"><a href="{$doiUrl}">{$doiUrl}</a></div>
 									{/if}
 								{/foreach}
 
