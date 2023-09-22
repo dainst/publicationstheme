@@ -302,6 +302,10 @@ body {
 	padding: 0.75rem 1rem;
 }
 
+.page_search .search_advanced {
+	margin-top: 1.5vh;
+}
+
 .page_search .submit button:after {
 	display:none;
 }
@@ -779,7 +783,7 @@ monitors (OJS and OMP)
 		zoom: 1.2;
 		-ms-zoom: 1.2;
 		-webkit-zoom: 1.2;
-		-moz-transform:  scale(1.2,1.2);
+		/* firefox not supportable: moz-transform: scale() has not the same behaviour */
 	}
 	#idai-world-dropdown a {
 		padding: 1.2vh 1vw;
@@ -792,7 +796,7 @@ monitors (OJS and OMP)
 		zoom: 1.25;
 		-ms-zoom: 1.25;
 		-webkit-zoom: 1.25;
-		-moz-transform:  scale(1.25,1.25);
+		/* firefox not supportable: moz-transform: scale() has not the same behaviour */
 	}
 	#idai-world-dropdown a {
 		font-size: 23px;
