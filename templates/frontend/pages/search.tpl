@@ -62,20 +62,20 @@
 					{html_select_date_a11y legend=$dateFromTo prefix="dateTo" time=$dateTo start_year=$yearStart end_year=$yearEnd}
 				</div>
 			</div>
-			<div class="indexTerms">
-				<label class="label" for="indexTerms">
-					{translate key="search.indexTermsLong"}
-				</label>
-				{block name=searchIndexTerms}
-					<input type="text" id="indexTerms" name="indexTerms" value="{$indexTerms|escape}" placeholder='{translate|escape key="search.metadataOnly"}'>
-				{/block}
-			</div>
 			<div class="author">
 				<label class="label" for="authors">
 					{translate key="search.author"}
 				</label>
 				{block name=searchAuthors}
 					<input type="text" id="authors" name="authors" value="{$authors|escape}">
+				{/block}
+			</div>
+			<div class="indexTerms">
+				<label class="label" for="indexTerms">
+					{translate|escape key="search.metadataOnly"}
+				</label>
+				{block name=searchIndexTerms}
+					<input type="text" id="indexTerms" name="indexTerms" value="{$indexTerms|escape}">
 				{/block}
 			</div>
 			{call_hook name="Templates::Search::SearchResults::AdditionalFilters"}
