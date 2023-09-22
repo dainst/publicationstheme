@@ -236,7 +236,7 @@ body {
 }
 
 .pkp_navigation_primary_wrapper {
-	min-height: 6vh;
+	/* min-height: 6vh; */
 }
 
 .pkp_navigation_primary>li>a {
@@ -306,12 +306,6 @@ body {
 	display:none;
 }
 
-.page_search .indexTerms {
-	float: left;
-	width: 50%;
-	margin-top: 20px
-}
-
 button .submit {
 	padding: 0.75rem 1rem;
 }
@@ -322,6 +316,9 @@ button .submit {
 	font-size: 0.9em;
 	line-height: 1.5;
 	margin-bottom: 1.5vh;
+	display: list-item;
+	list-style: square;
+	margin-left: 2vw;
 }
 
 p.doi-value {
@@ -769,7 +766,5 @@ monitors (OJS and OMP)
 -----------------------------*/
 
 @media only screen and (min-width: 1800px) {
-	html { zoom: 125% }
+	body { zoom: 1.25 }
 }
-
-
