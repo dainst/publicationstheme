@@ -120,10 +120,10 @@ function attachFooter() {
                 "<p>" +
                 "<span class=\"slogan\">iDAI.publications is a service of the German Archaeological Institute.</span>" +
                 "<span class=\"links\">" +
-                "   <a href=\"https://www.dainst.org/en/datenschutz\" target=\"_blank\">Data Protection Regulation</a>" +
+                "   <a href=\"https://www.dainst.org/en/data-protection\" target=\"_blank\">Data Protection Regulation</a>" +
                 "</span>" +
                 "<span class=\"links\">" +
-                "   <a href=\"https://www.dainst.org/en/impressum\" target=\"_blank\">Legal notice</a>" +
+                "   <a href=\"https://publications.dainst.org//index/termsOfUse\" target=\"_blank\">Legal notice</a>" +
                 "</span>" +
                 "<span>" +
                 "   <a href=\"https://pkp.sfu.ca\" target=\"_blank\">" +
