@@ -1,10 +1,10 @@
 h1, h2, h3 {
-	color: #AD0A35;
+	color: #004b87;
 }
 
 .obj_article_summary>.title a {
     text-decoration: none;
-    color: #AD0A35;
+    color: #004b87;
 }
 
 .obj_article_summary>.title a:hover {
@@ -14,7 +14,7 @@ h1, h2, h3 {
 
 .obj_issue_summary .title {
     text-decoration: none;
-    color: #AD0A35;
+    color: #004b87;
 }
 
 .obj_issue_summary .title:hover{
@@ -22,12 +22,12 @@ h1, h2, h3 {
     color: #006798;
 }
 
-.pkp_navigation_primary .dropdown-menu a:focus, 
+.pkp_navigation_primary .dropdown-menu a:focus,
 .pkp_navigation_primary .dropdown-menu a:hover {
-    border-color: #AD0A35;
+    border-color: #004b87;
 }
 
 .header_view {
-    background: #AD0A35;
+    background: #004b87;
 }
 
