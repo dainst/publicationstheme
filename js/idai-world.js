@@ -53,12 +53,15 @@ function enrichHeader() {
 
             /* add LanguageDropdown to dai-header
             * --------------------------------------*/
-            languageDropDown.innerHTML =
+            let isOJS = /journals/.test(window.location.href);
+            let fr_language_key = (isOJS ) ? "fr_FR" : "fr_CA";    // OMP supports fr_CA only
+
+                languageDropDown.innerHTML =
                 "<ul>" +
                 "    <li><a href='" + relativePath + "/index/user/setLocale/de_DE?source=" + window.location.pathname + "'>Deutsch</a></li>" +
                 "    <li><a href='" + relativePath + "/index/user/setLocale/en_US?source=" + window.location.pathname + "'>English</a></li>" +
                 "    <li><a href='" + relativePath + "/index/user/setLocale/es_ES?source=" + window.location.pathname + "'>Español</a></li>" +
-                "    <li><a href='" + relativePath + "/index/user/setLocale/fr_FR?source=" + window.location.pathname + "'>Français</a></li>" +
+                "    <li><a href='" + relativePath + "/index/user/setLocale/" + fr_language_key + "?source=" + window.location.pathname + "'>Français</a></li>" +
                 "    <li><a href='" + relativePath + "/index/user/setLocale/it_IT?source=" + window.location.pathname + "'>Italiano</a></li>" +
                 "    <li><a href='" + relativePath + "/index/user/setLocale/tr_TR?source=" + window.location.pathname + "'>Türkçe</a></li>" +
                 "    <li><a href='" + relativePath + "/index/user/setLocale/el_GR?source=" + window.location.pathname + "'>ελληνικά</a></li>" +
