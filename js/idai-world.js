@@ -54,9 +54,9 @@ function enrichHeader() {
             /* add LanguageDropdown to dai-header
             * --------------------------------------*/
             let isOJS = /journals/.test(window.location.href);
-            let fr_language_key = (isOJS ) ? "fr_FR" : "fr_CA";    // OMP supports fr_CA only
+            let fr_language_key = (isOJS) ? "fr_FR" : "fr_CA";    // OMP supports fr_CA only
 
-                languageDropDown.innerHTML =
+            languageDropDown.innerHTML =
                 "<ul>" +
                 "    <li><a href='" + relativePath + "/index/user/setLocale/de_DE?source=" + window.location.pathname + "'>Deutsch</a></li>" +
                 "    <li><a href='" + relativePath + "/index/user/setLocale/en_US?source=" + window.location.pathname + "'>English</a></li>" +
@@ -149,11 +149,11 @@ function attachFooter() {
 
 /** attach "has_site_logo" class to body by default:
  * ---------------------------------------------------
-  *  .has_site_logo is defined in default-theme
-  *  attaching it to the body-element simplifies some style issues for pages,
-     which have no text-logo-img (e.g. journal and books index page and certain journals)
+ *  .has_site_logo is defined in default-theme
+ *  attaching it to the body-element simplifies some style issues for pages,
+ which have no text-logo-img (e.g. journal and books index page and certain journals)
  * ---------------------------------------------------
-**/
+ **/
 
 function attachSiteLogoClassToBody() {
     document.body.classList.add('has_site_logo');
