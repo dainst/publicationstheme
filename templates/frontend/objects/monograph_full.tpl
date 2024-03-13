@@ -138,9 +138,9 @@
 
 					{foreach from=$authors item=author}
 
-						{print_r($author["userGroupId"])}
+						{print_r($author-getUserGroupId())}
 
-						{if $author["userGroupId"] === 21}
+						{if $author->getUserGroupId() === 21}
 							{* co-author lists *}
 							<h2 class="label" style="margin-top: 2vh;">Transkription:</h2>
 						{/if}
