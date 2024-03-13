@@ -162,9 +162,10 @@
 						</ul>
 					{/foreach}
 
-					{if $authors[userGroupId] === 21}
+					{print_r($authors["userGroupId"])}
+					{if $authors["userGroupId"] === 21}
 
-						{* author lists *}
+						{* co-author lists *}
 						<h2 class="label" style="margin-top: 2vh;">Transkription:</h2>
 
 						{foreach from=$authors item=author}
