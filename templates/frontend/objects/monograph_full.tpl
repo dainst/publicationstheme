@@ -113,8 +113,6 @@
 
 				{if $authors|@count < 50}
 
-				{print_r($authors)}
-
 					{* Only show editors for edited volumes *}
 					{if $monograph->getWorkType() == $smarty.const.WORK_TYPE_EDITED_VOLUME && $editors|@count}
 						{assign var="editors" value=$editors}
@@ -163,6 +161,38 @@
 							</li>
 						</ul>
 					{/foreach}
+
+					{if $authors[userGroupId] === 21}
+
+						{* author lists *}
+						<h2 class="label" style="margin-top: 2vh;">Transkription:</h2>
+
+						{foreach from=$authors item=author}
+
+							<ul class="contributors">
+								<li>
+									{* add author names *}
+									<span class="name">{$author->getFullName()|escape}</span>
+
+									{* add orcid*}
+									{if $author->getOrcid()}
+										<span class="orcid">
+									<a href="{$author->getOrcid()|escape}" target="_blank">
+										{$author->getOrcid()|escape}
+									</a>
+								</span>
+									{/if}
+
+									{* add affiliation*}
+									{if $author->getLocalizedAffiliation()}
+										<span class="affiliation">
+									{$author->getLocalizedAffiliation()|escape}
+								</span>
+									{/if}
+								</li>
+							</ul>
+						{/foreach}
+					{/if}
 
 				{* Show long author lists on one line *}
 				{else}
