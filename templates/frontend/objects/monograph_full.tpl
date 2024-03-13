@@ -113,6 +113,8 @@
 
 				{if $authors|@count < 50}
 
+				{print_r($authors)}
+
 					{* Only show editors for edited volumes *}
 					{if $monograph->getWorkType() == $smarty.const.WORK_TYPE_EDITED_VOLUME && $editors|@count}
 						{assign var="editors" value=$editors}
