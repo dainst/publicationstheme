@@ -138,13 +138,6 @@
 
 					{foreach from=$authors item=author}
 
-						{print_r($author-getUserGroupId())}
-
-						{if $author->getUserGroupId() === 21}
-							{* co-author lists *}
-							<h2 class="label" style="margin-top: 2vh;">Transkription:</h2>
-						{/if}
-
 						<ul class="contributors">
 							<li>
 								{* add author names *}
