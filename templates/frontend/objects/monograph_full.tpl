@@ -138,6 +138,13 @@
 
 					{foreach from=$authors item=author}
 
+						{print_r($author["userGroupId"])}
+
+						{if $author["userGroupId"] === 21}
+							{* co-author lists *}
+							<h2 class="label" style="margin-top: 2vh;">Transkription:</h2>
+						{/if}
+
 						<ul class="contributors">
 							<li>
 								{* add author names *}
@@ -160,40 +167,8 @@
 								{/if}
 							</li>
 						</ul>
+
 					{/foreach}
-
-					{print_r($authors["userGroupId"])}
-					{if $authors["userGroupId"] === 21}
-
-						{* co-author lists *}
-						<h2 class="label" style="margin-top: 2vh;">Transkription:</h2>
-
-						{foreach from=$authors item=author}
-
-							<ul class="contributors">
-								<li>
-									{* add author names *}
-									<span class="name">{$author->getFullName()|escape}</span>
-
-									{* add orcid*}
-									{if $author->getOrcid()}
-										<span class="orcid">
-									<a href="{$author->getOrcid()|escape}" target="_blank">
-										{$author->getOrcid()|escape}
-									</a>
-								</span>
-									{/if}
-
-									{* add affiliation*}
-									{if $author->getLocalizedAffiliation()}
-										<span class="affiliation">
-									{$author->getLocalizedAffiliation()|escape}
-								</span>
-									{/if}
-								</li>
-							</ul>
-						{/foreach}
-					{/if}
 
 				{* Show long author lists on one line *}
 				{else}
