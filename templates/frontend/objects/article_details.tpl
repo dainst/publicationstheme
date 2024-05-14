@@ -115,12 +115,20 @@
 			{if $publication->getData('authors')}
 
 				<section class="item authors">
-					<h2 class="pkp_screen_reader">{translate key="article.authors"}</h2>
+					<h2 class="pkp_screen_reader">{translate key="submission.contributors"}</h2>
 					<ul class="authors">
 					{foreach from=$publication->getData('authors') item=author}
-						<li>
-							<span class="name">
-								{$author->getFullName()|escape}
+
+					{* get parsed roleName of each author = contributor *}
+					{$userGroupId = $author->getData('userGroupId')}
+					{$userGroupDao = DAORegistry::getDAO('UserGroupDAO')}
+					{$userGroupOfAuthor = $userGroupDao->getbyId($userGroupId)} 
+					{$roleName = $userGroupOfAuthor->getLocalizedName()|escape}
+
+						<li class="contributor">
+							{* add contributor names *}
+							<span class="name">{$author->getFullName()|escape} 
+								<span class="role">[{$roleName|escape}]</span>
 							</span>
 
 							{if $author->getData('orcid')}
