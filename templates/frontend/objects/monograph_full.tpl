@@ -108,60 +108,50 @@
 			<div class="item authors">
 
 				{assign var="authors" value=$publication->getData('authors')}
-
+	
 				{* Show short author lists on multiple lines *}
-
 				{if $authors|@count < 50}
 
-					{* Only show editors for edited volumes *}
-					{if $monograph->getWorkType() == $smarty.const.WORK_TYPE_EDITED_VOLUME && $editors|@count}
-						{assign var="editors" value=$editors}
-						{assign var="identifyAsEditors" value=true}
-					{/if}
-
-					{if $editors|@count}
-						<h2 class="label">{translate key="metadata.property.displayName.editor"}</h2>
-
-						{foreach from=$editors item=editor}
-
-							<ul class="contributors">
-								<li>
-									{* add author names with abbreviation for editors, e.g. (Hrsg.) *}
-									<span class="name">{translate key="submission.editorName" editorName=$editor->getFullName()|escape}</span>
-								</li>
-							</ul>
-						{/foreach}
-					{/if}
-
 					{* author lists *}
-					<h2 class="label" style="margin-top: 2vh;">{translate key="submission.authors"}</h2>
+					<h2 class="label" style="margin-top: 2vh;">{translate key="submission.contributors"}</h2>
+
+					{* Show short list of authors as main contributors *}
+						<ul class="contributors">
 
 					{foreach from=$authors item=author}
 
-						<ul class="contributors">
-							<li>
-								{* add author names *}
-								<span class="name">{$author->getFullName()|escape}</span>
+					{* get parsed roleName of each author = contributor*}
+					{$userGroupId = $author->getData('userGroupId')}
+					{$userGroupDao = DAORegistry::getDAO('UserGroupDAO')}
+					{$userGroupOfAuthor = $userGroupDao->getbyId($userGroupId)} 
+					{$roleName = $userGroupOfAuthor->getLocalizedName()|escape}
+					{$roleNameClass = str_replace(" ", "_", $roleName)}
 
-								{* add orcid*}
-								{if $author->getOrcid()}
-									<span class="orcid">
-									<a href="{$author->getOrcid()|escape}" target="_blank">
-										{$author->getOrcid()|escape}
-									</a>
-								</span>
-								{/if}
+						<li class="{$roleNameClass|escape}">
+							{* add author names *}
+							<span class="name">{$author->getFullName()|escape} 
+								<span class="role">[{$roleName|escape}]</span>
+							</span>
 
-								{* add affiliation*}
-								{if $author->getLocalizedAffiliation()}
-									<span class="affiliation">
-									{$author->getLocalizedAffiliation()|escape}
-								</span>
-								{/if}
-							</li>
-						</ul>
+							{* add orcid*}
+							{if $author->getOrcid()}
+								<span class="orcid">
+								<a href="{$author->getOrcid()|escape}" target="_blank">
+									{$author->getOrcid()|escape}
+								</a>
+							</span>
+							{/if}
 
+							{* add affiliation*}
+							{if $author->getLocalizedAffiliation()}
+								<span class="affiliation">
+								{$author->getLocalizedAffiliation()|escape}
+							</span>
+							{/if}
+						</li>
+					
 					{/foreach}
+					</ul>
 
 				{* Show long author lists on one line *}
 				{else}
