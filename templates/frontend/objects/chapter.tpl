@@ -54,27 +54,18 @@
 		{$chapter->getLocalizedFullTitle()|escape}
 	</h1>
 
+	{* Chapter DOIs *}
+		{assign var=doiObject value=$chapter->getData('doiObject')}
+		{if $doiObject}
+			{assign var="doiUrl" value=$doiObject->getData('resolvingUrl')|escape}
+			<p class="doi-value"><a href="{$doiUrl}">{$doiUrl}</a></p>
+		{/if}
+
 	<div class="row">
 		<div class="main_entry">
 
 			{* Author list *}
 			{include file="frontend/components/authors.tpl" authors=$chapterAuthors}
-
-			{* DOIs *}
-			{assign var=doiObject value=$chapter->getData('doiObject')}
-			{if $doiObject}
-				{assign var="doiUrl" value=$doiObject->getData('resolvingUrl')|escape}
-				<div class="item doi">
-					<span class="label">
-						{translate key="doi.readerDisplayName"}
-					</span>
-					<span class="value">
-						<a href="{$doiUrl}">
-							{$doiUrl}
-						</a>
-					</span>
-				</div>
-			{/if}
 
 			{* Abstract *}
 			<div class="item abstract">

@@ -97,27 +97,19 @@
 		{$publication->getLocalizedFullTitle(null, 'html')|strip_unsafe_html}
 	</h1>
 
+
+	{* DOIs *}
+	{assign var=monographDoiObject value=$monograph->getCurrentPublication()->getData('doiObject')}
+	{if $monographDoiObject}
+		{assign var="doiUrl" value=$monographDoiObject->getData('resolvingUrl')|escape}
+		<p class="doi-value"><a href="{$doiUrl}">{$doiUrl}</a></p>
+	{/if}
+
 	<div class="row">
 		<div class="main_entry">
 
 			{* Author list *}
 			{include file="frontend/components/authors.tpl" authors=$publication->getData('authors')}
-
-			{* DOIs *}
-			{assign var=monographDoiObject value=$monograph->getCurrentPublication()->getData('doiObject')}
-			{if $monographDoiObject}
-				{assign var="doiUrl" value=$monographDoiObject->getData('resolvingUrl')|escape}
-				<div class="item doi">
-					<span class="label">
-						{translate key="doi.readerDisplayName"}
-					</span>
-					<span class="value">
-						<a href="{$doiUrl}">
-							{$doiUrl}
-						</a>
-					</span>
-				</div>
-			{/if}
 
 			{* Keywords *}
 			{if !empty($publication->getLocalizedData('keywords'))}
