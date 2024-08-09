@@ -56,23 +56,23 @@ function enrichHeader() {
             if(isOJS) {
                     languageDropDown.innerHTML =
                         "<ul>" +
-                        "    <li><a href='" + relativePath + "/index/user/setLocale/de_DE?source=" + window.location.pathname + "'>Deutsch</a></li>" +
-                        "    <li><a href='" + relativePath + "/index/user/setLocale/en_US?source=" + window.location.pathname + "'>English</a></li>" +
-                        "    <li><a href='" + relativePath + "/index/user/setLocale/es_ES?source=" + window.location.pathname + "'>Español</a></li>" +
+                        "    <li><a href='" + relativePath + "/index/user/setLocale/de?source=" + window.location.pathname + "'>Deutsch</a></li>" +
+                        "    <li><a href='" + relativePath + "/index/user/setLocale/en?source=" + window.location.pathname + "'>English</a></li>" +
+                        "    <li><a href='" + relativePath + "/index/user/setLocale/es?source=" + window.location.pathname + "'>Español</a></li>" +
                         "    <li><a href='" + relativePath + "/index/user/setLocale/fr_FR?source=" + window.location.pathname + "'>Français</a></li>" +
-                        "    <li><a href='" + relativePath + "/index/user/setLocale/it_IT?source=" + window.location.pathname + "'>Italiano</a></li>" +
-                        "    <li><a href='" + relativePath + "/index/user/setLocale/tr_TR?source=" + window.location.pathname + "'>Türkçe</a></li>" +
-                        "    <li><a href='" + relativePath + "/index/user/setLocale/el_GR?source=" + window.location.pathname + "'>ελληνικά</a></li>" +
+                        "    <li><a href='" + relativePath + "/index/user/setLocale/it?source=" + window.location.pathname + "'>Italiano</a></li>" +
+                        "    <li><a href='" + relativePath + "/index/user/setLocale/tr?source=" + window.location.pathname + "'>Türkçe</a></li>" +
+                        "    <li><a href='" + relativePath + "/index/user/setLocale/el?source=" + window.location.pathname + "'>ελληνικά</a></li>" +
                         "</ul>";
             }
             else {
                     languageDropDown.innerHTML =
                         "<ul>" +
-                        "    <li><a href='" + relativePath + "/index/user/setLocale/de_DE?source=" + window.location.pathname + "'>Deutsch</a></li>" +
-                        "    <li><a href='" + relativePath + "/index/user/setLocale/en_US?source=" + window.location.pathname + "'>English</a></li>" +
-                        "    <li><a href='" + relativePath + "/index/user/setLocale/es_ES?source=" + window.location.pathname + "'>Español</a></li>" +
-                        "    <li><a href='" + relativePath + "/index/user/setLocale/fr_CA?source=" + window.location.pathname + "'>Français</a></li>" +   // OMP supports fr_CA only
-                        "    <li><a href='" + relativePath + "/index/user/setLocale/it_IT?source=" + window.location.pathname + "'>Italiano</a></li>" +
+                        "    <li><a href='" + relativePath + "/index/user/setLocale/de?source=" + window.location.pathname + "'>Deutsch</a></li>" +
+                        "    <li><a href='" + relativePath + "/index/user/setLocale/en?source=" + window.location.pathname + "'>English</a></li>" +
+                        "    <li><a href='" + relativePath + "/index/user/setLocale/es?source=" + window.location.pathname + "'>Español</a></li>" +
+                        "    <li><a href='" + relativePath + "/index/user/setLocale/fr_FR?source=" + window.location.pathname + "'>Français</a></li>" +   // OMP supports fr_CA only
+                        "    <li><a href='" + relativePath + "/index/user/setLocale/it?source=" + window.location.pathname + "'>Italiano</a></li>" +
                         "</ul>";
             }
 
