@@ -2,6 +2,7 @@
 Variables
 ------------------*/
 @idai-gradient: linear-gradient(to right, rgba(106,164,184,0.95) 0%, rgba(71,123,199,0.66) 95%);
+@idaiworldbanner-path: "https://publications.dainst.org/books/plugins/themes/publications-theme/images/idaiworld-banner.png";
 
 /* -------------
 dai-header
@@ -144,7 +145,7 @@ li.profile {
 
 html {
 	background-size: contain;
-	background: url("https://publications.dainst.org/books/plugins/themes/publications-theme/images/idaiworld-banner.png") repeat;
+	background: url(@idaiworldbanner-path) repeat;
 	overflow-y: scroll;
 }
 
@@ -272,10 +273,18 @@ body {
 
 /* --- buttons ---*/
 
+.obj_article_details .galleys_links {
+	display: flex;
+	flex-direction: column;
+}
+
+.obj_article_details .galleys_links li {
+    margin-top: 0.5vh;
+}
+
 .cmp_button, .cmp_download_link, .page_lost_password .buttons button, .obj_monograph_full .files .link a,
 .obj_monograph_full .files .pub_format_remote a, .obj_monograph_full .files .pub_format_single a,
 .obj_galley_link {
-	display: inline-block;
 	padding: 0.5rem 1rem;
 	background: #5d6671;
 	border: none;
@@ -613,12 +622,14 @@ li.series {
 .obj_article_details .item {
 	padding: 2vh 2.143rem;
 }
+
 .obj_article_details .main_entry .item .label {
 	margin: 0 0 0.5rem;
 }
 .obj_article_summary .authors {
 	padding-right: 10em;
 }
+
 .obj_article_details .authors li {
 	margin-bottom: 0.8rem;
 }
@@ -782,9 +793,9 @@ monitors (OJS and OMP)
 
 @media only screen and (min-width: 1600px) {
 	html {
-		zoom: 1.2;
-		-ms-zoom: 1.2;
-		-webkit-zoom: 1.2;
+		zoom: 1.25;
+		-ms-zoom: 1.25;
+		-webkit-zoom: 1.25;
 		/* firefox not supportable: moz-transform: scale() has not the same behaviour */
 	}
 	#idai-world-dropdown a {
@@ -795,9 +806,9 @@ monitors (OJS and OMP)
 
 @media only screen and (min-width: 1800px) {
 	html {
-		zoom: 1.25;
-		-ms-zoom: 1.25;
-		-webkit-zoom: 1.25;
+		zoom: 1.5;
+		-ms-zoom: 1.5;
+		-webkit-zoom: 1.5;
 		/* firefox not supportable: moz-transform: scale() has not the same behaviour */
 	}
 	#idai-world-dropdown a {
