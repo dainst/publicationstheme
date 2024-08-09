@@ -74,118 +74,50 @@
  *}
 <div class="obj_monograph_full">
 
+	{* Indicate if this is only a preview *}
+	{if $publication->getData('status') !== \PKP\submission\PKPSubmission::STATUS_PUBLISHED}
+		<div class="cmp_notification notice">
+			{capture assign="submissionUrl"}{url page="workflow" op="access" path=$monograph->getId()}{/capture}
+			{translate key="submission.viewingPreview" url=$submissionUrl}
+		</div>
+	{/if}
+
 	{* Notification that this is an old version *}
-	{if $currentPublication->getID() !== $publication->getId()}
+	{if $currentPublication->getId() !== $publication->getId()}
 		<div class="cmp_notification notice">
 			{capture assign="latestVersionUrl"}{url page="catalog" op="book" path=$monograph->getBestId()}{/capture}
 			{translate key="submission.outdatedVersion"
-			datePublished=$publication->getData('datePublished')|date_format:$dateFormatShort
-			urlRecentVersion=$latestVersionUrl|escape
+				datePublished=$publication->getData('datePublished')|date_format:$dateFormatShort
+				urlRecentVersion=$latestVersionUrl|escape
 			}
 		</div>
 	{/if}
 
 	<h1 class="title">
-		{$publication->getLocalizedFullTitle()|escape}
+		{$publication->getLocalizedFullTitle(null, 'html')|strip_unsafe_html}
 	</h1>
-
-	{* DOI (requires plugin) *}
-	{foreach from=$pubIdPlugins item=pubIdPlugin}
-		{if $pubIdPlugin->getPubIdType() != 'doi'}
-			{continue}
-		{/if}
-		{assign var=pubId value=$monograph->getStoredPubId($pubIdPlugin->getPubIdType())}
-		{if $pubId}
-			{assign var="doiUrl" value=$pubIdPlugin->getResolvingURL($currentPress->getId(), $pubId)|escape}
-			<p class="doi-value"><a href="{$doiUrl}">{$doiUrl}</a></p>
-		{/if}
-	{/foreach}
 
 	<div class="row">
 		<div class="main_entry">
 
 			{* Author list *}
-			<div class="item authors">
+			{include file="frontend/components/authors.tpl" authors=$publication->getData('authors')}
 
-				{assign var="authors" value=$publication->getData('authors')}
-	
-				{* Show short author lists on multiple lines *}
-				{if $authors|@count < 50}
-
-					{* author lists *}
-					<h2 class="label" style="margin-top: 2vh;">{translate key="submission.contributors"}</h2>
-
-					{* Show short list of authors as main contributors *}
-						<ul class="contributors">
-
-					{foreach from=$authors item=author}
-
-					{* get parsed roleName of each author = contributor*}
-					{$userGroupId = $author->getData('userGroupId')}
-					{$userGroupDao = DAORegistry::getDAO('UserGroupDAO')}
-					{$userGroupOfAuthor = $userGroupDao->getbyId($userGroupId)} 
-					{$roleName = $userGroupOfAuthor->getLocalizedName()|escape}
-					{$roleNameClass = str_replace(" ", "_", $roleName)}
-
-						<li class="{$roleNameClass|escape}">
-							{* add author names *}
-							<span class="name">{$author->getFullName()|escape} 
-								<span class="role">[{$roleName|escape}]</span>
-							</span>
-
-							{* add orcid*}
-							{if $author->getOrcid()}
-								<span class="orcid">
-								<a href="{$author->getOrcid()|escape}" target="_blank">
-									{$author->getOrcid()|escape}
-								</a>
-							</span>
-							{/if}
-
-							{* add affiliation*}
-							{if $author->getLocalizedAffiliation()}
-								<span class="affiliation">
-								{$author->getLocalizedAffiliation()|escape}
-							</span>
-							{/if}
-						</li>
-					
-					{/foreach}
-					</ul>
-
-				{* Show long author lists on one line *}
-				{else}
-					{foreach name="authors" from=$authors item=author}
-						{* strip removes excess white-space which creates gaps between separators *}
-						{strip}
-							{if $author->getLocalizedAffiliation()}
-								{if $identifyAsEditors}
-									{capture assign="authorName"}<span class="label">{translate key="submission.editorName" editorName=$author->getFullName()|escape}</span>{/capture}
-								{else}
-									{capture assign="authorName"}<span class="label">{$author->getFullName()|escape}</span>{/capture}
-								{/if}
-								{capture assign="authorAffiliation"}<span class="value">{$author->getLocalizedAffiliation()|escape}</span>{/capture}
-								{translate key="submission.authorWithAffiliation" name=$authorName affiliation=$authorAffiliation}
-							{else}
-								<span class="label">{$author->getFullName()|escape}</span>
-							{/if}
-							{if !$smarty.foreach.authors.last}
-								{translate key="submission.authorListSeparator"}
-							{/if}
-						{/strip}
-					{/foreach}
-				{/if}
-			</div>
-
-			{* Abstract *}
-			<div class="item abstract">
-				<h2 class="label">
-					{translate key="submission.synopsis"}
-				</h2>
-				<div class="value">
-					{$publication->getLocalizedData('abstract')|strip_unsafe_html}
+			{* DOIs *}
+			{assign var=monographDoiObject value=$monograph->getCurrentPublication()->getData('doiObject')}
+			{if $monographDoiObject}
+				{assign var="doiUrl" value=$monographDoiObject->getData('resolvingUrl')|escape}
+				<div class="item doi">
+					<span class="label">
+						{translate key="doi.readerDisplayName"}
+					</span>
+					<span class="value">
+						<a href="{$doiUrl}">
+							{$doiUrl}
+						</a>
+					</span>
 				</div>
-			</div>
+			{/if}
 
 			{* Keywords *}
 			{if !empty($publication->getLocalizedData('keywords'))}
@@ -202,16 +134,33 @@
 				</div>
 			{/if}
 
+			{* Abstract *}
+			<div class="item abstract">
+				<h2 class="label">
+					{translate key="submission.synopsis"}
+				</h2>
+				<div class="value">
+					{$publication->getLocalizedData('abstract')|strip_unsafe_html}
+				</div>
+			</div>
+
 			{* Chapters *}
 			{if $chapters|@count}
 				<div class="item chapters">
-					<h2 class="label">
+					<h2 class="pkp_screen_reader">
 						{translate key="submission.chapters"}
 					</h2>
 					<ul>
 						{foreach from=$chapters item=chapter}
 							{assign var=chapterId value=$chapter->getId()}
 							<li>
+								{if $chapter->isPageEnabled()}
+									{if $publication->getId() === $currentPublication->getId()}
+										<a href="{url page="catalog" op="book" path=$monograph->getBestId()|to_array:"chapter":$chapter->getSourceChapterId()}">
+									{else}
+										<a href="{url page="catalog" op="book" path=$monograph->getBestId()|to_array:"version":$publication->getId():"chapter":$chapter->getSourceChapterId()}">
+									{/if}
+								{/if}
 								<div class="title">
 									{$chapter->getLocalizedTitle()|escape}
 									{if $chapter->getLocalizedSubtitle() != ''}
@@ -220,6 +169,9 @@
 										</div>
 									{/if}
 								</div>
+								{if $chapter->isPageEnabled()}
+									</a>
+								{/if}
 								{assign var=chapterAuthors value=$chapter->getAuthorNamesAsString()}
 								{if $authorString != $chapterAuthors}
 									<div class="authors">
@@ -227,17 +179,12 @@
 									</div>
 								{/if}
 
-								{* DOI (requires plugin) *}
-								{foreach from=$pubIdPlugins item=pubIdPlugin}
-									{if $pubIdPlugin->getPubIdType() != 'doi'}
-										{continue}
-									{/if}
-									{assign var=pubId value=$chapter->getStoredPubId($pubIdPlugin->getPubIdType())}
-									{if $pubId}
-										{assign var="doiUrl" value=$pubIdPlugin->getResolvingURL($currentPress->getId(), $pubId)|escape}
-										<div class="doi"><a href="{$doiUrl}">{$doiUrl}</a></div>
-									{/if}
-								{/foreach}
+								{* DOI *}
+								{assign var=chapterDoiObject value=$chapter->getData('doiObject')}
+								{if $chapterDoiObject}
+									{assign var="doiUrl" value=$chapterDoiObject->getData('resolvingUrl')|escape}
+									<div class="doi">{translate key="doi.readerDisplayName"} <a href="{$doiUrl}">{$doiUrl}</a></div>
+								{/if}
 
 								{* Display any files that are assigned to this chapter *}
 								{pluck_files assign="chapterFiles" files=$availableFiles by="chapter" value=$chapterId}
@@ -269,6 +216,22 @@
 			{/if}
 
 			{call_hook name="Templates::Catalog::Book::Main"}
+
+			{* Usage statistics chart*}
+			{if $activeTheme->getOption('displayStats') != 'none'}
+				{$activeTheme->displayUsageStatsGraph($monograph->getId())}
+				<section class="item downloads_chart">
+					<h2 class="label">
+						{translate key="plugins.themes.default.displayStats.downloads"}
+					</h2>
+					<div class="value">
+						<canvas class="usageStatsGraph" data-object-type="Submission" data-object-id="{$monograph->getId()|escape}"></canvas>
+						<div class="usageStatsUnavailable" data-object-type="Submission" data-object-id="{$monograph->getId()|escape}">
+							{translate key="plugins.themes.default.displayStats.noStats"}
+						</div>
+					</div>
+				</section>
+			{/if}
 
 			{* Determine if any authors have biographies to display *}
 			{assign var="hasBiographies" value=0}
@@ -339,62 +302,13 @@
 			</div>
 
 			{* Any non-chapter files and remote resources *}
-			{pluck_files assign=nonChapterFiles files=$availableFiles by="chapter" value=0}
-			{if $nonChapterFiles|@count || $remotePublicationFormats|@count}
+			{pluck_files assign=bookFiles files=$availableFiles by="chapter" value=0}
+			{if $bookFiles|@count || $remotePublicationFormats|@count}
 				<div class="item files">
 					<h2 class="pkp_screen_reader">
 						{translate key="submission.downloads"}
 					</h2>
-					{foreach from=$publicationFormats item=format}
-						{assign var=publicationFormatId value=$format->getId()}
-
-						{* Remote resources *}
-						{if $format->getRemoteUrl()}
-							{* Only one resource allowed per format, so mimic single-file-download *}
-							<div class="pub_format_{$publicationFormatId|escape} pub_format_remote">
-								<a href="{$format->getRemoteURL()|escape}" target="_blank" class="remote_resource">
-									{$format->getLocalizedName()|escape}
-								</a>
-							</div>
-
-							{* File downloads *}
-						{else}
-
-							{* Only display files that haven't been displayed in a chapter *}
-							{pluck_files assign=pubFormatFiles files=$nonChapterFiles by="publicationFormat" value=$format->getId()}
-
-							{* Use a simplified presentation if only one file exists *}
-							{if $pubFormatFiles|@count == 1}
-								<div class="pub_format_{$publicationFormatId|escape} pub_format_single">
-									{foreach from=$pubFormatFiles item=file}
-										{include file="frontend/components/downloadLink.tpl" downloadFile=$file monograph=$monograph publication=$publication publicationFormat=$format currency=$currency}
-									{/foreach}
-								</div>
-
-								{* Use an itemized presentation if multiple files exist *}
-							{elseif $pubFormatFiles|@count > 1}
-								<div class="pub_format_{$publicationFormatId|escape}">
-									<span class="label">
-										{$format->getLocalizedName()|escape}
-									</span>
-									<span class="value">
-										<ul>
-											{foreach from=$pubFormatFiles item=file}
-												<li>
-													<span class="name">
-														{$file->getLocalizedData('name')|escape}
-													</span>
-													<span class="link">
-														{include file="frontend/components/downloadLink.tpl" downloadFile=$file monograph=$monograph publication=$publication publicationFormat=$format currency=$currency useFilename=true}
-													</span>
-												</li>
-											{/foreach}
-										</ul>
-									</span><!-- .value -->
-								</div>
-							{/if}
-						{/if}
-					{/foreach}{* Publication formats loop *}
+					{include file="frontend/components/publicationFormats.tpl" publicationFiles=$bookFiles}
 				</div>
 			{/if}
 
@@ -411,7 +325,7 @@
 						</h2>
 						<div class="value">
 							{* If this is the original version *}
-							{if $firstPublication->getID() === $publication->getId()}
+							{if $firstPublication->getId() === $publication->getId()}
 								<span>{$firstPublication->getData('datePublished')|date_format:$dateFormatLong}</span>
 								{* If this is an updated version *}
 							{else}
@@ -474,53 +388,36 @@
 			{* Categories *}
 			{if $categories}
 				<div class="item categories">
-					<div class ="sub_item">
-						<h2 class="label">
-							{translate key="catalog.categories"}
-						</h2>
-						<div class="value">
-							<ul>
-								{foreach from=$categories item="category"}
-									<li>
-										<a href="{url op="category" path=$category->getPath()}">
-											{$category->getLocalizedTitle()|strip_unsafe_html}
-										</a>
-									</li>
-								{/foreach}
-							</ul>
-						</div>
+					<h2 class="label">
+						{translate key="catalog.categories"}
+					</h2>
+					<div class="value">
+						<ul>
+							{foreach from=$categories item="category"}
+								<li>
+									<a href="{url op="category" path=$category->getPath()}">
+										{$category->getLocalizedTitle()|strip_unsafe_html}
+									</a>
+								</li>
+							{/foreach}
+						</ul>
 					</div>
 				</div>
 			{/if}
 
-			{* ZenonId *}
-			{foreach from=$pubIdPlugins item=pubIdPlugin}
-				{if $pubIdPlugin->getPubIdType() != 'other::zenon'}
-					{continue}
-				{/if}
-				{assign var=pubId value=$monograph->getStoredPubId($pubIdPlugin->getPubIdType())}
-				{if $pubId}
-					{assign var="zenonUrl" value=$pubIdPlugin->getResolvingURL($currentPress->getId(), $pubId)|escape}
-					<div class="item doi">
-						<div class="sub_item">
-							<h2 class="label">{translate key="plugins.pubIds.zenon.displayFrontendLabel"}</h2>
-							<div class="value">
-								<a href="{$zenonUrl}">iDAI.bibliography/Zenon</a>
-							</div>
-						</div>
-					</div>
-				{/if}
-			{/foreach}
+			{* Data Availability Statement *}
+			{if $publication->getLocalizedData('dataAvailability')}
+				<div class="item dataAvailability">
+					<h2 class="label">{translate key="submission.dataAvailability"}</h2>
+					{$publication->getLocalizedData('dataAvailability')|strip_unsafe_html}
+				</div>
+			{/if}
 
 			{* Copyright statement *}
 			{if $publication->getData('copyrightYear') && $publication->getLocalizedData('copyrightHolder')}
-			<div class="item copyright">
-				<div class="sub_item">
-					<div class="value">
-						{translate|escape key="submission.copyrightStatement" copyrightYear=$publication->getData('copyrightYear') copyrightHolder=$publication->getLocalizedData('copyrightHolder')}
-					</div>
+				<div class="item copyright">
+					{translate|escape key="submission.copyrightStatement" copyrightYear=$publication->getData('copyrightYear') copyrightHolder=$publication->getLocalizedData('copyrightHolder')}
 				</div>
-			</div>
 			{/if}
 
 			{* License *}
@@ -539,10 +436,7 @@
 				</div>
 			{/if}
 
-			{* Publication formats
-			M. Riedel, 28.11.2022: Remove publication format specific information intentionally (for Update to 3.3.0).
-			Until now these information are not carefully and systematically entered in OMP.
-
+			{* Publication formats *}
 			{if count($publicationFormats)}
 				{foreach from=$publicationFormats item="publicationFormat"}
 					{if $publicationFormat->getIsApproved()}
@@ -559,17 +453,20 @@
 								{break}
 							{/if}
 						{/foreach}
+						{if $publicationFormat->getDoi()}
+							{assign var=hasPubId value=true}
+						{/if}
 
-						{* Skip if we don't have any information to print about this pub format
+						{* Skip if we don't have any information to print about this pub format *}
 						{if !$identificationCodes && !$publicationDates && !$hasPubId && !$publicationFormat->getPhysicalFormat()}
 							{continue}
 						{/if}
 
-						<div class="item publication_format"> *}
+						<div class="item publication_format">
 
-							{* Only add the format-specific heading if multiple publication formats exist
+							{* Only add the format-specific heading if multiple publication formats exist *}
 							{if count($publicationFormats) > 1}
-								<h2 class="label">
+								<h2 class="pkp_screen_reader">
 									{assign var=publicationFormatName value=$publicationFormat->getLocalizedName()}
 									{translate key="monograph.publicationFormatDetails" format=$publicationFormatName|escape}
 								</h2>
@@ -580,14 +477,13 @@
 									</div>
 								</div>
 							{else}
-								<h2 class="label">
+								<h2 class="pkp_screen_reader">
 									{translate key="monograph.miscellaneousDetails"}
 								</h2>
 							{/if}
-							 *}
 
 
-							{* DOI's and other identification codes
+							{* DOI's and other identification codes *}
 							{if $identificationCodes}
 								{foreach from=$identificationCodes item=identificationCode}
 									<div class="sub_item identification_code">
@@ -600,9 +496,8 @@
 									</div>
 								{/foreach}
 							{/if}
-							*}
 
-							{* Dates of publication
+							{* Dates of publication *}
 							{if $publicationDates}
 								{foreach from=$publicationDates item=publicationDate}
 									<div class="sub_item date">
@@ -610,12 +505,12 @@
 											{$publicationDate->getNameForONIXCode()|escape}
 										</h3>
 										<div class="value">
-											{assign var=dates value=$publicationDate->getReadableDates()} *}
-											{* note: these dates have dateFormatShort applied to them in getReadableDates() if they need it
+											{assign var=dates value=$publicationDate->getReadableDates()}
+											{* note: these dates have dateFormatShort applied to them in getReadableDates() if they need it *}
 											{if $publicationDate->isFreeText() || $dates|@count == 1}
 												{$dates[0]|escape}
-											{else} *}
-												{* @todo the &mdash; ought to be translateable
+											{else}
+												{* @todo the &mdash; ought to be translateable *}
 												{$dates[0]|escape}&mdash;{$dates[1]|escape}
 											{/if}
 											{if $publicationDate->isHijriCalendar()}
@@ -626,9 +521,9 @@
 										</div>
 									</div>
 								{/foreach}
-							{/if} *}
+							{/if}
 
-							{* PubIDs
+							{* PubIDs *}
 							{foreach from=$pubIdPlugins item=pubIdPlugin}
 								{assign var=pubIdType value=$pubIdPlugin->getPubIdType()}
 								{assign var=storedPubId value=$publicationFormat->getStoredPubId($pubIdType)}
@@ -643,9 +538,24 @@
 									</div>
 								{/if}
 							{/foreach}
-							*}
 
-							{* Physical dimensions
+							{* DOIs *}
+							{assign var=publicationFormatDoiObject value=$publicationFormat->getData('doiObject')}
+							{if $publicationFormatDoiObject}
+								{assign var="doiUrl" value=$publicationFormatDoiObject->getData('resolvingUrl')|escape}
+								<div class="sub_item pubid {$publicationFormat->getId()|escape}">
+									<h2 class="label">
+										{translate key="doi.readerDisplayName"}
+									</h2>
+									<div class="value">
+										<a href="{$doiUrl}">
+											{$doiUrl}
+										</a>
+									</div>
+								</div>
+							{/if}
+
+							{* Physical dimensions *}
 							{if $publicationFormat->getPhysicalFormat()}
 								<div class="sub_item dimensions">
 									<h2 class="label">
@@ -656,16 +566,14 @@
 									</div>
 								</div>
 							{/if}
-
-
 						</div>
 					{/if}
 				{/foreach}
-			{/if} *}
+			{/if}
 
 			{call_hook name="Templates::Catalog::Book::Details"}
 
-			</div><!-- .details -->
-		</div><!-- .row -->
+		</div><!-- .details -->
+	</div><!-- .row -->
 
-	</div><!-- .obj_monograph_full -->
+</div><!-- .obj_monograph_full -->

@@ -118,12 +118,8 @@
 					<h2 class="pkp_screen_reader">{translate key="submission.contributors"}</h2>
 					<ul class="authors">
 					{foreach from=$publication->getData('authors') item=author}
-
-					{* get parsed roleName of each author = contributor *}
-					{$userGroupId = $author->getData('userGroupId')}
-					{$userGroupDao = DAORegistry::getDAO('UserGroupDAO')}
-					{$userGroupOfAuthor = $userGroupDao->getbyId($userGroupId)} 
-					{$roleName = $userGroupOfAuthor->getLocalizedName()|escape}
+		
+					$roleName = "Fix userGroupDAO changes!";
 
 						<li class="contributor">
 							{* add contributor names *}
