@@ -111,6 +111,16 @@
 			{* Author list *}
 			{include file="frontend/components/authors.tpl" authors=$publication->getData('authors')}
 
+			{* Abstract *}
+			<div class="item abstract">
+				<h2 class="label">
+					{translate key="submission.synopsis"}
+				</h2>
+				<div class="value">
+					{$publication->getLocalizedData('abstract')|strip_unsafe_html}
+				</div>
+			</div>
+
 			{* Keywords *}
 			{if !empty($publication->getLocalizedData('keywords'))}
 				<div class="item keywords">
@@ -125,16 +135,6 @@
 				</span>
 				</div>
 			{/if}
-
-			{* Abstract *}
-			<div class="item abstract">
-				<h2 class="label">
-					{translate key="submission.synopsis"}
-				</h2>
-				<div class="value">
-					{$publication->getLocalizedData('abstract')|strip_unsafe_html}
-				</div>
-			</div>
 
 			{* Chapters *}
 			{if $chapters|@count}
