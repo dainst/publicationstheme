@@ -1,5 +1,8 @@
 <?php
 import('lib.pkp.classes.plugins.ThemePlugin');
+
+use APP\facades\Repo;
+
 class PublicationsThemePlugin extends ThemePlugin {
 
     /**
@@ -7,6 +10,8 @@ class PublicationsThemePlugin extends ThemePlugin {
      * @return null
      */
     public function init() {
+
+        HookRegistry::register ('TemplateManager::display', array($this, 'loadTemplateData'));
 
         // Use the parent theme's unique plugin slug
         $this->setParent('defaultthemeplugin');
@@ -98,15 +103,35 @@ class PublicationsThemePlugin extends ThemePlugin {
    * Get the display name of this theme
    * @return string
    */
-  function getDisplayName() {
-    return __('plugins.themes.publications-theme.name');
-  }
 
-  /**
-   * Get the description of this plugin
-   * @return string
-   */
-  function getDescription() {
-      return __('plugins.themes.publications-theme.description');
-  }
+    function getDisplayName() {
+        return __('plugins.themes.publications-theme.name');
+    }
+
+    /**
+     * Get the description of this plugin
+     * @return string
+     */
+    function getDescription() {
+        return __('plugins.themes.publications-theme.description');
+    }
+
+    /**
+     * load (additional) template aata:
+     *
+     * @param string $hookname
+     * @param array $args [$templateMgr, $template, $sendContentType, $charset, $output]
+     */
+    public function loadTemplateData($hookName, $args) {
+
+        // Retrieve the TemplateManager
+		$templateMgr = $args[0];
+
+		/* Attach seriesFactory to the TemplateManager */
+        $sectionFactory = Repo::section();
+        if($sectionFactory) {
+            $templateMgr->assign("sectionFactory",  $sectionFactory);
+        }
+		return false;
+    }
 }
