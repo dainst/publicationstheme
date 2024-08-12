@@ -15,8 +15,13 @@
 {include file="frontend/components/header.tpl" pageTitleTranslated=$publishedSubmission->getLocalizedFullTitle()}
 
 <div class="page page_book">
-	{* Display book details *}
-	{include file="frontend/objects/monograph_full.tpl" monograph=$publishedSubmission}
+	{if $isChapterRequest}
+		{* Display chapter details *}
+		{include file="frontend/objects/chapter.tpl" monograph=$publishedSubmission}
+	{else}
+		{* Display book details *}
+		{include file="frontend/objects/monograph_full.tpl" monograph=$publishedSubmission}
+	{/if}
 
 	{call_hook name="Templates::Catalog::Book::Footer::PageFooter"}
 </div><!-- .page -->
