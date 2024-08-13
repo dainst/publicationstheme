@@ -27,7 +27,7 @@ function attachHeaderClass() {
 }
 
 function enrichHeader() {
-    fetch(relativePath + '/plugins/themes/publications-theme/js/idai-world-header.html')
+    fetch(relativePath + '/plugins/themes/publicationstheme/js/idai-world-header.html')
         .then(response => response.text())
         .then(text => {
             const navigationUserElement = document.getElementById('navigationUser');
@@ -45,7 +45,7 @@ function enrichHeader() {
             const iDAIpublicationsLogo = document.createElement('img');
             iDAIpublicationsLogo.id = 'idai-publications-logo';
             iDAIpublicationsLogo.src =
-                relativePath + '/plugins/themes/publications-theme/images/idai-publications-logo.png';
+                relativePath + '/plugins/themes/publicationstheme/images/idai-publications-logo.png';
 
             idaiWorldNavDropdown.appendChild(iDAIpublicationsLogo);
             navigationUserElement.appendChild(idaiWorldNavDropdown);
@@ -79,16 +79,16 @@ function enrichHeader() {
             const langGlobeImage = document.createElement('img');
             langGlobeImage.id = 'header-lang-globe';
             langGlobeImage.src =
-                relativePath + '/plugins/themes/publications-theme/images/language-icon.png';
+                relativePath + '/plugins/themes/publicationstheme/images/language-icon.png';
 
             languageDropDown.appendChild(langGlobeImage);
             navigationUserElement.appendChild(languageDropDown);
 
             document.getElementById('header-lang-globe').src =
-                relativePath + '/plugins/themes/publications-theme/images/language-icon.png';
+                relativePath + '/plugins/themes/publicationstheme/images/language-icon.png';
 
             document.getElementById('idai-publications-logo').src =
-                relativePath + '/plugins/themes/publications-theme/images/idai-publications-logo.png';
+                relativePath + '/plugins/themes/publicationstheme/images/idai-publications-logo.png';
 
             /* add DAI-Logo to pkp_site_name-Header
             * --------------------------------------*/
@@ -101,7 +101,7 @@ function enrichHeader() {
             const DaiLogoImage = document.createElement('img');
             DaiLogoImage.id = 'dai-logo-img';
             DaiLogoImage.src =
-                relativePath + '/plugins/themes/publications-theme/images/dai-logo-weiß.png';
+                relativePath + '/plugins/themes/publicationstheme/images/dai-logo-weiß.png';
 
             DaiLogo.appendChild(DaiLogoImage);
             pkpSiteNameHeader[0].appendChild(DaiLogo);
@@ -109,7 +109,7 @@ function enrichHeader() {
 }
 
 function attachFooter() {
-    fetch(relativePath + '/plugins/themes/publications-theme/js/idai-world-footer.html')
+    fetch(relativePath + '/plugins/themes/publicationstheme/js/idai-world-footer.html')
         .then(response => response.text())
         .then(text => {
             const pkpStructurePage = document.getElementsByClassName('pkp_structure_page');
@@ -146,7 +146,7 @@ function attachFooter() {
             const footerLogo = document.createElement('img');
             footerLogo.id = 'idai-footer-logo';
             footerLogo.src =
-                relativePath + '/plugins/themes/publications-theme/images/idai_footer.png';
+                relativePath + '/plugins/themes/publicationstheme/images/idai_footer.png';
 
             idaiWorldFooter.appendChild(footerContainer);
             idaiWorldFooter.appendChild(footerAdditionalRow);
