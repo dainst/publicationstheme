@@ -397,6 +397,25 @@
 				</div>
 			{/if}
 
+			{* ZenonId *}
+			{foreach from=$pubIdPlugins item=pubIdPlugin}
+				{if $pubIdPlugin->getPubIdType() != 'other::zenon'}
+					{continue}
+				{/if}
+				{assign var=pubId value=$monograph->getStoredPubId($pubIdPlugin->getPubIdType())}
+				{if $pubId}
+					{assign var="zenonUrl" value=$pubIdPlugin->getResolvingURL($currentPress->getId(), $pubId)|escape}
+					<div class="item doi">
+						<div class="sub_item">
+							<h2 class="label">{translate key="plugins.pubIds.zenon.displayFrontendLabel"}</h2>
+							<div class="value">
+								<a href="{$zenonUrl}">iDAI.bibliography/Zenon</a>
+							</div>
+						</div>
+					</div>
+				{/if}
+			{/foreach}
+
 			{* Data Availability Statement *}
 			{if $publication->getLocalizedData('dataAvailability')}
 				<div class="item dataAvailability">
