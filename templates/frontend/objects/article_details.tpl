@@ -418,17 +418,15 @@
 				{if $pubIdPlugin->getPubIdType() != 'other::zenon'}
 					{continue}
 				{/if}
-				{assign var=pubId value=$monograph->getStoredPubId($pubIdPlugin->getPubIdType())}
+				{assign var=pubId value=$article->getStoredPubId($pubIdPlugin->getPubIdType())}
 				{if $pubId}
-					{assign var="zenonUrl" value=$pubIdPlugin->getResolvingURL($currentPress->getId(), $pubId)|escape}
-					<div class="item doi">
-						<div class="sub_item">
-							<h2 class="label">{translate key="plugins.pubIds.zenon.displayFrontendLabel"}</h2>
-							<div class="value">
-								<a href="{$zenonUrl}">iDAI.bibliography/Zenon</a>
-							</div>
+					{assign var="zenonUrl" value=$pubIdPlugin->getResolvingURL($currentJournal->getId(), $pubId)|escape}
+					<section class="item pubid">
+						<h2 class="label">{translate key="plugins.pubIds.zenon.displayFrontendLabel"}</h2>
+						<div class="value">
+							<a href="{$zenonUrl}">iDAI.bibliography/Zenon</a>
 						</div>
-					</div>
+					</section>
 				{/if}
 			{/foreach}
 
