@@ -37,11 +37,6 @@ function enrichHeader() {
             idaiWorldNavDropdown.class = 'dropdown-menu';
             idaiWorldNavDropdown.innerHTML = text;
 
-            const languageDropDown = document.createElement('li');
-            languageDropDown.id = 'language-dropdown';
-            languageDropDown.class = 'dropdown-menu';
-            languageDropDown.ariaHasPopup = 'true';
-
             const iDAIpublicationsLogo = document.createElement('img');
             iDAIpublicationsLogo.id = 'idai-publications-logo';
             iDAIpublicationsLogo.src =
@@ -49,43 +44,6 @@ function enrichHeader() {
 
             idaiWorldNavDropdown.appendChild(iDAIpublicationsLogo);
             navigationUserElement.appendChild(idaiWorldNavDropdown);
-
-            /* create and add languageDropdown to dai-header
-            --------------------------------------*/
-            let isOJS = /journals/.test(window.location.href);
-            if(isOJS) {
-                    languageDropDown.innerHTML =
-                        "<ul>" +
-                        "    <li><a href='" + relativePath + "/index/user/setLocale/de?source=" + window.location.pathname + "'>Deutsch</a></li>" +
-                        "    <li><a href='" + relativePath + "/index/user/setLocale/en?source=" + window.location.pathname + "'>English</a></li>" +
-                        "    <li><a href='" + relativePath + "/index/user/setLocale/es?source=" + window.location.pathname + "'>Español</a></li>" +
-                        "    <li><a href='" + relativePath + "/index/user/setLocale/fr_FR?source=" + window.location.pathname + "'>Français</a></li>" +
-                        "    <li><a href='" + relativePath + "/index/user/setLocale/it?source=" + window.location.pathname + "'>Italiano</a></li>" +
-                        "    <li><a href='" + relativePath + "/index/user/setLocale/tr?source=" + window.location.pathname + "'>Türkçe</a></li>" +
-                        "    <li><a href='" + relativePath + "/index/user/setLocale/el?source=" + window.location.pathname + "'>ελληνικά</a></li>" +
-                        "</ul>";
-            }
-            else {
-                    languageDropDown.innerHTML =
-                        "<ul>" +
-                        "    <li><a href='" + relativePath + "/index/user/setLocale/de?source=" + window.location.pathname + "'>Deutsch</a></li>" +
-                        "    <li><a href='" + relativePath + "/index/user/setLocale/en?source=" + window.location.pathname + "'>English</a></li>" +
-                        "    <li><a href='" + relativePath + "/index/user/setLocale/es?source=" + window.location.pathname + "'>Español</a></li>" +
-                        "    <li><a href='" + relativePath + "/index/user/setLocale/fr_FR?source=" + window.location.pathname + "'>Français</a></li>" +   // OMP supports fr_CA only
-                        "    <li><a href='" + relativePath + "/index/user/setLocale/it?source=" + window.location.pathname + "'>Italiano</a></li>" +
-                        "</ul>";
-            }
-
-            const langGlobeImage = document.createElement('img');
-            langGlobeImage.id = 'header-lang-globe';
-            langGlobeImage.src =
-                relativePath + '/plugins/themes/publicationstheme/images/language-icon.png';
-
-            languageDropDown.appendChild(langGlobeImage);
-            navigationUserElement.appendChild(languageDropDown);
-
-            document.getElementById('header-lang-globe').src =
-                relativePath + '/plugins/themes/publicationstheme/images/language-icon.png';
 
             document.getElementById('idai-publications-logo').src =
                 relativePath + '/plugins/themes/publicationstheme/images/idai-publications-logo.png';

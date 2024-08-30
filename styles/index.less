@@ -18,7 +18,7 @@ dai-header
 
 #navigationUser {
 	width: 100%;
-	padding: 0 1vw;
+	padding: 1vh;
 }
 
 iframe {
@@ -26,6 +26,9 @@ iframe {
 	height: 100vh;
 	width: 200px;
 	border: 1px solid #dfdada;
+	display: none;
+	position: absolute;
+	top: 6vh;
 }
 
 #idai-world-dropdown {
@@ -34,8 +37,8 @@ iframe {
 }
 
 #idai-world-dropdown a {
-	font-size: 23px;
-	padding: 1.5vh 1vw;
+	font-size: 2em;
+	padding: 1vh;
 }
 
 #idai-world-dropdown a:active {
@@ -47,24 +50,10 @@ iframe {
 }
 
 #idai-publications-logo {
-	height: 35px;
+	height: 32.5px;
 	position: absolute;
-	padding-left: 15px;
+	padding-left: 1vw;
 	max-width: unset;
-	left: 30px;
-	top: 3px;
-}
-
-#language-dropdown {
-	padding-top: 1vh;
-}
-
-#language-dropdown[aria-haspopup]:after {
-	color: white;
-}
-
-#header-lang-globe {
-	height: 25px;
 }
 
 a#dai-logo {
@@ -78,6 +67,10 @@ a#dai-logo {
 img#dai-logo-img {
 	max-height: 80px;
 	float: right;
+}
+
+li.profile {
+	bottom:0 !important;
 }
 
 
@@ -799,7 +792,7 @@ monitors (OJS and OMP)
 		/* firefox not supportable: moz-transform: scale() has not the same behaviour */
 	}
 	#idai-world-dropdown a {
-		padding: 1.2vh 1vw;
+		padding: 1vh;
 	}
 
 }
@@ -813,6 +806,6 @@ monitors (OJS and OMP)
 	}
 	#idai-world-dropdown a {
 		font-size: 23px;
-		padding: 1.2vh 1vw;
+		padding: 1vh;
 	}
 }
