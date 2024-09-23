@@ -25,12 +25,11 @@
 	{include file="frontend/components/breadcrumbs_catalog.tpl" type="series" currentTitle=$series->getLocalizedTitle()}
 	<h1>{$series->getLocalizedTitle()|escape}</h1>
 
-	{* Count of monographs in this series
+	{* Count of monographs in this series *}
 	<div class="monograph_count">
 		{translate key="catalog.browseTitles" numTitles=$total}
 	</div>
-	*}
-
+	
 	{* Image and description *}
 	{assign var="image" value=$series->getImage()}
 	{assign var="description" value=$series->getLocalizedDescription()|strip_unsafe_html}
