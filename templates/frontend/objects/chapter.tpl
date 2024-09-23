@@ -50,9 +50,15 @@
 		</div>
 	{/if}
 
+	{* Chapter title *}
 	<h1 class="title">
 		{$chapter->getLocalizedFullTitle()|escape}
 	</h1>
+
+	{* Volume title *}
+	<div class = "volume-title">in:
+		{$publication->getLocalizedFullTitle(null, 'html')|strip_unsafe_html}
+	</div>
 
 	{* Chapter DOIs *}
 		{assign var=doiObject value=$chapter->getData('doiObject')}
@@ -63,9 +69,44 @@
 
 	<div class="row">
 		<div class="main_entry">
+	
+			{* author lists *}
+			<h2 class="label" style="margin-top: 2vh;">{translate key="submission.contributors"}</h2>
 
-			{* Author list *}
-			{include file="frontend/components/authors.tpl" authors=$chapterAuthors}
+			{* Show short list of authors as main contributors *}
+			<ul class="contributors">
+
+			{foreach from=$chapterAuthors item=author}
+
+				{* get roleName of each author = contributor*}
+				{$roleName = $author->getLocalizedUserGroupName()}
+
+				<li>
+					{* add author names *}
+					<span class="name">{$author->getFullName()|escape} 
+						<span class="role">[{$roleName|escape}]</span>
+					</span>
+
+					{* add orcid*}
+					{if $author->getOrcid()}
+						<span class="orcid">
+						<a href="{$author->getOrcid()|escape}" target="_blank">
+							{$author->getOrcid()|escape}
+						</a>
+					</span>
+					{/if}
+
+					{* add affiliation*}
+					{if $author->getLocalizedAffiliation()}
+						<span class="affiliation">
+						{$author->getLocalizedAffiliation()|escape}
+					</span>
+					{/if}
+				</li>
+			
+			{/foreach}
+
+			</ul>
 
 			{* Abstract *}
 			<div class="item abstract">
