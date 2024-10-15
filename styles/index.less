@@ -14,11 +14,20 @@ dai-header
 	position: fixed;
 	padding-left: 0;
 	padding-right: 0;
+	direction: ltr !important;
+	text-align: right;
+}
+
+.pkp_navigation_user {
+	direction: ltr !important;
+	text-align: right;
 }
 
 #navigationUser {
 	width: 100%;
 	padding: 1vh;
+	direction: ltr !important;
+	text-align: right;
 }
 
 iframe {
@@ -70,6 +79,11 @@ img#dai-logo-img {
 
 li.profile {
 	bottom:0 !important;
+	text-align: left;
+}
+
+.pkp_navigation_user li  {
+	text-align: left !important;
 }
 
 
@@ -387,6 +401,7 @@ p.doi-value {
 	-moz-transition: all 1s ease-out;
 	-o-transition: all 1s ease-out;
 	min-width: 200px;
+	margin-right:0;
 }
 
 .cmp_monographs_list .obj_monograph_summary:hover img {
@@ -416,6 +431,11 @@ p.doi-value {
 	line-height: 2.143rem;
 	color: rgba(0, 0, 0, 0.74);
 	border-bottom: 1px solid #ddd;
+}
+
+body[dir="rtl"] .obj_monograph_summary>* {
+	margin-right: 12.5vw;
+	margin-left: 0;
 }
 
 /* monograph single page */
@@ -486,11 +506,6 @@ span.role {
 	margin-top: 1vh;
 	border-top: 0.1vh solid gray;
 }
-
-.volume-title {
-	font-style: italic;
-}
-
 
 .series {
 	padding-bottom: 0.5vh;
@@ -564,6 +579,10 @@ li.series {
 }
 
 .pkp_page_index .journals .thumb+.body {
+	width: 50%;
+}
+
+.pkp_page_index .journals .thumb {
 	width: 50%;
 }
 
