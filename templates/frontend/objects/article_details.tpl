@@ -155,17 +155,17 @@
 
 			{* Keywords *}
 			{if !empty($publication->getLocalizedData('keywords'))}
-			<section class="item keywords">
-				<h2 class="label">
-					{capture assign=translatedKeywords}{translate key="article.subject"}{/capture}
-					{translate key="semicolon" label=$translatedKeywords}
-				</h2>
-				<span class="value">
-					{foreach name="keywords" from=$publication->getLocalizedData('keywords') item="keyword"}
-						{$keyword|escape}{if !$smarty.foreach.keywords.last}{translate key="common.commaListSeparator"}{/if}
-					{/foreach}
-				</span>
-			</section>
+				<section class="item keywords">
+					<h2 class="label">
+						{capture assign=translatedKeywords}{translate key="article.subject"}{/capture}
+						{translate key="semicolon" label=$translatedKeywords}
+					</h2>
+					<p class="value">
+						{foreach name="keywords" from=$publication->getLocalizedData('keywords') item="keyword"}
+							{$keyword|escape}{if !$smarty.foreach.keywords.last}{translate key="common.commaListSeparator"}{/if}
+						{/foreach}
+					</p>
+				</section>
 			{/if}
 
 			{call_hook name="Templates::Article::Main"}
