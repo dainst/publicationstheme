@@ -23,12 +23,11 @@
 
 	{* Breadcrumb *}
 	{include file="frontend/components/breadcrumbs_catalog.tpl" type="series" currentTitle=$series->getLocalizedTitle()}
-	<h1>{$series->getLocalizedTitle()|escape}</h1>
+	<h1>{$series->getLocalizedTitle()|escape}</h1> 
 
-	{* Count of monographs in this series *}
-	<div class="monograph_count">
-		{translate key="catalog.browseTitles" numTitles=$total}
-	</div>
+
+	{* Count of monographs in this series, uncomment to display *}
+	{* <div class="monograph_count"> {translate key="catalog.browseTitles" numTitles=$total}</div> *} 
 	
 	{* Image and description *}
 	{assign var="image" value=$series->getImage()}
@@ -56,9 +55,7 @@
 
 	{* No published titles in this category *}
 	{if empty($publishedSubmissions)}
-		<h2>
-			{translate key="catalog.category.heading"}
-		</h2>
+		<h2> {translate key="catalog.category.heading"}</h2>
 		<p>{translate key="catalog.category.noItems"}</p>
 
 	{else}
