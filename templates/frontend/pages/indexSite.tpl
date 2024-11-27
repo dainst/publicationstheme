@@ -30,6 +30,9 @@
 					{capture assign="url"}{url journal=$journal->getPath()}{/capture}
 					{assign var="thumb" value=$journal->getLocalizedData('journalThumbnail')}
 					{assign var="description" value=$journal->getLocalizedDescription()}
+					{assign var="eIssn" value=$journal->getData('onlineIssn')}
+					{assign var="pIssn" value=$journal->getData('printIssn')}
+			
 					<li{if $thumb} class="has_thumb"{/if}>
 						{if $thumb}
 							<div class="thumb">
@@ -60,6 +63,8 @@
 							{if $description}
 								<div class="description">
 									{$description}
+									{if $eIssn}<td class="label">E-ISSN: </td><td class="value">{$eIssn}</td>{/if}
+									{if $pIssn}<td class="label">P-ISSN: </td><td class="value">{$pIssn}</td>{/if}
 								</div>
 							{/if}
 						</div>
