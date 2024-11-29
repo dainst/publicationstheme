@@ -121,22 +121,19 @@
 								{$author->getFullName()|escape}
 								<span class="role">[{$roleName|escape}]</span>
 							</span>
+							{if $author->getData('orcid')}
+								<span class="orcid">
+								{if $author->getData('orcid')}
+								{$orcidIcon} <a href="{$author->getData('orcid')|escape}" target="_blank">{$author->getData('orcid')|escape}</a>
+								{/if}
+								</span>
+							{/if}
 							{if $author->getLocalizedData('affiliation')}
 								<span class="affiliation">
 									{$author->getLocalizedData('affiliation')|escape}
 									{if $author->getData('rorId')}
 										<a href="{$author->getData('rorId')|escape}">{$rorIdIcon}</a>
 									{/if}
-								</span>
-							{/if}
-							{if $author->getData('orcid')}
-								<span class="orcid">
-									{if $author->getData('orcidAccessToken')}
-										{$orcidIcon}
-									{/if}
-									<a href="{$author->getData('orcid')|escape}" target="_blank">
-										{$author->getData('orcid')|escape}
-									</a>
 								</span>
 							{/if}
 						</li>
