@@ -339,6 +339,7 @@ button .submit {
 }
 
 /* Reference Lists */
+
 .references p {
 	font-family: 'Cargan';
 	font-size: 0.9em;
@@ -347,6 +348,8 @@ button .submit {
 	display: list-item;
 	list-style: square;
 	margin-left: 2vw;
+	margin-left: 1vw;
+    text-align: left;
 }
 
 p.doi-value {
@@ -622,6 +625,13 @@ li.series {
 
 .obj_issue_toc .sections:not(:first-child) {
 	margin-top: 0;
+}
+
+.obj_issue_toc .galleys_links {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: start;
+    flex-direction: column;
 }
 
 .pkp_page_index .journals>ul>li {
