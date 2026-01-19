@@ -566,7 +566,7 @@
 								</div>
 							{/if}
 
-							{* Physical dimensions *}
+							{* Physical dimensions 
 							{if $publicationFormat->getPhysicalFormat()}
 								<div class="sub_item dimensions">
 									<h2 class="label">
@@ -577,6 +577,7 @@
 									</div>
 								</div>
 							{/if}
+							*}
 						</div>
 					{/if}
 				{/foreach}
