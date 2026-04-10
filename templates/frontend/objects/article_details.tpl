@@ -154,12 +154,24 @@
 			{if !empty($publication->getLocalizedData('keywords'))}
 				<section class="item keywords">
 					<h2 class="label">
-						{capture assign=translatedKeywords}{translate key="article.subject"}{/capture}
-						{translate key="semicolon" label=$translatedKeywords}
+						{translate key="article.subject"}
 					</h2>
 					<p class="value">
 						{foreach name="keywords" from=$publication->getLocalizedData('keywords') item="keyword"}
 							{$keyword|escape}{if !$smarty.foreach.keywords.last}{translate key="common.commaListSeparator"}{/if}
+						{/foreach}
+					</p>
+				</section>
+			{/if}
+
+			{* Supporting Agencies *}
+			{$supportingAgencies = $publication->getLocalizedData('supportingAgencies')}
+			{if $publication->getLocalizedData('supportingAgencies')}
+				<section class="item keywords">
+					<h2 class="label">{translate key="submission.supportingAgencies"}</h2>
+					<p class="value">
+						{foreach name="supportingAgencies" from=$publication->getLocalizedData('supportingAgencies') item="agency"}
+							{$agency|escape}{if !$smarty.foreach.supportingAgencies.last}{translate key="common.commaListSeparator"}{/if}
 						{/foreach}
 					</p>
 				</section>
