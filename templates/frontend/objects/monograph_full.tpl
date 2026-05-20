@@ -439,7 +439,7 @@
 					{if $ccLicenseBadge}
 						{$ccLicenseBadge}
 						{* add specific license terms, e.g. only for text *}
-						{if $publication->getData('licenseTerms')} {$currentContext->getLocalizedData('licenseTerms')}{/if}
+						{$currentContext->getLocalizedData('licenseTerms')}
 					{/if}
 				{/if}
 			{/if}
