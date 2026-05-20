@@ -424,28 +424,26 @@
 				</div>
 			{/if}
 
-			{* Copyright statement *}
-			{if $publication->getData('copyrightYear') && $publication->getLocalizedData('copyrightHolder')}
-				<div class="item copyright">
-					{translate|escape key="submission.copyrightStatement" copyrightYear=$publication->getData('copyrightYear') copyrightHolder=$publication->getLocalizedData('copyrightHolder')}
-				</div>
-			{/if}
-
-			{* License *}
-			{if $publication->getData('licenseUrl')}
-				<div class="item license">
-					<h2 class="label">
-						{translate key="submission.license"}
-					</h2>
+			{* Copyright and licensing *}
+			{if $publication->getLocalizedData('copyrightHolder') || $publication->getData('licenseUrl')}
+			<div class="item copyright">
+				<h2 class="label">
+					{translate key="submission.copyright"} & {translate key="submission.license"}
+				</h2>
+				{* show always copyright statement *}
+				{if $publication->getLocalizedData('copyrightHolder')}
+					<p>{translate key="submission.copyrightStatement" copyrightHolder=$publication->getLocalizedData('copyrightHolder') copyrightYear=$publication->getData('copyrightYear')}</p>
+				{/if}
+				{* show individual license-url *}
+				{if $publication->getData('licenseUrl')}
 					{if $ccLicenseBadge}
 						{$ccLicenseBadge}
-					{else}
-						<a href="{$publication->getData('licenseUrl')|escape}">
-							{translate key="submission.license"}
-						</a>
+						{* add specific license terms, e.g. only for text *}
+						{if $publication->getData('licenseTerms')} {$currentContext->getLocalizedData('licenseTerms')}{/if}
 					{/if}
-				</div>
+				{/if}
 			{/if}
+			</div>
 
 			{* Publication formats *}
 			{if count($publicationFormats)}
@@ -589,3 +587,4 @@
 	</div><!-- .row -->
 
 </div><!-- .obj_monograph_full -->
+

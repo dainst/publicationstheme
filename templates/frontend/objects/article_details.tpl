@@ -440,27 +440,24 @@
 			{/foreach}
 
 			{* Copyright and licensing *}
-			{if $currentContext->getLocalizedData('licenseTerms') || $publication->getData('licenseUrl')}
-				<div class="item copyright">
-					<h2 class="label">
-						{translate key="submission.copyright"} & {translate key="submission.license"}
-					</h2>
-					{* show always copyright statement *}
-					{if $publication->getLocalizedData('copyrightHolder')}
-						<p>{translate key="submission.copyrightStatement" copyrightHolder=$publication->getLocalizedData('copyrightHolder') copyrightYear=$publication->getData('copyrightYear')}</p>
+			{if $publication->getLocalizedData('copyrightHolder') || $publication->getData('licenseUrl')} 
+			<div class="item copyright">
+				<h2 class="label">
+					{translate key="submission.copyright"} & {translate key="submission.license"}
+				</h2>
+				{* show always copyright statement *}
+				{if $publication->getLocalizedData('copyrightHolder')}
+					<p>{translate key="submission.copyrightStatement" copyrightHolder=$publication->getLocalizedData('copyrightHolder') copyrightYear=$publication->getData('copyrightYear')}</p>
+				{/if}
+				{* show individual license-url *}
+				{if $publication->getData('licenseUrl')}
+					{if $ccLicenseBadge} 
+						{$ccLicenseBadge}
+						{* add specific license terms, e.g. only for text *}
+						{$currentContext->getLocalizedData('licenseTerms')}
 					{/if}
-					{* show individual license-url *}
-					{if $publication->getData('licenseUrl')}
-						{if $ccLicenseBadge} 
-							{$ccLicenseBadge}
-							{* add specific license terms, e.g. only for text *}
-							{$currentContext->getLocalizedData('licenseTerms')}
-						{/if}
-					{* show fallback, if no license is specified *}
-					{else} 
-						<p>All rights reserved.</p>
-					{/if}
-				</div>
+				{/if}
+			</div>
 			{/if}
 
 			{call_hook name="Templates::Article::Details"}
